@@ -1,0 +1,154 @@
+local ButtonEffects = {}
+
+-- Default settings
+local DEFAULT_SETTINGS = {
+    hoverDuration = 0.1,
+    normalScale = 1,
+    hoverScale = 1.05,
+    normalRotation = 0,
+    hoverRotation = 5,
+    closeTweenDuration = 0.1,
+    closeOffsetY = 0.02
+}
+
+-- Function to smoothly transition button properties
+local function transitionButton(button, uiScale, startScale, endScale, startRotation, endRotation, duration)
+    local startTime = tick()
+    
+    local connection
+    connection = RunService.RenderStepped:Connect(function()
+        local elapsed = tick() - startTime
+        local alpha = math.min(elapsed / duration, 1)
+        
+        -- Smooth easing function (ease in-out)
+        alpha = alpha < 0.5 and 2 * alpha * alpha or 1 - math.pow(-2 * alpha + 2, 2) / 2
+        
+        -- Interpolate scale
+        local currentScale = startScale + (endScale - startScale) * alpha
+        uiScale.Scale = currentScale
+        
+        -- Interpolate rotation
+        local currentRotation = startRotation + (endRotation - startRotation) * alpha
+        button.Rotation = currentRotation
+        
+        if alpha >= 1 then
+            connection:Disconnect()
+        end
+    end)
+end
+
+-- Apply hover effects to a button
+function ButtonEffects:ApplyHoverEffect(button, settings)
+    settings = settings or {}
+    
+    -- Merge with default settings
+    for key, value in pairs(DEFAULT_SETTINGS) do
+        if settings[key] == nil then
+            settings[key] = value
+        end
+    end
+    
+    -- Create UIScale if it doesn't exist
+    local uiScale = button:FindFirstChildOfClass("UIScale")
+    if not uiScale then
+        uiScale = Instance.new("UIScale")
+        uiScale.Scale = settings.normalScale
+        uiScale.Parent = button
+    end
+    
+    -- Connect hover events
+    button.MouseEnter:Connect(function()
+        transitionButton(
+            button,
+            uiScale,
+            settings.normalScale,
+            settings.hoverScale,
+            settings.normalRotation,
+            settings.hoverRotation,
+            settings.hoverDuration
+        )
+    end)
+    
+    button.MouseLeave:Connect(function()
+        transitionButton(
+            button,
+            uiScale,
+            settings.hoverScale,
+            settings.normalScale,
+            settings.hoverRotation,
+            settings.normalRotation,
+            settings.hoverDuration
+        )
+    end)
+    
+    return uiScale
+end
+
+-- Apply close button functionality
+function ButtonEffects:ApplyCloseButton(button, frameToClose, settings)
+    settings = settings or {}
+    
+    -- Merge with default settings
+    for key, value in pairs(DEFAULT_SETTINGS) do
+        if settings[key] == nil then
+            settings[key] = value
+        end
+    end
+    
+    -- Apply hover effect
+    local uiScale = self:ApplyHoverEffect(button, settings)
+    
+    -- Add close functionality
+    button.MouseButton1Click:Connect(function()
+        local originalPosition = frameToClose.Position
+        
+        -- Create a tween to slide
+        local tweenInfo = TweenInfo.new(
+            settings.closeTweenDuration,
+            Enum.EasingStyle.Quad,
+            Enum.EasingDirection.Out
+        )
+        
+        -- Calculate the target position
+        local targetPosition = UDim2.new(
+            originalPosition.X.Scale,
+            originalPosition.X.Offset,
+            originalPosition.Y.Scale + settings.closeOffsetY,
+            originalPosition.Y.Offset
+        )
+        
+        -- Create the tween
+        local tween = TweenService:Create(
+            frameToClose,
+            tweenInfo,
+            {Position = targetPosition}
+        )
+        
+        -- Play the tween and set visibility to false when it completes
+        tween:Play()
+        tween.Completed:Connect(function()
+            frameToClose.Visible = false
+            -- Reset position for next time it's shown
+            frameToClose.Position = originalPosition
+        end)
+    end)
+    
+    return uiScale
+end
+
+-- Remove all existing connections from a button
+function ButtonEffects:ClearConnections(button)
+    for _, connection in pairs(getconnections(button.MouseButton1Click)) do
+        connection:Disable()
+    end
+    
+    for _, connection in pairs(getconnections(button.MouseEnter)) do
+        connection:Disable()
+    end
+    
+    for _, connection in pairs(getconnections(button.MouseLeave)) do
+        connection:Disable()
+    end
+end
+
+return ButtonEffects
