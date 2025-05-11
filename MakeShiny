@@ -1,0 +1,176 @@
+MakeShiny = game:GetService("Players").LocalPlayer.PlayerGui.MainGui.CenterUIFrame.MakeShinyPrompt
+MakeShinyClose = game:GetService("Players").LocalPlayer.PlayerGui.MainGui.CenterUIFrame.MakeShinyPrompt.MakeShinyClose
+MakeShinyConfirm = game:GetService("Players").LocalPlayer.PlayerGui.MainGui.CenterUIFrame.MakeShinyPrompt.MakeShinyConfirmButton
+MakeShinyCancel = game:GetService("Players").LocalPlayer.PlayerGui.MainGui.CenterUIFrame.MakeShinyPrompt.MakeShinyCancelButton
+MakeShinyText = game:GetService("Players").LocalPlayer.PlayerGui.MainGui.CenterUIFrame.MakeShinyPrompt.MakeShinyText
+
+MakeShiny.Position = UDim2.new(0.159, 0, 0, -40)
+MakeShiny.Size = UDim2.new(0, 682, 0, 200)
+MakeShiny.ImageTransparency = 1
+
+MakeShinyBckgFrame = Instance.new("Frame")
+MakeShinyBckgFrame.BackgroundColor3 = Color3.fromRGB(255,255,255)
+MakeShinyBckgFrame.Position = UDim2.new(0,0,0,0)
+MakeShinyBckgFrame.Size = UDim2.new(0, 682, 0, 200)
+MakeShinyBckgFrame.Parent = MakeShiny
+
+MakeShinyBckgFrameImg = Instance.new("ImageLabel")
+MakeShinyBckgFrameImg.Name = "MakeShinyBckgFrameImg"
+MakeShinyBckgFrameImg.Size = UDim2.new(1, 0, 1, 0)
+MakeShinyBckgFrameImg.BackgroundTransparency = 1
+MakeShinyBckgFrameImg.Image = "rbxassetid://90803316340171"
+MakeShinyBckgFrameImg.ImageColor3 = Color3.fromRGB(20, 58, 67)
+MakeShinyBckgFrameImg.ImageTransparency = 0.95
+MakeShinyBckgFrameImg.ScaleType = Enum.ScaleType.Tile
+MakeShinyBckgFrameImg.TileSize = UDim2.new(0, 100, 0, 100)
+MakeShinyBckgFrameImg.Parent = MakeShinyBckgFrame
+
+
+MakeShinyBckgFrameCorner = Instance.new("UICorner")
+MakeShinyBckgFrameCorner.CornerRadius = UDim.new(0, 20)
+MakeShinyBckgFrameCorner.Parent = MakeShinyBckgFrame
+
+MakeShinyBckgFrameStroke = Instance.new("UIStroke")
+MakeShinyBckgFrameStroke.Color = Color3.fromRGB(46,46,53)
+MakeShinyBckgFrameStroke.Thickness = 5
+MakeShinyBckgFrameStroke.Parent = MakeShinyBckgFrame
+
+
+MakeShinyBckgFrameGradient = Instance.new("UIGradient")
+MakeShinyBckgFrameGradient.Rotation = -90
+MakeShinyBckgFrameGradient.Color = ColorSequence.new({
+ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),
+ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255))
+})
+MakeShinyBckgFrameGradient.Transparency = NumberSequence.new({
+NumberSequenceKeypoint.new(0, 0),
+NumberSequenceKeypoint.new(0.31, 0.58),
+NumberSequenceKeypoint.new(0.507, 0.757),
+NumberSequenceKeypoint.new(0.756, 0.994),
+NumberSequenceKeypoint.new(1, 1.29)
+})
+MakeShinyBckgFrameGradient.Parent = MakeShinyBckgFrameImg
+
+MakeShinyBckgFrameGradientCorner = Instance.new("UICorner")
+MakeShinyBckgFrameGradientCorner.CornerRadius = UDim.new(0, 20)
+MakeShinyBckgFrameGradientCorner.Parent = MakeShinyBckgFrameGradient
+
+MakeShinyClose.Image = "rbxassetid://14423621163"
+MakeShinyClose.Rotation = 0
+MakeShinyClose.Position = UDim2.new(0, 657, 0, -15)
+MakeShinyClose.Size = UDim2.new(0, 50, 0, 50)
+
+MakeShinyCloseAspectRatio = Instance.new("UIAspectRatioConstraint")
+MakeShinyCloseAspectRatio.Name = "PSCloseAspectRatio"
+MakeShinyCloseAspectRatio.Parent = MakeShinyClose
+
+
+MakeShinyCloseGradient = Instance.new("UIGradient")
+MakeShinyCloseGradient.Rotation = -90
+MakeShinyCloseGradient.Color = ColorSequence.new({
+ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 2, 61)),
+ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 39, 125))
+})
+MakeShinyCloseGradient.Parent = MakeShinyClose
+
+
+MakeShinyCloseUIScale = Instance.new("UIScale")
+MakeShinyCloseUIScale.Scale = 1
+MakeShinyCloseUIScale.Parent = MakeShinyClose
+
+
+MakeShinyCloseShadow = Instance.new("ImageLabel")
+MakeShinyCloseShadow.Name = "PSShadow"
+MakeShinyCloseShadow.Size = UDim2.new(1, 0, 1.1, 0)
+MakeShinyCloseShadow.ImageTransparency = 0.5
+MakeShinyCloseShadow.Position = UDim2.new(0, 0, 0, 0)
+MakeShinyCloseShadow.BackgroundTransparency = 1
+MakeShinyCloseShadow.Image = "rbxassetid://14001321443"
+MakeShinyCloseShadow.ImageColor3 = Color3.fromRGB(0, 0, 0)
+MakeShinyCloseShadow.ZIndex = 0
+MakeShinyCloseShadow.Parent = MakeShinyClose
+
+
+MakeShinyCloseTextLabel = Instance.new("TextLabel")
+MakeShinyCloseTextLabel.Name = "PSX"
+MakeShinyCloseTextLabel.Size = UDim2.new(0.9, 0, 0.6, 0)
+MakeShinyCloseTextLabel.Position = UDim2.new(0.06, 0, 0.2, 0)
+MakeShinyCloseTextLabel.BackgroundTransparency = 1
+MakeShinyCloseTextLabel.Text = "X"
+MakeShinyCloseTextLabel.TextSize = 18
+MakeShinyCloseTextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+MakeShinyCloseTextLabel.TextScaled = true
+MakeShinyCloseTextLabel.Font = Enum.Font.FredokaOne
+MakeShinyCloseTextLabel.ZIndex = 10
+MakeShinyCloseTextLabel.Parent = MakeShinyClose
+
+
+MakeShinyCloseTextLabelStroke = Instance.new("UIStroke")
+MakeShinyCloseTextLabelStroke.Thickness = 3
+MakeShinyCloseTextLabelStroke.Color = Color3.fromRGB(0, 0, 0)
+MakeShinyCloseTextLabelStroke.Parent = MakeShinyCloseTextLabel
+
+
+MakeShinyConfirm.BackgroundTransparency = 1
+
+MakeShinyConfirmBttnFrame = Instance.new("Frame")
+MakeShinyConfirmBttnFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+MakeShinyConfirmBttnFrame.ZIndex = 2
+MakeShinyConfirmBttnFrame.Size = UDim2.new(1,0,1,0)
+MakeShinyConfirmBttnFrame.Parent = MakeShinyConfirm
+
+MakeShinyConfirmBttnUICorner = Instance.new("UICorner")
+MakeShinyConfirmBttnUICorner.CornerRadius = UDim.new(0, 10)
+MakeShinyConfirmBttnUICorner.Parent = MakeShinyConfirmBttnFrame
+
+
+MakeShinyConfirmBttnUIGradient = Instance.new("UIGradient")
+MakeShinyConfirmBttnUIGradient.Rotation = 90
+MakeShinyConfirmBttnUIGradient.Color = ColorSequence.new({
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 255, 170)),
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 143, 88))
+})
+
+MakeShinyConfirmBttnUIGradient.Parent = MakeShinyConfirmBttnFrame
+
+
+MakeShinyConfirmBttnUIStroke = Instance.new("UIStroke")
+MakeShinyConfirmBttnUIStroke.Color = Color3.fromRGB(0, 212, 131)
+MakeShinyConfirmBttnUIStroke.Thickness = 4
+MakeShinyConfirmBttnUIStroke.Parent = MakeShinyConfirmBttnFrame
+
+
+
+MakeShinyCancel.BackgroundTransparency = 1
+
+
+MakeShinyCancelBttnFrame = Instance.new("Frame")
+MakeShinyCancelBttnFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+MakeShinyCancelBttnFrame.ZIndex = 2
+MakeShinyCancelBttnFrame.Size = UDim2.new(1,0,1,0)
+MakeShinyCancelBttnFrame.Parent = MakeShinyCancel
+
+MakeShinyCancelBttnUICorner = Instance.new("UICorner")
+MakeShinyCancelBttnUICorner.CornerRadius = UDim.new(0, 10)
+MakeShinyCancelBttnUICorner.Parent = MakeShinyCancelBttnFrame
+
+
+MakeShinyCancelBttnUIGradient = Instance.new("UIGradient")
+MakeShinyCancelBttnUIGradient.Rotation = 90
+MakeShinyCancelBttnUIGradient.Color = ColorSequence.new({
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 70, 70)),
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(110,30,30))
+})
+
+MakeShinyCancelBttnUIGradient.Parent = MakeShinyCancelBttnFrame
+
+
+MakeShinyCancelBttnUIStroke = Instance.new("UIStroke")
+MakeShinyCancelBttnUIStroke.Color = Color3.fromRGB(255, 70, 70)
+MakeShinyCancelBttnUIStroke.Thickness = 4
+MakeShinyCancelBttnUIStroke.Parent = MakeShinyCancelBttnFrame
+
+MakeShinyTextStroke = Instance.new("UIStroke")
+MakeShinyTextStroke.Color = Color3.fromRGB(46,46,53)
+MakeShinyTextStroke.Thickness = 4
+MakeShinyTextStroke.Parent = MakeShinyText
