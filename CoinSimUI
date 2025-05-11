@@ -1,0 +1,50 @@
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+
+local player = Players.LocalPlayer
+local mainGuiPath = player:WaitForChild("PlayerGui"):WaitForChild("MainGui")
+
+local newImageId = "rbxassetid://108656729374887"
+
+local function modifyCoinSimUI(coinSimUI)
+    if coinSimUI:GetAttribute("Modified") then
+        return
+    end
+    
+    coinSimUI.Image = newImageId
+    coinSimUI.ZIndex = -1
+    coinSimUI.ImageTransparency = 0.2
+    
+    for _, child in pairs(coinSimUI:GetDescendants()) do
+        if child:IsA("GuiObject") then
+            child.ZIndex = -1
+        end
+        
+        if child:IsA("TextLabel") or child:IsA("TextButton") or child:IsA("TextBox") then
+            child.FontFace = Font.new("rbxasset://fonts/families/FredokaOne.json")
+        end
+    end
+    
+    coinSimUI:SetAttribute("Modified", true)
+end
+
+local function checkExistingCoinSimUIs()
+    for _, descendant in pairs(mainGuiPath:GetDescendants()) do
+        if descendant.Name == "CoinSimUI" then
+            modifyCoinSimUI(descendant)
+        end
+    end
+end
+
+checkExistingCoinSimUIs()
+
+mainGuiPath.DescendantAdded:Connect(function(descendant)
+    if descendant.Name == "CoinSimUI" then
+        task.wait()
+        modifyCoinSimUI(descendant)
+    end
+end)
+
+RunService.Heartbeat:Connect(function()
+    checkExistingCoinSimUIs()
+end)
