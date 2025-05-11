@@ -10,6 +10,7 @@ ReturningAmount = game:GetService("Players").LocalPlayer.PlayerGui.MainGui.Cente
 ReturningDouble.BackgroundTransparency = 1
 ReturningContinue.BackgroundTransparency = 1
 
+ReturningFrame.Position = UDim2.new(0,70,0,140)
 ReturningFrame.ImageTransparency = 1
 ReturningTip.Position = UDim2.new(0,0,0,550)
 ReturningTip.Size = UDim2.new(1,0,0,20)
