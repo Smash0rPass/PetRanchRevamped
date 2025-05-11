@@ -269,10 +269,17 @@ local function cleanupEffects()
     end
 end
 
-while true do
+-- Function to check pet inventory
+local function runPetInventoryChecks()
     cleanupEffects()
     
-    for _, pathString in ipairs(pathsToCheck) do
+    -- Check the pet inventory paths
+    local petPaths = {
+        pathsToCheck[1],
+        pathsToCheck[2]
+    }
+    
+    for _, pathString in ipairs(petPaths) do
         local success, container = pcall(function()
             return loadstring("return " .. pathString)()
         end)
@@ -281,6 +288,29 @@ while true do
             processPetContainer(container)
         end
     end
-    
-    wait(2)
 end
+
+-- Function to check aura inventory
+local function runAuraInventoryChecks()
+    -- Check the aura inventory paths
+    local auraPaths = {
+        pathsToCheck[3],
+        pathsToCheck[4]
+    }
+    
+    for _, pathString in ipairs(auraPaths) do
+        local success, container = pcall(function()
+            return loadstring("return " .. pathString)()
+        end)
+        
+        if success and container then
+            processPetContainer(container)
+        end
+    end
+end
+
+-- Return the functions instead of running an infinite loop
+return {
+    runPetInventoryChecks = runPetInventoryChecks,
+    runAuraInventoryChecks = runAuraInventoryChecks
+}
