@@ -2,7 +2,6 @@ local Players = game:GetService("Players")
 local TweenService = game:GetService("TweenService")
 local LocalPlayer = Players.LocalPlayer
 
--- Paths to check for pets
 local pathsToCheck = {
     "game:GetService('Players').LocalPlayer.PlayerGui.MainGui.CenterUIFrame.PetInventory.PetInventoryInnerFrame.NewGui.MainFrame2.Pets.EquippedPets",
     "game:GetService('Players').LocalPlayer.PlayerGui.MainGui.CenterUIFrame.PetInventory.PetInventoryInnerFrame.NewGui.MainFrame2.Pets.PetInventoryScrollingFrame",
@@ -10,7 +9,6 @@ local pathsToCheck = {
     "game:GetService('Players').LocalPlayer.PlayerGui.MainGui.CenterUIFrame.PetInventory.AuraInventoryInnerFrame.ScreenGui.AuraFrame.Auras.EquippedAuras"
 }
 
--- List of shiny pet image IDs
 shinyPets = {
     "rbxassetid://3971991254", --["Shiny Atomizer"] // rarity = "Premium"
     "rbxassetid://4154409438", --["Shiny Bolthead"] // rarity = "Premium"
@@ -163,29 +161,22 @@ shinyPets = {
     "rbxassetid://3321273272", --["Shiny Wolf"] // rarity = "Common"
 }
 
--- Keep track of pets that already have effects applied
 local petsWithEffects = {}
 
--- Function to create shiny effect for a pet image
 local function applyShinyEffect(petImage)
-    -- Generate a unique identifier for this pet image
     local petId = tostring(petImage:GetFullName())
     
-    -- Check if effect already applied to this specific pet
     if petsWithEffects[petId] then
         return
     end
     
-    -- Mark this pet as having an effect
     petsWithEffects[petId] = true
     
-    -- Remove any existing ShinyEffect (cleanup)
     local existingEffect = petImage.Parent:FindFirstChild("ShinyEffect")
     if existingEffect then
         existingEffect:Destroy()
     end
     
-    -- Create shiny effect frame
     local shinyEffect = Instance.new("Frame")
     shinyEffect.Name = "ShinyEffect"
     shinyEffect.Size = UDim2.fromScale(1, 1)
@@ -194,26 +185,22 @@ local function applyShinyEffect(petImage)
     shinyEffect.ZIndex = petImage.ZIndex + 1
     shinyEffect.BackgroundTransparency = 0
     
-    -- Create UI gradient for the shine effect
     local gradient = Instance.new("UIGradient")
     gradient.Transparency = NumberSequence.new({
         NumberSequenceKeypoint.new(0, 1),
         NumberSequenceKeypoint.new(0.3, 0.5),
-        NumberSequenceKeypoint.new(0.5, 0.3),
+        NumberSequenceKeypoint.new(0.5, 0),
         NumberSequenceKeypoint.new(0.7, 0.5),
         NumberSequenceKeypoint.new(1, 1)
     })
     gradient.Rotation = 50
     gradient.Parent = shinyEffect
     
-    -- Parent the effect to the pet image's parent
     shinyEffect.Parent = petImage.Parent
     
-    -- Function to animate the shine effect
     local function animateShine()
         local running = true
         
-        -- Create a connection to detect when the effect is removed
         local ancestryChangedConnection
         ancestryChangedConnection = shinyEffect.AncestryChanged:Connect(function(_, newParent)
             if newParent == nil then
@@ -226,21 +213,17 @@ local function applyShinyEffect(petImage)
         end)
         
         while running and shinyEffect and shinyEffect.Parent do
-            -- Create tween for shine animation
             local tween = TweenService:Create(
                 gradient, 
                 TweenInfo.new(2, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut),
                 {Offset = Vector2.new(2, 0)}
             )
             
-            -- Reset position and start animation
             gradient.Offset = Vector2.new(-2, 0)
             tween:Play()
             
-            -- Wait for tween to complete and then wait before next animation
             tween.Completed:Wait()
             
-            -- Only continue if the effect still exists
             if not (shinyEffect and shinyEffect.Parent) then
                 break
             end
@@ -249,11 +232,9 @@ local function applyShinyEffect(petImage)
         end
     end
     
-    -- Start animation in a separate thread
     coroutine.wrap(animateShine)()
 end
 
--- Function to check if an image ID is in the shiny pets list
 local function isShinyPet(imageId)
     for _, shinyId in ipairs(shinyPets) do
         if imageId == shinyId then
@@ -263,11 +244,9 @@ local function isShinyPet(imageId)
     return false
 end
 
--- Function to process a container and check for pet images
 local function processPetContainer(container)
     if not container then return end
     
-    -- Process all children in the container
     for _, child in pairs(container:GetDescendants()) do
         if child:IsA("ImageButton") and child.Name == "PetImage" then
             local imageId = child.Image
@@ -278,27 +257,21 @@ local function processPetContainer(container)
     end
 end
 
--- Function to clean up effects for pets that no longer exist
 local function cleanupEffects()
     for petId in pairs(petsWithEffects) do
-        -- Try to find the pet by its full name
         local success, pet = pcall(function()
             return game:GetService("CoreGui"):FindFirstChild(petId, true)
         end)
         
-        -- If pet doesn't exist anymore, remove it from our tracking
         if not (success and pet) then
             petsWithEffects[petId] = nil
         end
     end
 end
 
--- Main loop to continuously check for shiny pets
 while true do
-    -- Clean up effects for pets that no longer exist
     cleanupEffects()
     
-    -- Check each container path
     for _, pathString in ipairs(pathsToCheck) do
         local success, container = pcall(function()
             return loadstring("return " .. pathString)()
@@ -309,6 +282,5 @@ while true do
         end
     end
     
-    -- Wait before checking again
-    wait(math.random(3, 5))
+    wait(2)
 end
