@@ -1,0 +1,2489 @@
+petInfo = {
+  ["Bat"] = {
+    ["Shiny"] = "Shiny Bat",
+    ["petIcon"] = "rbxassetid://3321272690",
+    ["rarity"] = "Common",
+    ["coinValue"] = 55,
+  },
+  ["Blue Butterfly"] = {
+    ["Shiny"] = "Shiny Blue Butterfly",
+    ["petIcon"] = "rbxassetid://3321300808",
+    ["rarity"] = "Common",
+    ["coinValue"] = 200,
+  },
+  ["Brown Fox"] = {
+    ["Shiny"] = "Shiny Brown Fox",
+    ["petIcon"] = "rbxassetid://3321300887",
+    ["rarity"] = "Common",
+    ["coinValue"] = 150,
+  },
+  ["Dog"] = {
+    ["Shiny"] = "Shiny Dog",
+    ["petIcon"] = "rbxassetid://3319895754",
+    ["rarity"] = "Common",
+    ["coinValue"] = 15,
+  },
+  ["Fox"] = {
+    ["Shiny"] = "Shiny Fox",
+    ["petIcon"] = "rbxassetid://3319895844",
+    ["rarity"] = "Common",
+    ["coinValue"] = 24,
+  },
+  ["Ice Cat"] = {
+    ["Shiny"] = "Shiny Ice Cat",
+    ["petIcon"] = "rbxassetid://3321272769",
+    ["rarity"] = "Common",
+    ["coinValue"] = 40,
+  },
+  ["Lucky Cat"] = {
+    ["Limited"] = true,
+    ["petIcon"] = "rbxassetid://3324853749",
+    ["rarity"] = "Common",
+    ["coinValue"] = 3777,
+  },
+  ["Polar Bear"] = {
+    ["Shiny"] = "Shiny Polar Bear",
+    ["petIcon"] = "rbxassetid://3321396625",
+    ["rarity"] = "Common",
+    ["coinValue"] = 1750,
+  },
+  ["Red Butterfly"] = {
+    ["Shiny"] = "Shiny Red Butterfly",
+    ["petIcon"] = "rbxassetid://3321327915",
+    ["rarity"] = "Common",
+    ["coinValue"] = 550,
+  },
+  ["Snow Fox"] = {
+    ["Shiny"] = "Shiny Snow Fox",
+    ["petIcon"] = "rbxassetid://3321328407",
+    ["rarity"] = "Common",
+    ["coinValue"] = 400,
+  },
+  ["Sweets Bat"] = {
+    ["petIcon"] = "rbxassetid://3324884414",
+    ["rarity"] = "Common",
+    ["Shiny"] = "Shiny Sweets Bat",
+    ["Limited"] = true,
+    ["coinValue"] = 24000,
+  },
+  ["White Cat"] = {
+    ["Shiny"] = "Shiny White Cat",
+    ["petIcon"] = "rbxassetid://3319895658",
+    ["rarity"] = "Common",
+    ["coinValue"] = 20,
+  },
+  ["Wolf"] = {
+    ["Shiny"] = "Shiny Wolf",
+    ["petIcon"] = "rbxassetid://3321273354",
+    ["rarity"] = "Common",
+    ["coinValue"] = 80,
+  },
+  ["Brown Wolf"] = {
+    ["Shiny"] = "Shiny Brown Wolf",
+    ["petIcon"] = "rbxassetid://3321396365",
+    ["rarity"] = "Uncommon",
+    ["coinValue"] = 1900,
+  },
+  ["Bunny"] = {
+    ["Shiny"] = "Shiny Bunny",
+    ["petIcon"] = "rbxassetid://3319895561",
+    ["rarity"] = "Uncommon",
+    ["coinValue"] = 28,
+  },
+  ["Deer"] = {
+    ["Shiny"] = "Shiny Deer",
+    ["petIcon"] = "rbxassetid://3321468618",
+    ["rarity"] = "Uncommon",
+    ["coinValue"] = 5400,
+  },
+  ["Midnight Cat"] = {
+    ["Shiny"] = "Shiny Midnight Cat",
+    ["petIcon"] = "rbxassetid://3321327798",
+    ["rarity"] = "Uncommon",
+    ["coinValue"] = 800,
+  },
+  ["Polka Dot Butterfly"] = {
+    ["petIcon"] = "rbxassetid://3324883483",
+    ["rarity"] = "Uncommon",
+    ["Shiny"] = "Shiny Polka Dot Butterfly",
+    ["Limited"] = true,
+    ["coinValue"] = 29000,
+  },
+  ["Ruby Bunny"] = {
+    ["Shiny"] = "Shiny Ruby Bunny",
+    ["petIcon"] = "rbxassetid://3321272831",
+    ["rarity"] = "Uncommon",
+    ["coinValue"] = 100,
+  },
+  ["Shamrock Fox"] = {
+    ["Limited"] = true,
+    ["petIcon"] = "rbxassetid://3324853925",
+    ["rarity"] = "Uncommon",
+    ["coinValue"] = 4777,
+  },
+  ["Slime"] = {
+    ["Shiny"] = "Shiny Slime",
+    ["petIcon"] = "rbxassetid://3321469337",
+    ["rarity"] = "Uncommon",
+    ["coinValue"] = 5000,
+  },
+  ["Stone Dog"] = {
+    ["Shiny"] = "Shiny Stone Dog",
+    ["petIcon"] = "rbxassetid://3321301417",
+    ["rarity"] = "Uncommon",
+    ["coinValue"] = 250,
+  },
+  ["Tuxedo Cat"] = {
+    ["Shiny"] = "Shiny Tuxedo Cat",
+    ["petIcon"] = "rbxassetid://3321470447",
+    ["rarity"] = "Uncommon",
+    ["coinValue"] = 18000,
+  },
+  ["Youtube Cat"] = {
+    ["petIcon"] = "rbxassetid://3326596100",
+    ["rarity"] = "Uncommon",
+    ["coinValue"] = 100,
+  },
+  ["10M Party Angel"] = {
+    ["Limited"] = true,
+    ["petIcon"] = "rbxassetid://3326595635",
+    ["rarity"] = "Rare",
+    ["coinValue"] = 300,
+  },
+  ["1M Baby Serpent"] = {
+    ["Limited"] = true,
+    ["petIcon"] = "rbxassetid://3326595503",
+    ["rarity"] = "Rare",
+    ["coinValue"] = 200,
+  },
+  ["20M Demon"] = {
+    ["Limited"] = true,
+    ["petIcon"] = "rbxassetid://3326595937",
+    ["rarity"] = "Rare",
+    ["coinValue"] = 500,
+  },
+  ["30M Mouse"] = {
+    ["Limited"] = true,
+    ["petIcon"] = "rbxassetid://3326595696",
+    ["rarity"] = "Rare",
+    ["coinValue"] = 600,
+  },
+  ["6M Baby Phoenix"] = {
+    ["Limited"] = true,
+    ["petIcon"] = "rbxassetid://3326595568",
+    ["rarity"] = "Rare",
+    ["coinValue"] = 250,
+  },
+  ["Awesome Dog"] = {
+    ["Shiny"] = "Shiny Awesome Dog",
+    ["petIcon"] = "rbxassetid://3319895464",
+    ["rarity"] = "Rare",
+    ["coinValue"] = 35,
+  },
+  ["Basilisk"] = {
+    ["Shiny"] = "Shiny Basilisk",
+    ["petIcon"] = "rbxassetid://3324820925",
+    ["rarity"] = "Rare",
+    ["coinValue"] = 175000,
+  },
+  ["Candy Corn Bat"] = {
+    ["petIcon"] = "rbxassetid://4147749952",
+    ["rarity"] = "Rare",
+    ["Shiny"] = "Shiny Candy Corn Bat",
+    ["Limited"] = true,
+    ["coinValue"] = 405000,
+  },
+  ["Dalmation"] = {
+    ["Shiny"] = "Shiny Dalmation",
+    ["petIcon"] = "rbxassetid://3471249515",
+    ["rarity"] = "Rare",
+    ["coinValue"] = 130000,
+  },
+  ["Demon Dragon"] = {
+    ["Shiny"] = "Shiny Demon Dragon",
+    ["petIcon"] = "rbxassetid://3324769317",
+    ["rarity"] = "Rare",
+    ["coinValue"] = 24000,
+  },
+  ["Dogbun"] = {
+    ["petIcon"] = "rbxassetid://3324882989",
+    ["rarity"] = "Rare",
+    ["Shiny"] = "Shiny Dogbun",
+    ["Limited"] = true,
+    ["coinValue"] = 35000,
+  },
+  ["Dwarf"] = {
+    ["Shiny"] = "Shiny Dwarf",
+    ["petIcon"] = "rbxassetid://3324821169",
+    ["rarity"] = "Rare",
+    ["coinValue"] = 140000,
+  },
+  ["Firework Mouse"] = {
+    ["petIcon"] = "rbxassetid://3326569235",
+    ["rarity"] = "Rare",
+    ["Shiny"] = "Shiny Firework Mouse",
+    ["Limited"] = true,
+    ["coinValue"] = 90000,
+  },
+  ["Flame Butterfly"] = {
+    ["Shiny"] = "Shiny Flame Butterfly",
+    ["petIcon"] = "rbxassetid://3321327655",
+    ["rarity"] = "Rare",
+    ["coinValue"] = 1500,
+  },
+  ["Frozen Wolf"] = {
+    ["Shiny"] = "Shiny Frozen Wolf",
+    ["petIcon"] = "rbxassetid://3321396571",
+    ["rarity"] = "Rare",
+    ["coinValue"] = 2250,
+  },
+  ["Golden Cat"] = {
+    ["petIcon"] = "rbxassetid://3326474870",
+    ["rarity"] = "Rare",
+    ["coinValue"] = 50,
+  },
+  ["Golden Dog"] = {
+    ["petIcon"] = "rbxassetid://3326474965",
+    ["rarity"] = "Rare",
+    ["coinValue"] = 2000,
+  },
+  ["Griffin"] = {
+    ["Shiny"] = "Shiny Griffin",
+    ["petIcon"] = "rbxassetid://3324792831",
+    ["rarity"] = "Rare",
+    ["coinValue"] = 62000,
+  },
+  ["Horse"] = {
+    ["Shiny"] = "Shiny Horse",
+    ["petIcon"] = "rbxassetid://3321471442",
+    ["rarity"] = "Rare",
+    ["coinValue"] = 47000,
+  },
+  ["Jellyfish"] = {
+    ["Shiny"] = "Shiny Jellyfish",
+    ["petIcon"] = "rbxassetid://3877246998",
+    ["rarity"] = "Rare",
+    ["coinValue"] = 350000,
+  },
+  ["Lava Slime"] = {
+    ["Shiny"] = "Shiny Lava Slime",
+    ["petIcon"] = "rbxassetid://3321469868",
+    ["rarity"] = "Rare",
+    ["coinValue"] = 22000,
+  },
+  ["Lightspeed Bee"] = {
+    ["Shiny"] = "Shiny Lightspeed Bee",
+    ["petIcon"] = "rbxassetid://3471251013",
+    ["rarity"] = "Rare",
+    ["coinValue"] = 150000,
+  },
+  ["Moonlight Sphinx"] = {
+    ["Shiny"] = "Shiny Moonlight Sphinx",
+    ["petIcon"] = "rbxassetid://3652596139",
+    ["rarity"] = "Rare",
+    ["coinValue"] = 380000,
+  },
+  ["Mossy Golem"] = {
+    ["Shiny"] = "Shiny Mossy Golem",
+    ["petIcon"] = "rbxassetid://3652596213",
+    ["rarity"] = "Rare",
+    ["coinValue"] = 435000,
+  },
+  ["Party Fox"] = {
+    ["petIcon"] = "rbxassetid://3326569354",
+    ["rarity"] = "Rare",
+    ["Shiny"] = "Shiny Party Fox",
+    ["Limited"] = true,
+    ["coinValue"] = 85000,
+  },
+  ["Pegasus"] = {
+    ["Shiny"] = "Shiny Pegasus",
+    ["petIcon"] = "rbxassetid://3324770445",
+    ["rarity"] = "Rare",
+    ["coinValue"] = 15000,
+  },
+  ["Phoenix"] = {
+    ["Shiny"] = "Shiny Phoenix",
+    ["petIcon"] = "rbxassetid://3324769540",
+    ["rarity"] = "Rare",
+    ["coinValue"] = 18000,
+  },
+  ["Promo Mouse"] = {
+    ["petIcon"] = "rbxassetid://3326595872",
+    ["rarity"] = "Rare",
+    ["coinValue"] = 50,
+  },
+  ["Pumpkin"] = {
+    ["petIcon"] = "rbxassetid://4147750685",
+    ["rarity"] = "Rare",
+    ["Shiny"] = "Shiny Pumpkin",
+    ["Limited"] = true,
+    ["coinValue"] = 335000,
+  },
+  ["Robot"] = {
+    ["Shiny"] = "Shiny Robot",
+    ["petIcon"] = "rbxassetid://3321468858",
+    ["rarity"] = "Rare",
+    ["coinValue"] = 7500,
+  },
+  ["Sapphire Bunny"] = {
+    ["Shiny"] = "Shiny Sapphire Bunny",
+    ["petIcon"] = "rbxassetid://3321272890",
+    ["rarity"] = "Rare",
+    ["coinValue"] = 135,
+  },
+  ["Spring Unicorn"] = {
+    ["Limited"] = true,
+    ["petIcon"] = "rbxassetid://3324854567",
+    ["rarity"] = "Rare",
+    ["coinValue"] = 7777,
+  },
+  ["Squid"] = {
+    ["Shiny"] = "Shiny Squid",
+    ["petIcon"] = "rbxassetid://3321470382",
+    ["rarity"] = "Rare",
+    ["coinValue"] = 26000,
+  },
+  ["Troll"] = {
+    ["Shiny"] = "Shiny Troll",
+    ["petIcon"] = "rbxassetid://3324793773",
+    ["rarity"] = "Rare",
+    ["coinValue"] = 35000,
+  },
+  ["Turkey"] = {
+    ["Shiny"] = "Shiny Turkey",
+    ["petIcon"] = "rbxassetid://3877248666",
+    ["rarity"] = "Rare",
+    ["coinValue"] = 450000,
+  },
+  ["Turtle"] = {
+    ["Shiny"] = "Shiny Turtle",
+    ["petIcon"] = "rbxassetid://3321472257",
+    ["rarity"] = "Rare",
+    ["coinValue"] = 40000,
+  },
+  ["Vampire Bat"] = {
+    ["Shiny"] = "Shiny Vampire Bat",
+    ["petIcon"] = "rbxassetid://3321301540",
+    ["rarity"] = "Rare",
+    ["coinValue"] = 350,
+  },
+  ["Yeti"] = {
+    ["Shiny"] = "Shiny Yeti",
+    ["petIcon"] = "rbxassetid://3324793842",
+    ["rarity"] = "Rare",
+    ["coinValue"] = 41000,
+  },
+  ["40M Light Leviathan"] = {
+    ["Limited"] = true,
+    ["petIcon"] = "rbxassetid://3326595809",
+    ["rarity"] = "Epic",
+    ["coinValue"] = 1000,
+  },
+  ["Angel Dog"] = {
+    ["Shiny"] = "Shiny Angel Dog",
+    ["petIcon"] = "rbxassetid://3321272615",
+    ["rarity"] = "Epic",
+    ["coinValue"] = 200,
+  },
+  ["Bee"] = {
+    ["Shiny"] = "Shiny Bee",
+    ["petIcon"] = "rbxassetid://3321469728",
+    ["rarity"] = "Epic",
+    ["coinValue"] = 65000,
+  },
+  ["Black Bear"] = {
+    ["Shiny"] = "Shiny Black Bear",
+    ["petIcon"] = "rbxassetid://3321396301",
+    ["rarity"] = "Epic",
+    ["coinValue"] = 5000,
+  },
+  ["Bunny Lord"] = {
+    ["petIcon"] = "rbxassetid://3324882897",
+    ["rarity"] = "Epic",
+    ["Shiny"] = "Shiny Bunny Lord",
+    ["Limited"] = true,
+    ["coinValue"] = 90000,
+  },
+  ["Cake"] = {
+    ["petIcon"] = "rbxassetid://3326568936",
+    ["rarity"] = "Epic",
+    ["Shiny"] = "Shiny Cake",
+    ["Limited"] = true,
+    ["coinValue"] = 205000,
+  },
+  ["Calico Cat"] = {
+    ["petIcon"] = "rbxassetid://3554077156",
+    ["rarity"] = "Epic",
+    ["coinValue"] = 25000,
+  },
+  ["Celtic Owl"] = {
+    ["Limited"] = true,
+    ["petIcon"] = "rbxassetid://3324853584",
+    ["rarity"] = "Epic",
+    ["coinValue"] = 17777,
+  },
+  ["Cherry Blossom Owl"] = {
+    ["Shiny"] = "Shiny Cherry Blossom Owl",
+    ["petIcon"] = "rbxassetid://3476136313",
+    ["rarity"] = "Epic",
+    ["coinValue"] = 208000,
+  },
+  ["Dark Unicorn"] = {
+    ["Shiny"] = "Shiny Dark Unicorn",
+    ["petIcon"] = "rbxassetid://3321396499",
+    ["rarity"] = "Epic",
+    ["coinValue"] = 6500,
+  },
+  ["Deep Sea Narwhal"] = {
+    ["Shiny"] = "Shiny Deep Sea Narwhal",
+    ["petIcon"] = "rbxassetid://3471249598",
+    ["rarity"] = "Epic",
+    ["coinValue"] = 176000,
+  },
+  ["Direwolf"] = {
+    ["Shiny"] = "Shiny Direwolf",
+    ["petIcon"] = "rbxassetid://3321471266",
+    ["rarity"] = "Epic",
+    ["coinValue"] = 70000,
+  },
+  ["Disco Robot"] = {
+    ["petIcon"] = "rbxassetid://3326569102",
+    ["rarity"] = "Epic",
+    ["Shiny"] = "Shiny Disco Robot",
+    ["Limited"] = true,
+    ["coinValue"] = 260000,
+  },
+  ["Eggster Flock"] = {
+    ["petIcon"] = "rbxassetid://3324883391",
+    ["rarity"] = "Epic",
+    ["Shiny"] = "Shiny Eggster Flock",
+    ["Limited"] = true,
+    ["coinValue"] = 60000,
+  },
+  ["Ember Mouse"] = {
+    ["Shiny"] = "Shiny Ember Mouse",
+    ["petIcon"] = "rbxassetid://3877246745",
+    ["rarity"] = "Epic",
+    ["coinValue"] = 720000,
+  },
+  ["Fairy"] = {
+    ["Shiny"] = "Shiny Fairy",
+    ["petIcon"] = "rbxassetid://3324792743",
+    ["rarity"] = "Epic",
+    ["coinValue"] = 80000,
+  },
+  ["Galaxy Dragon"] = {
+    ["petIcon"] = "rbxassetid://3326493843",
+    ["rarity"] = "Epic",
+    ["coinValue"] = 9000,
+  },
+  ["Ghoul"] = {
+    ["petIcon"] = "rbxassetid://4147750270",
+    ["rarity"] = "Epic",
+    ["Shiny"] = "Shiny Ghoul",
+    ["Limited"] = true,
+    ["coinValue"] = 585000,
+  },
+  ["Midnight Bat"] = {
+    ["Shiny"] = "Shiny Midnight Bat",
+    ["petIcon"] = "rbxassetid://3321300956",
+    ["rarity"] = "Epic",
+    ["coinValue"] = 600,
+  },
+  ["Monkey"] = {
+    ["Shiny"] = "Shiny Monkey",
+    ["petIcon"] = "rbxassetid://3321469928",
+    ["rarity"] = "Epic",
+    ["coinValue"] = 45000,
+  },
+  ["Moonbear"] = {
+    ["Shiny"] = "Shiny Moonbear",
+    ["petIcon"] = "rbxassetid://3321471568",
+    ["rarity"] = "Epic",
+    ["coinValue"] = 55000,
+  },
+  ["Narwhal"] = {
+    ["Shiny"] = "Shiny Narwhal",
+    ["petIcon"] = "rbxassetid://3321468736",
+    ["rarity"] = "Epic",
+    ["coinValue"] = 23500,
+  },
+  ["Nesting Eagles"] = {
+    ["Shiny"] = "Shiny Nesting Eagles",
+    ["petIcon"] = "rbxassetid://3471249738",
+    ["rarity"] = "Epic",
+    ["coinValue"] = 245000,
+  },
+  ["Nova Fox"] = {
+    ["Shiny"] = "Shiny Nova Fox",
+    ["petIcon"] = "rbxassetid://3324770888",
+    ["rarity"] = "Epic",
+    ["coinValue"] = 35000,
+  },
+  ["Owl"] = {
+    ["Shiny"] = "Shiny Owl",
+    ["petIcon"] = "rbxassetid://3321468801",
+    ["rarity"] = "Epic",
+    ["coinValue"] = 15500,
+  },
+  ["Panda"] = {
+    ["Shiny"] = "Shiny Panda",
+    ["petIcon"] = "rbxassetid://3321327860",
+    ["rarity"] = "Epic",
+    ["coinValue"] = 3000,
+  },
+  ["Roc"] = {
+    ["Shiny"] = "Shiny Roc",
+    ["petIcon"] = "rbxassetid://3324821342",
+    ["rarity"] = "Epic",
+    ["coinValue"] = 200000,
+  },
+  ["Scarecrow"] = {
+    ["petIcon"] = "rbxassetid://4147750803",
+    ["rarity"] = "Epic",
+    ["Shiny"] = "Shiny Scarecrow",
+    ["Limited"] = true,
+    ["coinValue"] = 650000,
+  },
+  ["Speckled Rabbit"] = {
+    ["petIcon"] = "rbxassetid://3554077778",
+    ["rarity"] = "Epic",
+    ["coinValue"] = 80000,
+  },
+  ["Sprite Swarm"] = {
+    ["Shiny"] = "Shiny Sprite Swarm",
+    ["petIcon"] = "rbxassetid://3652597250",
+    ["rarity"] = "Epic",
+    ["coinValue"] = 620000,
+  },
+  ["Thieving Crows"] = {
+    ["Shiny"] = "Shiny Thieving Crows",
+    ["petIcon"] = "rbxassetid://3321472197",
+    ["rarity"] = "Epic",
+    ["coinValue"] = 120000,
+  },
+  ["Thunderbird"] = {
+    ["Shiny"] = "Shiny Thunderbird",
+    ["petIcon"] = "rbxassetid://3324822172",
+    ["rarity"] = "Epic",
+    ["coinValue"] = 230000,
+  },
+  ["Tropical Monkey"] = {
+    ["Shiny"] = "Shiny Tropical Monkey",
+    ["petIcon"] = "rbxassetid://3877248536",
+    ["rarity"] = "Epic",
+    ["coinValue"] = 580000,
+  },
+  ["Wonderful Present"] = {
+    ["petIcon"] = "rbxassetid://3326570157",
+    ["rarity"] = "Epic",
+    ["Shiny"] = "Shiny Wonderful Present",
+    ["Limited"] = true,
+    ["coinValue"] = 125000,
+  },
+  ["100K Likes Glacial Serpent"] = {
+    ["Limited"] = true,
+    ["petIcon"] = "rbxassetid://3652596423",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 9999,
+  },
+  ["50M Albatross God"] = {
+    ["Limited"] = true,
+    ["petIcon"] = "rbxassetid://3319625280",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 300000,
+  },
+  ["50M Albatross King"] = {
+    ["Limited"] = true,
+    ["petIcon"] = "rbxassetid://3326595761",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 1200,
+  },
+  ["60M Chaotic Thunderbird"] = {
+    ["Limited"] = true,
+    ["petIcon"] = "rbxassetid://3471249272",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 700000,
+  },
+  ["60M Digital Thunderbird"] = {
+    ["Limited"] = true,
+    ["petIcon"] = "rbxassetid://3472078786",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 1500,
+  },
+  ["70M Overcharged Alicorn"] = {
+    ["Limited"] = true,
+    ["petIcon"] = "rbxassetid://3699317740",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 1200000,
+  },
+  ["70M Soundwave Alicorn"] = {
+    ["Limited"] = true,
+    ["petIcon"] = "rbxassetid://3699317919",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 1500,
+  },
+  ["80M DJ Eagle"] = {
+    ["Limited"] = true,
+    ["petIcon"] = "rbxassetid://3971551900",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 1300000,
+  },
+  ["80M Golden Sun Eagle"] = {
+    ["Limited"] = true,
+    ["petIcon"] = "rbxassetid://3971551745",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 1500,
+  },
+  ["90M Blackhole Phoenix"] = {
+    ["Limited"] = true,
+    ["petIcon"] = "rbxassetid://4315302022",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 1400000,
+  },
+  ["90M Phoenix Flock"] = {
+    ["Limited"] = true,
+    ["petIcon"] = "rbxassetid://4315140017",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 1000,
+  },
+  ["Alchemist"] = {
+    ["petIcon"] = "rbxassetid://4147749761",
+    ["rarity"] = "Legendary",
+    ["Shiny"] = "Shiny Alchemist",
+    ["Limited"] = true,
+    ["coinValue"] = 2450000,
+  },
+  ["Alicorn"] = {
+    ["petIcon"] = "rbxassetid://3326474675",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 1050000,
+  },
+  ["Alien"] = {
+    ["Shiny"] = "Shiny Alien",
+    ["petIcon"] = "rbxassetid://3321469672",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 190000,
+  },
+  ["Ancient Earth Dragon"] = {
+    ["Shiny"] = "Shiny Ancient Earth Dragon",
+    ["petIcon"] = "rbxassetid://3877246549",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 2250000,
+  },
+  ["Android Dragon"] = {
+    ["Shiny"] = "Shiny Android Dragon",
+    ["petIcon"] = "rbxassetid://3321327577",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 5500,
+  },
+  ["Angel"] = {
+    ["Shiny"] = "Shiny Angel",
+    ["petIcon"] = "rbxassetid://3321468526",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 55000,
+  },
+  ["Cerberus"] = {
+    ["Shiny"] = "Shiny Cerberus",
+    ["petIcon"] = "rbxassetid://3321396441",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 45000,
+  },
+  ["Chimera"] = {
+    ["Shiny"] = "Shiny Chimera",
+    ["petIcon"] = "rbxassetid://3324792629",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 240000,
+  },
+  ["Corrosive Phoenix"] = {
+    ["Shiny"] = "Shiny Corrosive Phoenix",
+    ["petIcon"] = "rbxassetid://3471249433",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 575000,
+  },
+  ["Cthulhu"] = {
+    ["Shiny"] = "Shiny Cthulhu",
+    ["petIcon"] = "rbxassetid://3324821000",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 475000,
+  },
+  ["Dark Phoenix"] = {
+    ["petIcon"] = "rbxassetid://3326474785",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 30000,
+  },
+  ["Dark Serpent"] = {
+    ["Shiny"] = "Shiny Dark Serpent",
+    ["petIcon"] = "rbxassetid://3324769191",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 100000,
+  },
+  ["Demon"] = {
+    ["Shiny"] = "Shiny Demon",
+    ["petIcon"] = "rbxassetid://3321468679",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 80000,
+  },
+  ["Duality"] = {
+    ["Shiny"] = "Shiny Duality",
+    ["petIcon"] = "rbxassetid://3324821083",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 560000,
+  },
+  ["Easter Serpent"] = {
+    ["petIcon"] = "rbxassetid://3324883194",
+    ["rarity"] = "Legendary",
+    ["Shiny"] = "Shiny Easter Serpent",
+    ["Limited"] = true,
+    ["coinValue"] = 155000,
+  },
+  ["Eggiverse"] = {
+    ["petIcon"] = "rbxassetid://3324883284",
+    ["rarity"] = "Legendary",
+    ["Shiny"] = "Shiny Eggiverse",
+    ["Limited"] = true,
+    ["coinValue"] = 210000,
+  },
+  ["Elemental Chimera"] = {
+    ["petIcon"] = "rbxassetid://3554077246",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 1355000,
+  },
+  ["Emperor"] = {
+    ["petIcon"] = "rbxassetid://3326569181",
+    ["rarity"] = "Legendary",
+    ["Shiny"] = "Shiny Emperor",
+    ["Limited"] = true,
+    ["coinValue"] = 700000,
+  },
+  ["Flame Fox"] = {
+    ["Shiny"] = "Shiny Flame Fox",
+    ["petIcon"] = "rbxassetid://3321327717",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 10000,
+  },
+  ["Flare Alicorn"] = {
+    ["Shiny"] = "Shiny Flare Alicorn",
+    ["petIcon"] = "rbxassetid://3321471318",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 185000,
+  },
+  ["Gargoyle"] = {
+    ["petIcon"] = "rbxassetid://3326475396",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 2000000,
+  },
+  ["Grim Demonlord"] = {
+    ["petIcon"] = "rbxassetid://3554077323",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 999999,
+  },
+  ["Grotto Butterfly"] = {
+    ["petIcon"] = "rbxassetid://3554077394",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 170000,
+  },
+  ["Guardian Angel"] = {
+    ["Shiny"] = "Shiny Guardian Angel",
+    ["petIcon"] = "rbxassetid://3877246877",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 1100000,
+  },
+  ["Horror Serpent"] = {
+    ["petIcon"] = "rbxassetid://4147750409",
+    ["rarity"] = "Legendary",
+    ["Shiny"] = "Shiny Horror Serpent",
+    ["Limited"] = true,
+    ["coinValue"] = 1870000,
+  },
+  ["Ice Phoenix"] = {
+    ["Shiny"] = "Shiny Ice Phoenix",
+    ["petIcon"] = "rbxassetid://3321469803",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 145000,
+  },
+  ["Imp"] = {
+    ["petIcon"] = "rbxassetid://3326475117",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 1300000,
+  },
+  ["Inferno Serpent"] = {
+    ["Shiny"] = "Shiny Inferno Serpent",
+    ["petIcon"] = "rbxassetid://3321471512",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 260000,
+  },
+  ["Leprechaun"] = {
+    ["Limited"] = true,
+    ["petIcon"] = "rbxassetid://3324854479",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 37777,
+  },
+  ["Leviathan"] = {
+    ["Shiny"] = "Shiny Leviathan",
+    ["petIcon"] = "rbxassetid://3324792977",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 135000,
+  },
+  ["Lightning Satyr"] = {
+    ["Shiny"] = "Shiny Lightning Satyr",
+    ["petIcon"] = "rbxassetid://3877247131",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 1540000,
+  },
+  ["Luminous Fox"] = {
+    ["petIcon"] = "rbxassetid://3326475188",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 120000,
+  },
+  ["Monster Fox"] = {
+    ["Shiny"] = "Shiny Monster Fox",
+    ["petIcon"] = "rbxassetid://3324769459",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 50000,
+  },
+  ["Omega Gazer"] = {
+    ["petIcon"] = "rbxassetid://3554077482",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 1920000,
+  },
+  ["Phantom Cerberus"] = {
+    ["petIcon"] = "rbxassetid://3326569423",
+    ["rarity"] = "Legendary",
+    ["Shiny"] = "Shiny Phantom Cerberus",
+    ["Limited"] = true,
+    ["coinValue"] = 555555,
+  },
+  ["Radiance"] = {
+    ["Shiny"] = "Shiny Radiance",
+    ["petIcon"] = "rbxassetid://3471249810",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 850000,
+  },
+  ["Radioactive Monster Fox"] = {
+    ["petIcon"] = "rbxassetid://3554077588",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 450000,
+  },
+  ["Rainbow Elementals"] = {
+    ["Limited"] = true,
+    ["petIcon"] = "rbxassetid://3324853833",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 77777,
+  },
+  ["Rift Observer"] = {
+    ["Shiny"] = "Shiny Rift Observer",
+    ["petIcon"] = "rbxassetid://3656843464",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 1075000,
+  },
+  ["Ruler"] = {
+    ["Shiny"] = "Shiny Ruler",
+    ["petIcon"] = "rbxassetid://3324769635",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 175000,
+  },
+  ["Satyr"] = {
+    ["petIcon"] = "rbxassetid://3326475264",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 850000,
+  },
+  ["Singularity"] = {
+    ["Shiny"] = "Shiny Singularity",
+    ["petIcon"] = "rbxassetid://3652597129",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 2100000,
+  },
+  ["Sky Unicorn"] = {
+    ["petIcon"] = "rbxassetid://3554077680",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 290000,
+  },
+  ["Snow Elemental"] = {
+    ["Shiny"] = "Shiny Snow Elemental",
+    ["petIcon"] = "rbxassetid://3471250541",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 400000,
+  },
+  ["Sphinx"] = {
+    ["petIcon"] = "rbxassetid://3326475334",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 575000,
+  },
+  ["Unicorn"] = {
+    ["Shiny"] = "Shiny Unicorn",
+    ["petIcon"] = "rbxassetid://3321301489",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 2000,
+  },
+  ["Vampire Dragon"] = {
+    ["Shiny"] = "Shiny Vampire Dragon",
+    ["petIcon"] = "rbxassetid://3321397110",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 20000,
+  },
+  ["Void Gazer"] = {
+    ["Shiny"] = "Shiny Void Gazer",
+    ["petIcon"] = "rbxassetid://3321472311",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 410000,
+  },
+  ["Warped Wraith"] = {
+    ["Shiny"] = "Shiny Warped Wraith",
+    ["petIcon"] = "rbxassetid://3652597389",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 1450000,
+  },
+  ["Wisp"] = {
+    ["Shiny"] = "Shiny Wisp",
+    ["petIcon"] = "rbxassetid://3324822252",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 400000,
+  },
+  ["Zeta Alien"] = {
+    ["petIcon"] = "rbxassetid://3554077861",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 720000,
+  },
+  ["Aegis"] = {
+    ["FloatingHeight"] = 5,
+    ["petIcon"] = "rbxassetid://3554077074",
+    ["rarity"] = "Mythic",
+    ["coinValue"] = 2750000,
+  },
+  ["Catalyst"] = {
+    ["petIcon"] = "rbxassetid://3699327041",
+    ["rarity"] = "Mythic",
+    ["coinValue"] = 5000000,
+  },
+  ["Celestial Core"] = {
+    ["petIcon"] = "rbxassetid://3652596042",
+    ["rarity"] = "Mythic",
+    ["Shiny"] = "Shiny Celestial Core",
+    ["FloatingHeight"] = 5,
+    ["coinValue"] = 4820000,
+  },
+  ["Gala"] = {
+    ["petIcon"] = "rbxassetid://3326569299",
+    ["rarity"] = "Mythic",
+    ["Shiny"] = "Shiny Gala",
+    ["FloatingHeight"] = 5,
+    ["Limited"] = true,
+    ["coinValue"] = 1375000,
+  },
+  ["Necromancer"] = {
+    ["petIcon"] = "rbxassetid://4147750534",
+    ["rarity"] = "Mythic",
+    ["Shiny"] = "Shiny Necromancer",
+    ["Limited"] = true,
+    ["coinValue"] = 6200000,
+  },
+  ["Omni"] = {
+    ["petIcon"] = "rbxassetid://3324792910",
+    ["rarity"] = "Mythic",
+    ["Shiny"] = "Shiny Omni",
+    ["FloatingHeight"] = 5,
+    ["coinValue"] = 550000,
+  },
+  ["Plexus"] = {
+    ["FloatingHeight"] = 5,
+    ["petIcon"] = "rbxassetid://3971552113",
+    ["rarity"] = "Mythic",
+    ["coinValue"] = 5600000,
+  },
+  ["Prisma"] = {
+    ["petIcon"] = "rbxassetid://3324821262",
+    ["rarity"] = "Mythic",
+    ["Shiny"] = "Shiny Prisma",
+    ["FloatingHeight"] = 5,
+    ["coinValue"] = 1250000,
+  },
+  ["Whirlwind"] = {
+    ["petIcon"] = "rbxassetid://3877248786",
+    ["rarity"] = "Mythic",
+    ["Shiny"] = "Shiny Whirlwind",
+    ["FloatingHeight"] = 2,
+    ["coinValue"] = 5500000,
+  },
+  ["Equinox"] = {
+    ["petIcon"] = "rbxassetid://3971552009",
+    ["rarity"] = "Divine",
+    ["FloatingHeight"] = 5,
+    ["tokenValue"] = 3,
+    ["coinValue"] = 10500000,
+  },
+  ["Firebrand"] = {
+    ["petIcon"] = "rbxassetid://4147750107",
+    ["rarity"] = "Divine",
+    ["tokenValue"] = 5,
+    ["Shiny"] = "Shiny Firebrand",
+    ["FloatingHeight"] = 5,
+    ["Limited"] = true,
+    ["coinValue"] = 13500000,
+  },
+  ["Neptune"] = {
+    ["tokenValue"] = 12,
+    ["petIcon"] = "rbxassetid://3699327143",
+    ["rarity"] = "Divine",
+    ["coinValue"] = 12000000,
+  },
+  ["Seraph"] = {
+    ["tokenValue"] = 25,
+    ["petIcon"] = "rbxassetid://4322630556",
+    ["rarity"] = "Divine",
+    ["coinValue"] = 17500000,
+  },
+  ["Zenith"] = {
+    ["petIcon"] = "rbxassetid://3652597528",
+    ["rarity"] = "Divine",
+    ["Shiny"] = "Shiny Zenith",
+    ["FloatingHeight"] = 5,
+    ["tokenValue"] = 3,
+    ["coinValue"] = 10000000,
+  },
+  ["Atomizer"] = {
+    ["petIcon"] = "rbxassetid://3971991086",
+    ["rarity"] = "Premium",
+    ["Shiny"] = "Shiny Atomizer",
+    ["Limited"] = true,
+    ["coinValue"] = 700000,
+  },
+  ["Bolthead"] = {
+    ["petIcon"] = "rbxassetid://4154409297",
+    ["rarity"] = "Premium",
+    ["Shiny"] = "Shiny Bolthead",
+    ["Limited"] = true,
+    ["coinValue"] = 700000,
+  },
+  ["Bubble Squid"] = {
+    ["petIcon"] = "rbxassetid://3752083716",
+    ["rarity"] = "Premium",
+    ["Shiny"] = "Shiny Bubble Squid",
+    ["Limited"] = true,
+    ["coinValue"] = 700000,
+  },
+  ["Candy Unicorn"] = {
+    ["Shiny"] = "Shiny Candy Unicorn",
+    ["petIcon"] = "rbxassetid://3326507167",
+    ["rarity"] = "Premium",
+    ["coinValue"] = 3750,
+  },
+  ["Celebration Trio"] = {
+    ["petIcon"] = "rbxassetid://3326569039",
+    ["rarity"] = "Premium",
+    ["Shiny"] = "Shiny Celebration Trio",
+    ["Limited"] = true,
+    ["coinValue"] = 700000,
+  },
+  ["Crystal Golem"] = {
+    ["petIcon"] = "rbxassetid://3326507230",
+    ["rarity"] = "Premium",
+    ["Shiny"] = "Shiny Crystal Golem",
+    ["Limited"] = true,
+    ["coinValue"] = 700000,
+  },
+  ["Cyber Phoenix"] = {
+    ["petIcon"] = "rbxassetid://3326507276",
+    ["rarity"] = "Premium",
+    ["Shiny"] = "Shiny Cyber Phoenix",
+    ["Limited"] = true,
+    ["coinValue"] = 700000,
+  },
+  ["Electric Mouse"] = {
+    ["Shiny"] = "Shiny Electric Mouse",
+    ["petIcon"] = "rbxassetid://3326507343",
+    ["rarity"] = "Premium",
+    ["coinValue"] = 90000,
+  },
+  ["Flame Wolf"] = {
+    ["Shiny"] = "Shiny Flame Wolf",
+    ["petIcon"] = "rbxassetid://3326525213",
+    ["rarity"] = "Premium",
+    ["coinValue"] = 17500,
+  },
+  ["Funky Phoenix"] = {
+    ["petIcon"] = "rbxassetid://3554098783",
+    ["rarity"] = "Premium",
+    ["Shiny"] = "Shiny Funky Phoenix",
+    ["Limited"] = true,
+    ["coinValue"] = 700000,
+  },
+  ["Ghost Blob"] = {
+    ["petIcon"] = "rbxassetid://3421476046",
+    ["rarity"] = "Premium",
+    ["Shiny"] = "Shiny Ghost Blob",
+    ["Limited"] = true,
+    ["coinValue"] = 700000,
+  },
+  ["Great Lynx"] = {
+    ["petIcon"] = "rbxassetid://3230654921",
+    ["rarity"] = "Premium",
+    ["FloatingHeight"] = 5,
+    ["excludeFromIndex"] = true,
+    ["coinValue"] = 7000000,
+  },
+  ["Hatched Chick"] = {
+    ["petIcon"] = "rbxassetid://3324883091",
+    ["rarity"] = "Premium",
+    ["Shiny"] = "Shiny Hatched Chick",
+    ["Limited"] = true,
+    ["coinValue"] = 700000,
+  },
+  ["Inferno Fox"] = {
+    ["Shiny"] = "Shiny Inferno Fox",
+    ["petIcon"] = "rbxassetid://3326507408",
+    ["rarity"] = "Premium",
+    ["coinValue"] = 200000,
+  },
+  ["Jester"] = {
+    ["petIcon"] = "rbxassetid://3326525278",
+    ["rarity"] = "Premium",
+    ["Shiny"] = "Shiny Jester",
+    ["Limited"] = true,
+    ["coinValue"] = 700000,
+  },
+  ["Light Serpent"] = {
+    ["Shiny"] = "Shiny Light Serpent",
+    ["petIcon"] = "rbxassetid://3326507471",
+    ["rarity"] = "Premium",
+    ["coinValue"] = 1500000,
+  },
+  ["Lucky Tailed Fox"] = {
+    ["Limited"] = true,
+    ["petIcon"] = "rbxassetid://3326616932",
+    ["rarity"] = "Premium",
+    ["coinValue"] = 700000,
+  },
+  ["Phowoenix"] = {
+    ["petIcon"] = "rbxassetid://1249021641",
+    ["rarity"] = "Premium",
+    ["FloatingHeight"] = 5,
+    ["excludeFromIndex"] = true,
+    ["coinValue"] = 7000000,
+  },
+  ["Polychrome"] = {
+    ["petIcon"] = "rbxassetid://3658310692",
+    ["rarity"] = "Premium",
+    ["Shiny"] = "Shiny Polychrome",
+    ["Limited"] = true,
+    ["coinValue"] = 700000,
+  },
+  ["Rainbow Songbird"] = {
+    ["petIcon"] = "rbxassetid://3321471626",
+    ["rarity"] = "Premium",
+    ["Shiny"] = "Shiny Rainbow Songbird",
+    ["Limited"] = true,
+    ["coinValue"] = 700000,
+  },
+  ["Studio Cat"] = {
+    ["petIcon"] = "rbxassetid://3877248416",
+    ["rarity"] = "Premium",
+    ["Shiny"] = "Shiny Studio Cat",
+    ["Limited"] = true,
+    ["coinValue"] = 700000,
+  },
+  ["The Cube"] = {
+    ["petIcon"] = "rbxassetid://3838291748",
+    ["rarity"] = "Premium",
+    ["FloatingHeight"] = 45,
+    ["excludeFromIndex"] = true,
+    ["coinValue"] = 50000000,
+  },
+  ["Shiny Bat"] = {
+    ["petIcon"] = "rbxassetid://3321273024",
+    ["rarity"] = "Common",
+    ["coinValue"] = 110,
+  },
+  ["Shiny Blue Butterfly"] = {
+    ["petIcon"] = "rbxassetid://3321301027",
+    ["rarity"] = "Common",
+    ["coinValue"] = 400,
+  },
+  ["Shiny Brown Fox"] = {
+    ["petIcon"] = "rbxassetid://3321301083",
+    ["rarity"] = "Common",
+    ["coinValue"] = 300,
+  },
+  ["Shiny Dog"] = {
+    ["petIcon"] = "rbxassetid://3319957475",
+    ["rarity"] = "Common",
+    ["coinValue"] = 30,
+  },
+  ["Shiny Fox"] = {
+    ["petIcon"] = "rbxassetid://3319957578",
+    ["rarity"] = "Common",
+    ["coinValue"] = 48,
+  },
+  ["Shiny Ice Cat"] = {
+    ["petIcon"] = "rbxassetid://3321273075",
+    ["rarity"] = "Common",
+    ["coinValue"] = 80,
+  },
+  ["Shiny Polar Bear"] = {
+    ["petIcon"] = "rbxassetid://3321396991",
+    ["rarity"] = "Common",
+    ["coinValue"] = 3500,
+  },
+  ["Shiny Red Butterfly"] = {
+    ["petIcon"] = "rbxassetid://3710867266",
+    ["rarity"] = "Common",
+    ["coinValue"] = 1100,
+  },
+  ["Shiny Snow Fox"] = {
+    ["petIcon"] = "rbxassetid://3321328346",
+    ["rarity"] = "Common",
+    ["coinValue"] = 800,
+  },
+  ["Shiny Sweets Bat"] = {
+    ["Limited"] = true,
+    ["petIcon"] = "rbxassetid://3324883683",
+    ["rarity"] = "Common",
+    ["coinValue"] = 48000,
+  },
+  ["Shiny White Cat"] = {
+    ["petIcon"] = "rbxassetid://3319957680",
+    ["rarity"] = "Common",
+    ["coinValue"] = 40,
+  },
+  ["Shiny Wolf"] = {
+    ["petIcon"] = "rbxassetid://3321273272",
+    ["rarity"] = "Common",
+    ["coinValue"] = 160,
+  },
+  ["Shiny Brown Wolf"] = {
+    ["petIcon"] = "rbxassetid://3321396725",
+    ["rarity"] = "Uncommon",
+    ["coinValue"] = 3800,
+  },
+  ["Shiny Bunny"] = {
+    ["petIcon"] = "rbxassetid://3319957364",
+    ["rarity"] = "Uncommon",
+    ["coinValue"] = 56,
+  },
+  ["Shiny Deer"] = {
+    ["petIcon"] = "rbxassetid://3321468985",
+    ["rarity"] = "Uncommon",
+    ["coinValue"] = 10800,
+  },
+  ["Shiny Midnight Cat"] = {
+    ["petIcon"] = "rbxassetid://3321328173",
+    ["rarity"] = "Uncommon",
+    ["coinValue"] = 1600,
+  },
+  ["Shiny Polka Dot Butterfly"] = {
+    ["Limited"] = true,
+    ["petIcon"] = "rbxassetid://3324883581",
+    ["rarity"] = "Uncommon",
+    ["coinValue"] = 58000,
+  },
+  ["Shiny Ruby Bunny"] = {
+    ["petIcon"] = "rbxassetid://3321273142",
+    ["rarity"] = "Uncommon",
+    ["coinValue"] = 200,
+  },
+  ["Shiny Slime"] = {
+    ["petIcon"] = "rbxassetid://3321469262",
+    ["rarity"] = "Uncommon",
+    ["coinValue"] = 10000,
+  },
+  ["Shiny Stone Dog"] = {
+    ["petIcon"] = "rbxassetid://3321301205",
+    ["rarity"] = "Uncommon",
+    ["coinValue"] = 500,
+  },
+  ["Shiny Tuxedo Cat"] = {
+    ["petIcon"] = "rbxassetid://3321470334",
+    ["rarity"] = "Uncommon",
+    ["coinValue"] = 36000,
+  },
+  ["Shiny Awesome Dog"] = {
+    ["petIcon"] = "rbxassetid://3319957269",
+    ["rarity"] = "Rare",
+    ["coinValue"] = 70,
+  },
+  ["Shiny Baby Serpent"] = {
+    ["Limited"] = true,
+    ["petIcon"] = "rbxassetid://3326595985",
+    ["rarity"] = "Rare",
+    ["coinValue"] = 500,
+  },
+  ["Shiny Basilisk"] = {
+    ["petIcon"] = "rbxassetid://3324821534",
+    ["rarity"] = "Rare",
+    ["coinValue"] = 350000,
+  },
+  ["Shiny Candy Corn Bat"] = {
+    ["Limited"] = true,
+    ["petIcon"] = "rbxassetid://4147751076",
+    ["rarity"] = "Rare",
+    ["coinValue"] = 810000,
+  },
+  ["Shiny Dalmation"] = {
+    ["petIcon"] = "rbxassetid://3471250118",
+    ["rarity"] = "Rare",
+    ["coinValue"] = 260000,
+  },
+  ["Shiny Demon Dragon"] = {
+    ["petIcon"] = "rbxassetid://3324769842",
+    ["rarity"] = "Rare",
+    ["coinValue"] = 48000,
+  },
+  ["Shiny Dogbun"] = {
+    ["Limited"] = true,
+    ["petIcon"] = "rbxassetid://3324883891",
+    ["rarity"] = "Rare",
+    ["coinValue"] = 70000,
+  },
+  ["Shiny Dwarf"] = {
+    ["petIcon"] = "rbxassetid://3324821828",
+    ["rarity"] = "Rare",
+    ["coinValue"] = 280000,
+  },
+  ["Shiny Firework Mouse"] = {
+    ["Limited"] = true,
+    ["petIcon"] = "rbxassetid://3326569795",
+    ["rarity"] = "Rare",
+    ["coinValue"] = 180000,
+  },
+  ["Shiny Flame Butterfly"] = {
+    ["petIcon"] = "rbxassetid://3321328040",
+    ["rarity"] = "Rare",
+    ["coinValue"] = 3000,
+  },
+  ["Shiny Frozen Wolf"] = {
+    ["petIcon"] = "rbxassetid://3321396923",
+    ["rarity"] = "Rare",
+    ["coinValue"] = 4500,
+  },
+  ["Shiny Griffin"] = {
+    ["petIcon"] = "rbxassetid://3324793264",
+    ["rarity"] = "Rare",
+    ["coinValue"] = 124000,
+  },
+  ["Shiny Horse"] = {
+    ["petIcon"] = "rbxassetid://3321471795",
+    ["rarity"] = "Rare",
+    ["coinValue"] = 94000,
+  },
+  ["Shiny Jellyfish"] = {
+    ["petIcon"] = "rbxassetid://3877247625",
+    ["rarity"] = "Rare",
+    ["coinValue"] = 700000,
+  },
+  ["Shiny Lava Slime"] = {
+    ["petIcon"] = "rbxassetid://3321470734",
+    ["rarity"] = "Rare",
+    ["coinValue"] = 44000,
+  },
+  ["Shiny Lightspeed Bee"] = {
+    ["petIcon"] = "rbxassetid://3471250205",
+    ["rarity"] = "Rare",
+    ["coinValue"] = 300000,
+  },
+  ["Shiny Moonlight Sphinx"] = {
+    ["petIcon"] = "rbxassetid://3652596501",
+    ["rarity"] = "Rare",
+    ["coinValue"] = 760000,
+  },
+  ["Shiny Mossy Golem"] = {
+    ["petIcon"] = "rbxassetid://3652596602",
+    ["rarity"] = "Rare",
+    ["coinValue"] = 870000,
+  },
+  ["Shiny Party Fox"] = {
+    ["Limited"] = true,
+    ["petIcon"] = "rbxassetid://3326569961",
+    ["rarity"] = "Rare",
+    ["coinValue"] = 170000,
+  },
+  ["Shiny Pegasus"] = {
+    ["petIcon"] = "rbxassetid://3324770144",
+    ["rarity"] = "Rare",
+    ["coinValue"] = 30000,
+  },
+  ["Shiny Phoenix"] = {
+    ["petIcon"] = "rbxassetid://3324770240",
+    ["rarity"] = "Rare",
+    ["coinValue"] = 36000,
+  },
+  ["Shiny Pumpkin"] = {
+    ["Limited"] = true,
+    ["petIcon"] = "rbxassetid://4147751762",
+    ["rarity"] = "Rare",
+    ["coinValue"] = 670000,
+  },
+  ["Shiny Robot"] = {
+    ["petIcon"] = "rbxassetid://3321469214",
+    ["rarity"] = "Rare",
+    ["coinValue"] = 15000,
+  },
+  ["Shiny Sapphire Bunny"] = {
+    ["petIcon"] = "rbxassetid://3321273211",
+    ["rarity"] = "Rare",
+    ["coinValue"] = 270,
+  },
+  ["Shiny Squid"] = {
+    ["petIcon"] = "rbxassetid://3321470797",
+    ["rarity"] = "Rare",
+    ["coinValue"] = 52000,
+  },
+  ["Shiny Troll"] = {
+    ["petIcon"] = "rbxassetid://3324793579",
+    ["rarity"] = "Rare",
+    ["coinValue"] = 70000,
+  },
+  ["Shiny Turkey"] = {
+    ["petIcon"] = "rbxassetid://3877248140",
+    ["rarity"] = "Rare",
+    ["coinValue"] = 900000,
+  },
+  ["Shiny Turtle"] = {
+    ["petIcon"] = "rbxassetid://3321472084",
+    ["rarity"] = "Rare",
+    ["coinValue"] = 80000,
+  },
+  ["Shiny Vampire Bat"] = {
+    ["petIcon"] = "rbxassetid://3321301348",
+    ["rarity"] = "Rare",
+    ["coinValue"] = 700,
+  },
+  ["Shiny Yeti"] = {
+    ["petIcon"] = "rbxassetid://3324793682",
+    ["rarity"] = "Rare",
+    ["coinValue"] = 82000,
+  },
+  ["Shiny Angel Dog"] = {
+    ["petIcon"] = "rbxassetid://3321272961",
+    ["rarity"] = "Epic",
+    ["coinValue"] = 400,
+  },
+  ["Shiny Bee"] = {
+    ["petIcon"] = "rbxassetid://3321470062",
+    ["rarity"] = "Epic",
+    ["coinValue"] = 130000,
+  },
+  ["Shiny Black Bear"] = {
+    ["petIcon"] = "rbxassetid://3321396676",
+    ["rarity"] = "Epic",
+    ["coinValue"] = 10000,
+  },
+  ["Shiny Bunny Lord"] = {
+    ["Limited"] = true,
+    ["petIcon"] = "rbxassetid://3324883798",
+    ["rarity"] = "Epic",
+    ["coinValue"] = 180000,
+  },
+  ["Shiny Cake"] = {
+    ["Limited"] = true,
+    ["petIcon"] = "rbxassetid://3326569532",
+    ["rarity"] = "Epic",
+    ["coinValue"] = 410000,
+  },
+  ["Shiny Cherry Blossom Owl"] = {
+    ["petIcon"] = "rbxassetid://3471249956",
+    ["rarity"] = "Epic",
+    ["coinValue"] = 416000,
+  },
+  ["Shiny Dark Unicorn"] = {
+    ["petIcon"] = "rbxassetid://3321396849",
+    ["rarity"] = "Epic",
+    ["coinValue"] = 13000,
+  },
+  ["Shiny Deep Sea Narwhal"] = {
+    ["petIcon"] = "rbxassetid://3471249879",
+    ["rarity"] = "Epic",
+    ["coinValue"] = 352000,
+  },
+  ["Shiny Direwolf"] = {
+    ["petIcon"] = "rbxassetid://3321471682",
+    ["rarity"] = "Epic",
+    ["coinValue"] = 140000,
+  },
+  ["Shiny Disco Robot"] = {
+    ["Limited"] = true,
+    ["petIcon"] = "rbxassetid://3326569673",
+    ["rarity"] = "Epic",
+    ["coinValue"] = 520000,
+  },
+  ["Shiny Eggster Flock"] = {
+    ["Limited"] = true,
+    ["petIcon"] = "rbxassetid://3324884316",
+    ["rarity"] = "Epic",
+    ["coinValue"] = 120000,
+  },
+  ["Shiny Ember Mouse"] = {
+    ["petIcon"] = "rbxassetid://3877247400",
+    ["rarity"] = "Epic",
+    ["coinValue"] = 1440000,
+  },
+  ["Shiny Fairy"] = {
+    ["petIcon"] = "rbxassetid://3324793165",
+    ["rarity"] = "Epic",
+    ["coinValue"] = 160000,
+  },
+  ["Shiny Ghoul"] = {
+    ["Limited"] = true,
+    ["petIcon"] = "rbxassetid://4147751353",
+    ["rarity"] = "Epic",
+    ["coinValue"] = 1170000,
+  },
+  ["Shiny Midnight Bat"] = {
+    ["petIcon"] = "rbxassetid://3321301144",
+    ["rarity"] = "Epic",
+    ["coinValue"] = 1200,
+  },
+  ["Shiny Monkey"] = {
+    ["petIcon"] = "rbxassetid://3321470190",
+    ["rarity"] = "Epic",
+    ["coinValue"] = 90000,
+  },
+  ["Shiny Moonbear"] = {
+    ["petIcon"] = "rbxassetid://3321471903",
+    ["rarity"] = "Epic",
+    ["coinValue"] = 110000,
+  },
+  ["Shiny Narwhal"] = {
+    ["petIcon"] = "rbxassetid://3321469102",
+    ["rarity"] = "Epic",
+    ["coinValue"] = 47000,
+  },
+  ["Shiny Nesting Eagles"] = {
+    ["petIcon"] = "rbxassetid://3471250281",
+    ["rarity"] = "Epic",
+    ["coinValue"] = 490000,
+  },
+  ["Shiny Nova Fox"] = {
+    ["petIcon"] = "rbxassetid://3324770049",
+    ["rarity"] = "Epic",
+    ["coinValue"] = 70000,
+  },
+  ["Shiny Owl"] = {
+    ["petIcon"] = "rbxassetid://3321469162",
+    ["rarity"] = "Epic",
+    ["coinValue"] = 31000,
+  },
+  ["Shiny Panda"] = {
+    ["petIcon"] = "rbxassetid://3321328221",
+    ["rarity"] = "Epic",
+    ["coinValue"] = 6000,
+  },
+  ["Shiny Roc"] = {
+    ["petIcon"] = "rbxassetid://3324822013",
+    ["rarity"] = "Epic",
+    ["coinValue"] = 400000,
+  },
+  ["Shiny Scarecrow"] = {
+    ["Limited"] = true,
+    ["petIcon"] = "rbxassetid://4147751883",
+    ["rarity"] = "Epic",
+    ["coinValue"] = 1300000,
+  },
+  ["Shiny Sprite Swarm"] = {
+    ["petIcon"] = "rbxassetid://3652596829",
+    ["rarity"] = "Epic",
+    ["coinValue"] = 1240000,
+  },
+  ["Shiny Thieving Crows"] = {
+    ["petIcon"] = "rbxassetid://3321472023",
+    ["rarity"] = "Epic",
+    ["coinValue"] = 240000,
+  },
+  ["Shiny Thunderbird"] = {
+    ["petIcon"] = "rbxassetid://3324822097",
+    ["rarity"] = "Epic",
+    ["coinValue"] = 460000,
+  },
+  ["Shiny Tropical Monkey"] = {
+    ["petIcon"] = "rbxassetid://3877248031",
+    ["rarity"] = "Epic",
+    ["coinValue"] = 1160000,
+  },
+  ["Shiny Wonderful Present"] = {
+    ["Limited"] = true,
+    ["petIcon"] = "rbxassetid://3326570094",
+    ["rarity"] = "Epic",
+    ["coinValue"] = 250000,
+  },
+  ["Shiny Alchemist"] = {
+    ["Limited"] = true,
+    ["petIcon"] = "rbxassetid://4147750931",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 4900000,
+  },
+  ["Shiny Alien"] = {
+    ["petIcon"] = "rbxassetid://3321469993",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 380000,
+  },
+  ["Shiny Ancient Earth Dragon"] = {
+    ["petIcon"] = "rbxassetid://3877247269",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 4500000,
+  },
+  ["Shiny Android Dragon"] = {
+    ["petIcon"] = "rbxassetid://3321327975",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 11000,
+  },
+  ["Shiny Angel"] = {
+    ["petIcon"] = "rbxassetid://3321468917",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 110000,
+  },
+  ["Shiny Baby Sowopent"] = {
+    ["petIcon"] = "rbxassetid://3326596048",
+    ["rarity"] = "Legendary",
+    ["FloatingHeight"] = 5,
+    ["Limited"] = true,
+    ["coinValue"] = 999,
+  },
+  ["Shiny Cerberus"] = {
+    ["petIcon"] = "rbxassetid://3321396783",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 90000,
+  },
+  ["Shiny Chimera"] = {
+    ["petIcon"] = "rbxassetid://3324793074",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 480000,
+  },
+  ["Shiny Corrosive Phoenix"] = {
+    ["petIcon"] = "rbxassetid://3471250034",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 1150000,
+  },
+  ["Shiny Cthulhu"] = {
+    ["petIcon"] = "rbxassetid://3324821610",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 950000,
+  },
+  ["Shiny Dark Serpent"] = {
+    ["petIcon"] = "rbxassetid://3324769737",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 200000,
+  },
+  ["Shiny Demon"] = {
+    ["petIcon"] = "rbxassetid://3321469058",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 160000,
+  },
+  ["Shiny Duality"] = {
+    ["petIcon"] = "rbxassetid://3324821754",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 1120000,
+  },
+  ["Shiny Easter Serpent"] = {
+    ["Limited"] = true,
+    ["petIcon"] = "rbxassetid://3324884140",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 310000,
+  },
+  ["Shiny Eggiverse"] = {
+    ["Limited"] = true,
+    ["petIcon"] = "rbxassetid://3324884225",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 420000,
+  },
+  ["Shiny Emperor"] = {
+    ["Limited"] = true,
+    ["petIcon"] = "rbxassetid://3326569738",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 1400000,
+  },
+  ["Shiny Flame Fox"] = {
+    ["petIcon"] = "rbxassetid://3321328105",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 20000,
+  },
+  ["Shiny Flare Alicorn"] = {
+    ["petIcon"] = "rbxassetid://3321471739",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 370000,
+  },
+  ["Shiny Guardian Angel"] = {
+    ["petIcon"] = "rbxassetid://3877247516",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 2200000,
+  },
+  ["Shiny Horror Serpent"] = {
+    ["Limited"] = true,
+    ["petIcon"] = "rbxassetid://4147751493",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 3740000,
+  },
+  ["Shiny Ice Phoenix"] = {
+    ["petIcon"] = "rbxassetid://3321470132",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 290000,
+  },
+  ["Shiny Inferno Serpent"] = {
+    ["petIcon"] = "rbxassetid://3321471848",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 520000,
+  },
+  ["Shiny Leviathan"] = {
+    ["petIcon"] = "rbxassetid://3324793394",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 270000,
+  },
+  ["Shiny Lightning Satyr"] = {
+    ["petIcon"] = "rbxassetid://3877247741",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 3080000,
+  },
+  ["Shiny Monster Fox"] = {
+    ["petIcon"] = "rbxassetid://3324769949",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 100000,
+  },
+  ["Shiny Phantom Cerberus"] = {
+    ["Limited"] = true,
+    ["petIcon"] = "rbxassetid://3326570020",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 1111110,
+  },
+  ["Shiny Radiance"] = {
+    ["petIcon"] = "rbxassetid://3471250372",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 1700000,
+  },
+  ["Shiny Rift Observer"] = {
+    ["petIcon"] = "rbxassetid://3652596674",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 2150000,
+  },
+  ["Shiny Ruler"] = {
+    ["petIcon"] = "rbxassetid://3324770355",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 350000,
+  },
+  ["Shiny Singularity"] = {
+    ["petIcon"] = "rbxassetid://3652596742",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 4200000,
+  },
+  ["Shiny Snow Elemental"] = {
+    ["petIcon"] = "rbxassetid://3471250459",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 800000,
+  },
+  ["Shiny Unicorn"] = {
+    ["petIcon"] = "rbxassetid://3321301272",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 4000,
+  },
+  ["Shiny Vampire Dragon"] = {
+    ["petIcon"] = "rbxassetid://3321397063",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 40000,
+  },
+  ["Shiny Void Gazer"] = {
+    ["petIcon"] = "rbxassetid://3321472138",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 820000,
+  },
+  ["Shiny Warped Wraith"] = {
+    ["petIcon"] = "rbxassetid://3652596913",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 2900000,
+  },
+  ["Shiny Wisp"] = {
+    ["petIcon"] = "rbxassetid://3324821447",
+    ["rarity"] = "Legendary",
+    ["coinValue"] = 800000,
+  },
+  ["Shiny Celestial Core"] = {
+    ["FloatingHeight"] = 5,
+    ["petIcon"] = "rbxassetid://3652596347",
+    ["rarity"] = "Mythic",
+    ["coinValue"] = 9640000,
+  },
+  ["Shiny Gala"] = {
+    ["petIcon"] = "rbxassetid://3326569873",
+    ["rarity"] = "Mythic",
+    ["FloatingHeight"] = 5,
+    ["Limited"] = true,
+    ["coinValue"] = 2750000,
+  },
+  ["Shiny Necromancer"] = {
+    ["Limited"] = true,
+    ["petIcon"] = "rbxassetid://4147751621",
+    ["rarity"] = "Mythic",
+    ["coinValue"] = 12400000,
+  },
+  ["Shiny Omni"] = {
+    ["FloatingHeight"] = 5,
+    ["petIcon"] = "rbxassetid://3324793488",
+    ["rarity"] = "Mythic",
+    ["coinValue"] = 1100000,
+  },
+  ["Shiny Prisma"] = {
+    ["FloatingHeight"] = 5,
+    ["petIcon"] = "rbxassetid://3324821908",
+    ["rarity"] = "Mythic",
+    ["coinValue"] = 2500000,
+  },
+  ["Shiny Whirlwind"] = {
+    ["FloatingHeight"] = 2,
+    ["petIcon"] = "rbxassetid://3877248268",
+    ["rarity"] = "Mythic",
+    ["coinValue"] = 11000000,
+  },
+  ["Shiny Firebrand"] = {
+    ["petIcon"] = "rbxassetid://4147751210",
+    ["rarity"] = "Divine",
+    ["tokenValue"] = 50,
+    ["FloatingHeight"] = 5,
+    ["Limited"] = true,
+    ["coinValue"] = 27000000,
+  },
+  ["Shiny Zenith"] = {
+    ["petIcon"] = "rbxassetid://3652596988",
+    ["rarity"] = "Divine",
+    ["FloatingHeight"] = 5,
+    ["tokenValue"] = 30,
+    ["coinValue"] = 20000000,
+  },
+  ["Shiny Atomizer"] = {
+    ["Limited"] = true,
+    ["petIcon"] = "rbxassetid://3971991254",
+    ["rarity"] = "Premium",
+    ["coinValue"] = 1400000,
+  },
+  ["Shiny Bolthead"] = {
+    ["Limited"] = true,
+    ["petIcon"] = "rbxassetid://4154409438",
+    ["rarity"] = "Premium",
+    ["coinValue"] = 1400000,
+  },
+  ["Shiny Bubble Squid"] = {
+    ["Limited"] = true,
+    ["petIcon"] = "rbxassetid://3752083860",
+    ["rarity"] = "Premium",
+    ["coinValue"] = 1400000,
+  },
+  ["Shiny Candy Unicorn"] = {
+    ["petIcon"] = "rbxassetid://3326507581",
+    ["rarity"] = "Premium",
+    ["coinValue"] = 7500,
+  },
+  ["Shiny Celebration Trio"] = {
+    ["Limited"] = true,
+    ["petIcon"] = "rbxassetid://3326569610",
+    ["rarity"] = "Premium",
+    ["coinValue"] = 1400000,
+  },
+  ["Shiny Crystal Golem"] = {
+    ["Limited"] = true,
+    ["petIcon"] = "rbxassetid://3326507648",
+    ["rarity"] = "Premium",
+    ["coinValue"] = 1400000,
+  },
+  ["Shiny Cyber Phoenix"] = {
+    ["Limited"] = true,
+    ["petIcon"] = "rbxassetid://3326507712",
+    ["rarity"] = "Premium",
+    ["coinValue"] = 1400000,
+  },
+  ["Shiny Electric Mouse"] = {
+    ["petIcon"] = "rbxassetid://3326507773",
+    ["rarity"] = "Premium",
+    ["coinValue"] = 180000,
+  },
+  ["Shiny Flame Wolf"] = {
+    ["petIcon"] = "rbxassetid://3326507838",
+    ["rarity"] = "Premium",
+    ["coinValue"] = 35000,
+  },
+  ["Shiny Funky Phoenix"] = {
+    ["Limited"] = true,
+    ["petIcon"] = "rbxassetid://3554098898",
+    ["rarity"] = "Premium",
+    ["coinValue"] = 1400000,
+  },
+  ["Shiny Ghost Blob"] = {
+    ["Limited"] = true,
+    ["petIcon"] = "rbxassetid://3421476150",
+    ["rarity"] = "Premium",
+    ["coinValue"] = 1400000,
+  },
+  ["Shiny Hatched Chick"] = {
+    ["Limited"] = true,
+    ["petIcon"] = "rbxassetid://3324884003",
+    ["rarity"] = "Premium",
+    ["coinValue"] = 1400000,
+  },
+  ["Shiny Inferno Fox"] = {
+    ["petIcon"] = "rbxassetid://3326507902",
+    ["rarity"] = "Premium",
+    ["coinValue"] = 400000,
+  },
+  ["Shiny Jester"] = {
+    ["rarity"] = "Premium",
+    ["petIcon"] = "rbxassetid://3326507962",
+    ["Limited"] = true,
+    ["coinValue"] = 1400000,
+  },
+  ["Shiny Light Serpent"] = {
+    ["petIcon"] = "rbxassetid://3326508017",
+    ["rarity"] = "Premium",
+    ["coinValue"] = 3000000,
+  },
+  ["Shiny Polychrome"] = {
+    ["Limited"] = true,
+    ["petIcon"] = "rbxassetid://3658310843",
+    ["rarity"] = "Premium",
+    ["coinValue"] = 1400000,
+  },
+  ["Shiny Rainbow Songbird"] = {
+    ["Limited"] = true,
+    ["petIcon"] = "rbxassetid://3321471966",
+    ["rarity"] = "Premium",
+    ["coinValue"] = 1400000,
+  },
+  ["Shiny Studio Cat"] = {
+    ["Limited"] = true,
+    ["petIcon"] = "rbxassetid://3877247886",
+    ["rarity"] = "Premium",
+    ["coinValue"] = 1400000,
+  },
+}
+
+local function getPetNameFromImageId(imageId)
+    local idNumber = imageId:match("(%d+)")
+    if not idNumber then return nil end
+    
+    local formattedId = "rbxassetid://" .. idNumber
+    
+    for petName, info in pairs(petInfo) do
+        if info.petIcon == formattedId then
+            return petName, info
+        end
+    end
+    
+    return nil
+end
+
+local PlayerGui = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
+local MainGui = PlayerGui:WaitForChild("MainGui")
+local hoverFrame = Instance.new("Frame")
+hoverFrame.Name = "PetStatsHover"
+hoverFrame.Size = UDim2.new(0, 250, 0, 0)
+hoverFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+hoverFrame.BackgroundTransparency = 0
+hoverFrame.BorderSizePixel = 0
+hoverFrame.Visible = false
+hoverFrame.ZIndex = 10
+hoverFrame.AutomaticSize = Enum.AutomaticSize.Y
+hoverFrame.Parent = MainGui
+
+local corner = Instance.new("UICorner")
+corner.CornerRadius = UDim.new(0, 8)
+corner.Parent = hoverFrame
+
+local frameStroke = Instance.new("UIStroke")
+frameStroke.Color = Color3.fromRGB(46, 46, 53)
+frameStroke.Thickness = 3
+frameStroke.Parent = hoverFrame
+
+local backgroundImg = Instance.new("ImageLabel")
+backgroundImg.Name = "BackgroundPattern"
+backgroundImg.Size = UDim2.new(1, 0, 1, 0)
+backgroundImg.BackgroundTransparency = 1
+backgroundImg.Image = "rbxassetid://9080331634"
+backgroundImg.ImageColor3 = Color3.fromRGB(20, 58, 67)
+backgroundImg.ImageTransparency = 0.95
+backgroundImg.ScaleType = Enum.ScaleType.Tile
+backgroundImg.TileSize = UDim2.new(0, 100, 0, 100)
+backgroundImg.ZIndex = 10
+backgroundImg.Parent = hoverFrame
+
+local backgroundGradient = Instance.new("UIGradient")
+backgroundGradient.Rotation = -90
+backgroundGradient.Color = ColorSequence.new({
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255))
+})
+backgroundGradient.Transparency = NumberSequence.new({
+    NumberSequenceKeypoint.new(0, 0),
+    NumberSequenceKeypoint.new(0.31, 0.58),
+    NumberSequenceKeypoint.new(0.507, 0.757),
+    NumberSequenceKeypoint.new(0.756, 0.994),
+    NumberSequenceKeypoint.new(1, 1.29)
+})
+backgroundGradient.Parent = backgroundImg
+
+-- Create a header container for title and pet image
+local headerContainer = Instance.new("Frame")
+headerContainer.Name = "HeaderContainer"
+headerContainer.Size = UDim2.new(1, -20, 0, 90)
+headerContainer.Position = UDim2.new(0, 10, 0, 5)
+headerContainer.BackgroundTransparency = 1
+headerContainer.ZIndex = 11
+headerContainer.Parent = hoverFrame
+
+-- Add pet image display
+local petImageDisplay = Instance.new("ImageLabel")
+petImageDisplay.Name = "PetImageDisplay"
+petImageDisplay.Size = UDim2.new(0, 80, 0, 80)
+petImageDisplay.Position = UDim2.new(1, -80, 0, 0)
+petImageDisplay.BackgroundTransparency = 1
+petImageDisplay.ZIndex = 12
+petImageDisplay.Parent = headerContainer
+
+local titleText = Instance.new("TextLabel")
+titleText.Name = "PetName"
+titleText.Size = UDim2.new(0, 150, 0, 30)
+titleText.Position = UDim2.new(0, 0, 0, 5)
+titleText.BackgroundTransparency = 1
+titleText.Font = Enum.Font.FredokaOne
+titleText.TextColor3 = Color3.fromRGB(255, 255, 255)
+titleText.TextSize = 18
+titleText.Text = "Pet Name"
+titleText.TextXAlignment = Enum.TextXAlignment.Left
+titleText.TextWrapped = true
+titleText.ZIndex = 11
+titleText.Parent = headerContainer
+
+local titleStroke = Instance.new("UIStroke")
+titleStroke.Color = Color3.fromRGB(46, 46, 53)
+titleStroke.Thickness = 2
+titleStroke.Parent = titleText
+
+local statsContainer = Instance.new("Frame")
+statsContainer.Name = "StatsContainer"
+statsContainer.Size = UDim2.new(1, -20, 0, 0)
+statsContainer.Position = UDim2.new(0, 10, 0, 95)
+statsContainer.BackgroundTransparency = 1
+statsContainer.ZIndex = 11
+statsContainer.AutomaticSize = Enum.AutomaticSize.Y
+statsContainer.Parent = hoverFrame
+
+local listLayout = Instance.new("UIListLayout")
+listLayout.SortOrder = Enum.SortOrder.LayoutOrder
+listLayout.Padding = UDim.new(0, 5)
+listLayout.Parent = statsContainer
+
+local rarityText = Instance.new("TextLabel")
+rarityText.Name = "Rarity"
+rarityText.Size = UDim2.new(1, 0, 0, 25)
+rarityText.BackgroundTransparency = 1
+rarityText.Font = Enum.Font.FredokaOne
+rarityText.TextColor3 = Color3.fromRGB(255, 255, 255)
+rarityText.TextSize = 16
+rarityText.TextXAlignment = Enum.TextXAlignment.Left
+rarityText.Text = "Rarity: Common"
+rarityText.ZIndex = 11
+rarityText.LayoutOrder = 1
+rarityText.Parent = statsContainer
+
+local rarityStroke = Instance.new("UIStroke")
+rarityStroke.Thickness = 2
+rarityStroke.Color = Color3.fromRGB(180, 180, 180)
+rarityStroke.Parent = rarityText
+
+local coinValueText = Instance.new("TextLabel")
+coinValueText.Name = "CoinValue"
+coinValueText.Size = UDim2.new(1, 0, 0, 25)
+coinValueText.BackgroundTransparency = 1
+coinValueText.Font = Enum.Font.FredokaOne
+coinValueText.TextColor3 = Color3.fromRGB(255, 255, 255)
+coinValueText.TextSize = 16
+coinValueText.TextXAlignment = Enum.TextXAlignment.Left
+coinValueText.Text = "Coin Multiplier: 0"
+coinValueText.ZIndex = 11
+coinValueText.LayoutOrder = 2
+coinValueText.Parent = statsContainer
+
+local coinStroke = Instance.new("UIStroke")
+coinStroke.Thickness = 2
+coinStroke.Color = Color3.fromRGB(255, 215, 0)
+coinStroke.Parent = coinValueText
+
+local tokenValueText = Instance.new("TextLabel")
+tokenValueText.Name = "TokenValue"
+tokenValueText.Size = UDim2.new(1, 0, 0, 25)
+tokenValueText.BackgroundTransparency = 1
+tokenValueText.Font = Enum.Font.FredokaOne
+tokenValueText.TextColor3 = Color3.fromRGB(255, 255, 255)
+tokenValueText.TextSize = 16
+tokenValueText.TextXAlignment = Enum.TextXAlignment.Left
+tokenValueText.Text = "Rebirth Tokens: +0"
+tokenValueText.ZIndex = 11
+tokenValueText.Visible = false
+tokenValueText.LayoutOrder = 3
+tokenValueText.Parent = statsContainer
+
+local tokenStroke = Instance.new("UIStroke")
+tokenStroke.Thickness = 2
+tokenStroke.Color = Color3.fromRGB(150, 50, 255)
+tokenStroke.Parent = tokenValueText
+
+local hasShinyText = Instance.new("TextLabel")
+hasShinyText.Name = "HasShinyVersion"
+hasShinyText.Size = UDim2.new(1, 0, 0, 25)
+hasShinyText.BackgroundTransparency = 1
+hasShinyText.Font = Enum.Font.FredokaOne
+hasShinyText.TextColor3 = Color3.fromRGB(255, 255, 255)
+hasShinyText.TextSize = 16
+hasShinyText.TextXAlignment = Enum.TextXAlignment.Left
+hasShinyText.Text = "Has Shiny: None"
+hasShinyText.ZIndex = 11
+hasShinyText.LayoutOrder = 4
+hasShinyText.Parent = statsContainer
+
+local hasShinyStroke = Instance.new("UIStroke")
+hasShinyStroke.Thickness = 2
+hasShinyStroke.Color = Color3.fromRGB(46, 46, 53)
+hasShinyStroke.Parent = hasShinyText
+
+local isShinyText = Instance.new("TextLabel")
+isShinyText.Name = "IsShiny"
+isShinyText.Size = UDim2.new(1, 0, 0, 25)
+isShinyText.BackgroundTransparency = 1
+isShinyText.Font = Enum.Font.FredokaOne
+isShinyText.TextColor3 = Color3.fromRGB(255, 255, 255)
+isShinyText.TextSize = 16
+isShinyText.TextXAlignment = Enum.TextXAlignment.Left
+isShinyText.Text = "Is Shiny: False"
+isShinyText.ZIndex = 11
+isShinyText.LayoutOrder = 5
+isShinyText.Parent = statsContainer
+
+local isShinyStroke = Instance.new("UIStroke")
+isShinyStroke.Thickness = 2
+isShinyStroke.Color = Color3.fromRGB(255, 0, 0)
+isShinyStroke.Parent = isShinyText
+
+local paddingFrame = Instance.new("Frame")
+paddingFrame.Name = "BottomPadding"
+paddingFrame.Size = UDim2.new(1, 0, 0, 10)
+paddingFrame.BackgroundTransparency = 1
+paddingFrame.LayoutOrder = 6
+paddingFrame.Parent = statsContainer
+
+local colorCycleConnections = {}
+
+local function formatNumber(number)
+    local formatted = tostring(number)
+    local k
+    while true do
+        formatted, k = string.gsub(formatted, "^(-?%d+)(%d%d%d)", '%1,%2')
+        if k == 0 then break end
+    end
+    return formatted
+end
+
+local function applyLegendaryCycle(stroke)
+    if colorCycleConnections[stroke] then
+        colorCycleConnections[stroke]:Disconnect()
+        colorCycleConnections[stroke] = nil
+    end
+    
+    local r, g, b = 255, 0, 0
+    local phase = 0
+    
+    local connection = game:GetService("RunService").Heartbeat:Connect(function()
+        if not stroke or not stroke.Parent then
+            if colorCycleConnections[stroke] then
+                colorCycleConnections[stroke]:Disconnect()
+                colorCycleConnections[stroke] = nil
+            end
+            return
+        end
+        
+        local step = 1
+        
+        if phase == 0 then
+            g = g + step
+            if g >= 255 then
+                g = 255
+                phase = 1
+            end
+        elseif phase == 1 then
+            r = r - step
+            if r <= 0 then
+                r = 0
+                phase = 2
+            end
+        elseif phase == 2 then
+            b = b + step
+            if b >= 255 then
+                b = 255
+                phase = 3
+            end
+        elseif phase == 3 then
+            g = g - step
+            if g <= 0 then
+                g = 0
+                phase = 4
+            end
+        elseif phase == 4 then
+            r = r + step
+            if r >= 255 then
+                r = 255
+                phase = 5
+            end
+        elseif phase == 5 then
+            b = b - step
+            if b <= 0 then
+                b = 0
+                phase = 0
+            end
+        end
+        
+        r = math.clamp(r, 0, 255)
+        g = math.clamp(g, 0, 255)
+        b = math.clamp(b, 0, 255)
+        
+        stroke.Color = Color3.fromRGB(r, g, b)
+    end)
+    
+    colorCycleConnections[stroke] = connection
+end
+
+local function applyMythicCycle(stroke)
+    if colorCycleConnections[stroke] then
+        colorCycleConnections[stroke]:Disconnect()
+        colorCycleConnections[stroke] = nil
+    end
+    
+    local time = 0
+    
+    local connection = game:GetService("RunService").Heartbeat:Connect(function(deltaTime)
+        if not stroke or not stroke.Parent then
+            if colorCycleConnections[stroke] then
+                colorCycleConnections[stroke]:Disconnect()
+                colorCycleConnections[stroke] = nil
+            end
+            return
+        end
+        
+        time = time + deltaTime * 3
+        
+        local cycleValue = (math.sin(time) + 1) / 2
+        
+        local darkRedR, darkRedG, darkRedB = 120, 24, 24
+        local lightRedR, lightRedG, lightRedB = 255, 51, 51
+        
+        local r = math.floor(darkRedR + (lightRedR - darkRedR) * cycleValue)
+        local g = math.floor(darkRedG + (lightRedG - darkRedG) * cycleValue)
+        local b = math.floor(darkRedB + (lightRedB - darkRedB) * cycleValue)
+        
+        stroke.Color = Color3.fromRGB(r, g, b)
+    end)
+    
+    colorCycleConnections[stroke] = connection
+end
+
+local function applyDivineCycle(stroke)
+    if colorCycleConnections[stroke] then
+        colorCycleConnections[stroke]:Disconnect()
+        colorCycleConnections[stroke] = nil
+    end
+    
+    local time = 0
+    
+    local connection = game:GetService("RunService").Heartbeat:Connect(function(deltaTime)
+        if not stroke or not stroke.Parent then
+            if colorCycleConnections[stroke] then
+                colorCycleConnections[stroke]:Disconnect()
+                colorCycleConnections[stroke] = nil
+            end
+            return
+        end
+        
+        time = time + deltaTime * 2
+        
+        local cycleValue = (math.sin(time) + 1) / 2
+        
+        local purpleR, purpleG, purpleB = 128, 0, 255
+        local pinkR, pinkG, pinkB = 255, 100, 255
+        
+        local r = math.floor(purpleR + (pinkR - purpleR) * cycleValue)
+        local g = math.floor(purpleG + (pinkG - purpleG) * cycleValue)
+        local b = math.floor(purpleB + (pinkB - purpleB) * cycleValue)
+        
+        stroke.Color = Color3.fromRGB(r, g, b)
+    end)
+    
+    colorCycleConnections[stroke] = connection
+end
+
+local function applyPremiumCycle(stroke)
+    if colorCycleConnections[stroke] then
+        colorCycleConnections[stroke]:Disconnect()
+        colorCycleConnections[stroke] = nil
+    end
+    
+    local time = 0
+    
+    local connection = game:GetService("RunService").Heartbeat:Connect(function(deltaTime)
+        if not stroke or not stroke.Parent then
+            if colorCycleConnections[stroke] then
+                colorCycleConnections[stroke]:Disconnect()
+                colorCycleConnections[stroke] = nil
+            end
+            return
+        end
+        
+        time = time + deltaTime * 2
+        
+        local cycleValue = (math.sin(time) + 1) / 2
+        
+        local darkGoldR, darkGoldG, darkGoldB = 200, 180, 40
+        local lightGoldR, lightGoldG, lightGoldB = 255, 204, 51
+        
+        local r = math.floor(darkGoldR + (lightGoldR - darkGoldR) * cycleValue)
+        local g = math.floor(darkGoldG + (lightGoldG - darkGoldG) * cycleValue)
+        local b = math.floor(darkGoldB + (lightGoldB - darkGoldB) * cycleValue)
+        
+        stroke.Color = Color3.fromRGB(r, g, b)
+    end)
+    
+    colorCycleConnections[stroke] = connection
+end
+
+local function setRarityColor(rarityStroke, rarity)
+    if colorCycleConnections[rarityStroke] then
+        colorCycleConnections[rarityStroke]:Disconnect()
+        colorCycleConnections[rarityStroke] = nil
+    end
+    if rarity == "Common" then
+        rarityStroke.Color = Color3.fromRGB(150, 150, 150)
+    elseif rarity == "Uncommon" then
+        rarityStroke.Color = Color3.fromRGB(126, 255, 173)
+    elseif rarity == "Rare" then
+        rarityStroke.Color = Color3.fromRGB(5, 138, 255)
+    elseif rarity == "Epic" then
+        rarityStroke.Color = Color3.fromRGB(255, 0, 201)
+    elseif rarity == "Legendary" then
+        applyLegendaryCycle(rarityStroke)
+    elseif rarity == "Mythic" then
+        applyMythicCycle(rarityStroke)
+    elseif rarity == "Divine" then
+        applyDivineCycle(rarityStroke)
+    elseif rarity == "Premium" then
+        applyPremiumCycle(rarityStroke)
+    end
+end
+
+local function applyShinyEffect(isShiny)
+    if colorCycleConnections[isShinyStroke] then
+        colorCycleConnections[isShinyStroke]:Disconnect()
+        colorCycleConnections[isShinyStroke] = nil
+    end
+    
+    if isShiny then
+        isShinyText.Text = "Is Shiny: True"
+        isShinyStroke.Color = Color3.fromRGB(0, 255, 0)
+    else
+        isShinyText.Text = "Is Shiny: False"
+        isShinyStroke.Color = Color3.fromRGB(255, 0, 0)
+    end
+end
+
+local function updateHoverFrame(petName, info, petImageInstance)
+    titleText.Text = petName
+    rarityText.Text = "Rarity: " .. info.rarity
+    coinValueText.Text = "Coin/Seconds: " .. formatNumber(info.coinValue)
+    
+    if info.tokenValue then
+        tokenValueText.Text = "Rebirth Tokens: +" .. formatNumber(info.tokenValue)
+        tokenValueText.Visible = true
+    else
+        tokenValueText.Visible = false
+    end
+    
+    if info.Shiny then
+        hasShinyText.Text = "Has Shiny: " .. info.Shiny
+    else
+        hasShinyText.Text = "Has Shiny: None"
+    end
+    
+    if petName:match("^Shiny") then
+        applyShinyEffect(true)
+    else
+        applyShinyEffect(false)
+    end
+    
+    setRarityColor(rarityStroke, info.rarity)
+    
+    -- Update pet image display
+    petImageDisplay.Image = petImageInstance.Image
+    petImageDisplay.ImageColor3 = petImageInstance.ImageColor3
+    petImageDisplay.ImageTransparency = petImageInstance.ImageTransparency
+    petImageDisplay.ScaleType = petImageInstance.ScaleType or Enum.ScaleType.Fit
+end
+
+local UserInputService = game:GetService("UserInputService")
+local function updateFramePosition()
+    local mousePos = UserInputService:GetMouseLocation()
+    hoverFrame.Position = UDim2.new(0, mousePos.X + 15, 0, mousePos.Y - 40)
+end
+
+UserInputService.InputChanged:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseMovement then
+        updateFramePosition()
+    end
+end)
+
+local function connectToPetImages()
+    local petIndexPath = game:GetService("Players").LocalPlayer.PlayerGui.MainGui.CenterUIFrame.PetIndex.PetIndexInnerFrame.PetIndexScrollingFrame
+    
+    if not petIndexPath then
+        repeat
+            wait(0.5)
+            petIndexPath = game:GetService("Players").LocalPlayer.PlayerGui.MainGui.CenterUIFrame.PetIndex.PetIndexInnerFrame.PetIndexScrollingFrame
+        until petIndexPath or wait(10)
+    end
+    
+    if not petIndexPath then
+        return
+    end
+    
+    local function connectToPetButton(button)
+        if button:IsA("ImageButton") and button:FindFirstChild("PetImage") then
+            local petImage = button.PetImage
+            
+            petImage.MouseEnter:Connect(function()
+                local imageId = petImage.Image
+                local petName, info = getPetNameFromImageId(imageId)
+                
+                if petName and info then
+                    updateHoverFrame(petName, info, petImage)
+                    updateFramePosition()
+                    hoverFrame.Visible = true
+                end
+            end)
+            
+            petImage.MouseLeave:Connect(function()
+                hoverFrame.Visible = false
+            end)
+        end
+    end
+    
+    for _, child in pairs(petIndexPath:GetDescendants()) do
+        connectToPetButton(child)
+    end
+    
+    petIndexPath.DescendantAdded:Connect(connectToPetButton)
+end
+
+local function cleanupConnections()
+    for stroke, connection in pairs(colorCycleConnections) do
+        if connection then
+            connection:Disconnect()
+        end
+    end
+    colorCycleConnections = {}
+end
+
+game:GetService("Players").PlayerRemoving:Connect(function(player)
+    if player == game:GetService("Players").LocalPlayer then
+        cleanupConnections()
+    end
+end)
+
+connectToPetImages()
