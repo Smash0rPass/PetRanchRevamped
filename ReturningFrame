@@ -1,0 +1,358 @@
+ReturningFrame = game:GetService("Players").LocalPlayer.PlayerGui.MainGui.CenterUIFrame.ReturningCoinFrame
+ReturningClose = game:GetService("Players").LocalPlayer.PlayerGui.MainGui.CenterUIFrame.ReturningCoinFrame.ReturningCoinFrameClose
+ReturningDouble = game:GetService("Players").LocalPlayer.PlayerGui.MainGui.CenterUIFrame.ReturningCoinFrame.DoubleItButton
+ReturningContinue = game:GetService("Players").LocalPlayer.PlayerGui.MainGui.CenterUIFrame.ReturningCoinFrame.ContinueButton
+ReturningCoinImage = game:GetService("Players").LocalPlayer.PlayerGui.MainGui.CenterUIFrame.ReturningCoinFrame.ReturningCoinImage
+ReturningDoubleItText = game:GetService("Players").LocalPlayer.PlayerGui.MainGui.CenterUIFrame.ReturningCoinFrame.DoubleItText
+ReturningTip = game:GetService("Players").LocalPlayer.PlayerGui.MainGui.CenterUIFrame.ReturningCoinFrame.TipText
+ReturningAmount = game:GetService("Players").LocalPlayer.PlayerGui.MainGui.CenterUIFrame.ReturningCoinFrame.ReturningCoinAmount
+
+ReturningDouble.BackgroundTransparency = 1
+ReturningContinue.BackgroundTransparency = 1
+
+ReturningFrame.ImageTransparency = 1
+ReturningTip.Position = UDim2.new(0,0,0,550)
+ReturningTip.Size = UDim2.new(1,0,0,20)
+
+ReturningCoins = Instance.new("Frame")
+ReturningCoins.BackgroundTransparency = 1
+ReturningCoins.Name = "ReturningCoins"
+ReturningCoins.AutomaticSize = Enum.AutomaticSize.XY
+ReturningCoins.BackgroundColor3 = Color3.fromRGB(255,255,255)
+ReturningCoins.Position = UDim2.new(0,0,0,125)
+ReturningCoins.Size = UDim2.new(1,0,0,0)
+ReturningCoins.Parent = ReturningFrame
+
+ReturningCoinsUIList = Instance.new("UIListLayout")
+ReturningCoinsUIList.Padding = UDim.new(0,50)
+ReturningCoinsUIList.FillDirection = Enum.FillDirection.Horizontal
+ReturningCoinsUIList.HorizontalAlignment = Enum.HorizontalAlignment.Center
+ReturningCoinsUIList.SortOrder = Enum.SortOrder.LayoutOrder
+ReturningCoinsUIList.VerticalAlignment = Enum.VerticalAlignment.Center
+ReturningCoinsUIList.Parent = ReturningCoins
+
+ReturningCoinImage.LayoutOrder = 1
+ReturningCoinImage.Size = UDim2.new(0,100,0,100)
+ReturningCoinImage.Parent = ReturningCoins
+
+ReturningAmount.LayoutOrder = 2
+ReturningAmount.Size = UDim2.new(0,0,0,0)
+ReturningAmount.AutomaticSize = Enum.AutomaticSize.XY
+ReturningAmount.Parent = ReturningCoins
+
+
+
+ReturningBckgFrame = Instance.new("Frame")
+ReturningBckgFrame.BackgroundColor3 = Color3.fromRGB(255,255,255)
+ReturningBckgFrame.Position = UDim2.new(0,0,0,0)
+ReturningBckgFrame.Size = UDim2.new(1,0,1,0)
+ReturningBckgFrame.Parent = ReturningFrame
+
+ReturningBckgFrameImg = Instance.new("ImageLabel")
+ReturningBckgFrameImg.Name = "ReturningBckgFrameImg"
+ReturningBckgFrameImg.Size = UDim2.new(1, 0, 1, 0)
+ReturningBckgFrameImg.BackgroundTransparency = 1
+ReturningBckgFrameImg.Image = "rbxassetid://90803316340171"
+ReturningBckgFrameImg.ImageColor3 = Color3.fromRGB(20, 58, 67)
+ReturningBckgFrameImg.ImageTransparency = 0.95
+ReturningBckgFrameImg.ScaleType = Enum.ScaleType.Tile
+ReturningBckgFrameImg.TileSize = UDim2.new(0, 100, 0, 100)
+ReturningBckgFrameImg.Parent = ReturningBckgFrame
+
+
+ReturningBckgFrameCorner = Instance.new("UICorner")
+ReturningBckgFrameCorner.CornerRadius = UDim.new(0, 20)
+ReturningBckgFrameCorner.Parent = ReturningBckgFrame
+
+ReturningBckgFrameStroke = Instance.new("UIStroke")
+ReturningBckgFrameStroke.Color = Color3.fromRGB(46,46,53)
+ReturningBckgFrameStroke.Thickness = 5
+ReturningBckgFrameStroke.Parent = ReturningBckgFrame
+
+
+ReturningBckgFrameGradient = Instance.new("UIGradient")
+ReturningBckgFrameGradient.Rotation = -90
+ReturningBckgFrameGradient.Color = ColorSequence.new({
+ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),
+ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255))
+})
+ReturningBckgFrameGradient.Transparency = NumberSequence.new({
+NumberSequenceKeypoint.new(0, 0),
+NumberSequenceKeypoint.new(0.31, 0.58),
+NumberSequenceKeypoint.new(0.507, 0.757),
+NumberSequenceKeypoint.new(0.756, 0.994),
+NumberSequenceKeypoint.new(1, 1.29)
+})
+ReturningBckgFrameGradient.Parent = ReturningBckgFrameImg
+
+ReturningBckgFrameGradientCorner = Instance.new("UICorner")
+ReturningBckgFrameGradientCorner.CornerRadius = UDim.new(0, 20)
+ReturningBckgFrameGradientCorner.Parent = ReturningBckgFrameGradient
+
+ReturningClose.Image = "rbxassetid://14423621163"
+ReturningClose.Rotation = 0
+ReturningClose.Position = UDim2.new(0, 765, 0, -40)
+ReturningClose.Size = UDim2.new(0, 100, 0, 100)
+
+ReturningCloseAspectRatio = Instance.new("UIAspectRatioConstraint")
+ReturningCloseAspectRatio.Name = "PSCloseAspectRatio"
+ReturningCloseAspectRatio.Parent = ReturningClose
+
+
+ReturningCloseGradient = Instance.new("UIGradient")
+ReturningCloseGradient.Rotation = -90
+ReturningCloseGradient.Color = ColorSequence.new({
+ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 2, 61)),
+ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 39, 125))
+})
+ReturningCloseGradient.Parent = ReturningClose
+
+
+ReturningCloseUIScale = Instance.new("UIScale")
+ReturningCloseUIScale.Scale = 1
+ReturningCloseUIScale.Parent = ReturningClose
+
+
+ReturningCloseShadow = Instance.new("ImageLabel")
+ReturningCloseShadow.Name = "PSShadow"
+ReturningCloseShadow.Size = UDim2.new(1, 0, 1.1, 0)
+ReturningCloseShadow.ImageTransparency = 0.5
+ReturningCloseShadow.Position = UDim2.new(0, 0, 0, 0)
+ReturningCloseShadow.BackgroundTransparency = 1
+ReturningCloseShadow.Image = "rbxassetid://14001321443"
+ReturningCloseShadow.ImageColor3 = Color3.fromRGB(0, 0, 0)
+ReturningCloseShadow.ZIndex = 0
+ReturningCloseShadow.Parent = ReturningClose
+
+
+ReturningCloseTextLabel = Instance.new("TextLabel")
+ReturningCloseTextLabel.Name = "PSX"
+ReturningCloseTextLabel.Size = UDim2.new(0.9, 0, 0.6, 0)
+ReturningCloseTextLabel.Position = UDim2.new(0.06, 0, 0.2, 0)
+ReturningCloseTextLabel.BackgroundTransparency = 1
+ReturningCloseTextLabel.Text = "X"
+ReturningCloseTextLabel.TextSize = 18
+ReturningCloseTextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+ReturningCloseTextLabel.TextScaled = true
+ReturningCloseTextLabel.Font = Enum.Font.FredokaOne
+ReturningCloseTextLabel.ZIndex = 10
+ReturningCloseTextLabel.Parent = ReturningClose
+
+
+ReturningCloseTextLabelStroke = Instance.new("UIStroke")
+ReturningCloseTextLabelStroke.Thickness = 3
+ReturningCloseTextLabelStroke.Color = Color3.fromRGB(0, 0, 0)
+ReturningCloseTextLabelStroke.Parent = ReturningCloseTextLabel
+
+ReturningCoinImage.Image = "rbxassetid://108656729374887"
+
+ReturningCoinImageGradient = Instance.new("UIGradient")
+ReturningCoinImageGradient.Rotation = -90
+ReturningCoinImageGradient.Color = ColorSequence.new({
+ColorSequenceKeypoint.new(0, Color3.fromRGB(220, 220, 220)),
+ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255))
+})
+ReturningCoinImageGradient.Parent = ReturningCoinImage
+
+ReturningContinueFrame = Instance.new("Frame")
+ReturningContinueFrame.BackgroundColor3 = Color3.fromRGB(255, 221, 97)
+ReturningContinueFrame.ZIndex = 2
+ReturningContinueFrame.Size = UDim2.new(1,0,1,0)
+ReturningContinueFrame.Parent = ReturningContinue
+
+ReturningContinueUICorner = Instance.new("UICorner")
+ReturningContinueUICorner.CornerRadius = UDim.new(0, 10)
+ReturningContinueUICorner.Parent = ReturningContinueFrame
+
+
+ReturningContinueUIGradient = Instance.new("UIGradient")
+ReturningContinueUIGradient.Rotation = 90
+ReturningContinueUIGradient.Color = ColorSequence.new({
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(170, 170, 170))
+})
+
+ReturningContinueUIGradient.Parent = ReturningContinueFrame
+
+
+ReturningContinueUIStroke = Instance.new("UIStroke")
+ReturningContinueUIStroke.Color = Color3.fromRGB(255, 221, 97)
+ReturningContinueUIStroke.Thickness = 4
+ReturningContinueUIStroke.Parent = ReturningContinueFrame
+
+ReturningContinueUIStrokeGradient = Instance.new("UIGradient")
+ReturningContinueUIStrokeGradient.Rotation = -90
+ReturningContinueUIStrokeGradient.Color = ColorSequence.new({
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(170, 170, 170))
+})
+
+ReturningContinueUIStrokeGradient.Parent = ReturningContinueUIStroke
+
+
+
+ReturnDoubleFrame = Instance.new("Frame")
+ReturnDoubleFrame.BackgroundColor3 = Color3.fromRGB(0, 255, 157)
+ReturnDoubleFrame.ZIndex = 2
+ReturnDoubleFrame.Size = UDim2.new(1,0,1,0)
+ReturnDoubleFrame.Parent = ReturningDouble
+
+ReturnDoubleUICorner = Instance.new("UICorner")
+ReturnDoubleUICorner.CornerRadius = UDim.new(0, 10)
+ReturnDoubleUICorner.Parent = ReturnDoubleFrame
+
+
+ReturnDoubleUIGradient = Instance.new("UIGradient")
+ReturnDoubleUIGradient.Rotation = 90
+ReturnDoubleUIGradient.Color = ColorSequence.new({
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(170, 170, 170))
+})
+
+ReturnDoubleUIGradient.Parent = ReturnDoubleFrame
+
+
+
+ReturnDoubleUIStroke = Instance.new("UIStroke")
+ReturnDoubleUIStroke.Color = Color3.fromRGB(0, 255, 157)
+ReturnDoubleUIStroke.Thickness = 4
+ReturnDoubleUIStroke.Parent = ReturnDoubleFrame
+
+ReturnDoubleUIStrokeGradient = Instance.new("UIGradient")
+ReturnDoubleUIStrokeGradient.Rotation = -90
+ReturnDoubleUIStrokeGradient.Color = ColorSequence.new({
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(170, 170, 170))
+})
+
+ReturnDoubleUIStrokeGradient.Parent = ReturnDoubleUIStroke
+
+ReturningAmountUIStroke = Instance.new("UIStroke")
+ReturningAmountUIStroke.Color = Color3.fromRGB(147, 158, 255)
+ReturningAmountUIStroke.Thickness = 4
+ReturningAmountUIStroke.Parent = ReturningAmount
+
+ReturningAmountUIStrokeGradient = Instance.new("UIGradient")
+ReturningAmountUIStrokeGradient.Rotation = -90
+ReturningAmountUIStrokeGradient.Color = ColorSequence.new({
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(170, 170, 170))
+})
+
+ReturningAmountUIStrokeGradient.Parent = ReturningAmountUIStroke
+
+ReturningTipUIStroke = Instance.new("UIStroke")
+ReturningTipUIStroke.Color = Color3.fromRGB(147, 158, 255)
+ReturningTipUIStroke.Thickness = 4
+ReturningTipUIStroke.Parent = ReturningTip
+
+ReturningTipUIStrokeGradient = Instance.new("UIGradient")
+ReturningTipUIStrokeGradient.Rotation = -90
+ReturningTipUIStrokeGradient.Color = ColorSequence.new({
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(170, 170, 170))
+})
+
+ReturningTipUIStrokeGradient.Parent = ReturningTipUIStroke
+
+ReturningDoubleItTextUIStroke = Instance.new("UIStroke")
+ReturningDoubleItTextUIStroke.Color = Color3.fromRGB(147, 158, 255)
+ReturningDoubleItTextUIStroke.Thickness = 4
+ReturningDoubleItTextUIStroke.Parent = ReturningDoubleItText
+
+ReturningDoubleItTextUIStrokeGradient = Instance.new("UIGradient")
+ReturningDoubleItTextUIStrokeGradient.Rotation = -90
+ReturningDoubleItTextUIStrokeGradient.Color = ColorSequence.new({
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(170, 170, 170))
+})
+
+ReturningDoubleItTextUIStrokeGradient.Parent = ReturningDoubleItTextUIStroke
+
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+
+local function applyTextStyling(textElement)
+    textElement.TextColor3 = Color3.fromRGB(255, 255, 255)
+    
+    local existingStroke = textElement:FindFirstChild("UIStroke")
+    if existingStroke then
+        existingStroke:Destroy()
+    end
+    
+    local textStroke = Instance.new("UIStroke")
+    textStroke.Color = Color3.fromRGB(255, 190, 100)
+    textStroke.Thickness = 4
+    textStroke.Parent = textElement
+    
+    local strokeGradient = Instance.new("UIGradient")
+    strokeGradient.Rotation = -90
+    strokeGradient.Color = ColorSequence.new({
+        ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),
+        ColorSequenceKeypoint.new(1, Color3.fromRGB(170, 170, 170))
+    })
+    strokeGradient.Parent = textStroke
+end
+
+local function findAndStyleReturningText()
+    if not LocalPlayer.PlayerGui:FindFirstChild("MainGui") then
+        LocalPlayer.PlayerGui:WaitForChild("MainGui", 10)
+    end
+    
+    local mainGui = LocalPlayer.PlayerGui:FindFirstChild("MainGui")
+    if not mainGui then return end
+    
+    local centerUIFrame = mainGui:WaitForChild("CenterUIFrame", 5)
+    if not centerUIFrame then return end
+    
+    local returningCoinFrame = centerUIFrame:WaitForChild("ReturningCoinFrame", 5)
+    if not returningCoinFrame then return end
+    
+    local returningTexts = {}
+    
+    local directText = returningCoinFrame:FindFirstChild("ReturningText1")
+    if directText and directText:IsA("TextButton") then
+        table.insert(returningTexts, directText)
+    end
+    
+    for _, descendant in pairs(returningCoinFrame:GetDescendants()) do
+        if descendant.Name == "ReturningText1" and descendant:IsA("TextButton") and descendant ~= directText then
+            table.insert(returningTexts, descendant)
+        end
+    end
+    
+    for _, textElement in ipairs(returningTexts) do
+        applyTextStyling(textElement)
+    end
+    
+    if #returningTexts == 0 then
+        local connection
+        connection = returningCoinFrame.ChildAdded:Connect(function(child)
+            if child.Name == "ReturningText1" and child:IsA("TextButton") then
+                applyTextStyling(child)
+                
+                if connection then
+                    connection:Disconnect()
+                    connection = nil
+                end
+            end
+        end)
+    end
+end
+
+findAndStyleReturningText()
+
+LocalPlayer.PlayerGui.ChildAdded:Connect(function(child)
+    if child.Name == "MainGui" then
+        wait(1)
+        findAndStyleReturningText()
+    end
+end)
+
+
+
+game:GetService("Players").LocalPlayer.PlayerGui.MainGui.CenterUIFrame.ReturningCoinFrame.ContinueButtonShadow:Destroy()
+game:GetService("Players").LocalPlayer.PlayerGui.MainGui.CenterUIFrame.ReturningCoinFrame.DoubleItShadow:Destroy()
