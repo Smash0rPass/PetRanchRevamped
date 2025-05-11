@@ -16,9 +16,6 @@ local DEFAULT_SETTINGS = {
     closeOffsetY = 0.02
 }
 
--- Store references to UI frames for direct closing
-local uiFrames = {}
-
 -- Function to smoothly transition button properties
 local function transitionButton(button, uiScale, startScale, endScale, startRotation, endRotation, duration)
     local startTime = tick()
@@ -87,118 +84,26 @@ function ButtonEffects:ApplyHoverEffect(button, settings)
     return uiScale
 end
 
--- Apply close button functionality
-function ButtonEffects:ApplyCloseButton(button, frameToClose, settings)
-    settings = settings or {}
-    -- Merge with default settings
-    for key, value in pairs(DEFAULT_SETTINGS) do
-        if settings[key] == nil then
-            settings[key] = value
-        end
-    end
-    
-    -- Store reference to the frame for direct closing
-    local frameName = frameToClose.Name
-    uiFrames[frameName] = frameToClose
-    
-    -- Apply hover effect
-    local uiScale = self:ApplyHoverEffect(button, settings)
+-- Apply close button functionality with custom close function
+function ButtonEffects:ApplyCloseButton(button, frameToClose, customCloseFunction)
+    -- Apply hover effect with default settings
+    local uiScale = self:ApplyHoverEffect(button)
     
     -- Add close functionality
     button.MouseButton1Click:Connect(function()
-        self:CloseFrame(frameToClose, settings)
+        -- If a custom close function is provided, call it
+        if customCloseFunction and type(customCloseFunction) == "function" then
+            customCloseFunction()
+        else
+            -- Default behavior - just hide the frame
+            if frameToClose then
+                frameToClose.Visible = false
+            end
+        end
     end)
     
     return uiScale
 end
-
--- Function to close a frame with animation
-function ButtonEffects:CloseFrame(frame, settings)
-    settings = settings or DEFAULT_SETTINGS
-    
-    local originalPosition = frame.Position
-    
-    -- Create a tween to slide
-    local tweenInfo = TweenInfo.new(
-        settings.closeTweenDuration,
-        Enum.EasingStyle.Quad,
-        Enum.EasingDirection.Out
-    )
-    
-    -- Calculate the target position
-    local targetPosition = UDim2.new(
-        originalPosition.X.Scale,
-        originalPosition.X.Offset,
-        originalPosition.Y.Scale + settings.closeOffsetY,
-        originalPosition.Y.Offset
-    )
-    
-    -- Create the tween
-    local tween = TweenService:Create(
-        frame,
-        tweenInfo,
-        {Position = targetPosition}
-    )
-    
-    -- Play the tween and set visibility to false when it completes
-    tween:Play()
-    tween.Completed:Connect(function()
-        frame.Visible = false
-        -- Reset position for next time it's shown
-        frame.Position = originalPosition
-    end)
-end
-
--- Direct close functions for specific UI elements
-function ButtonEffects:closeIndex()
-    local frame = uiFrames["PetIndex"]
-    if frame then
-        self:CloseFrame(frame, DEFAULT_SETTINGS)
-    end
-end
-
-function ButtonEffects:closeGift()
-    local frame = uiFrames["GiftFrame"]
-    if frame then
-        self:CloseFrame(frame, DEFAULT_SETTINGS)
-    end
-end
-
-function ButtonEffects:closeRebirth()
-    local frame = uiFrames["RebirthFrame"]
-    if frame then
-        self:CloseFrame(frame, DEFAULT_SETTINGS)
-    end
-end
-
-function ButtonEffects:closeUpgradeRanch()
-    local frame = uiFrames["UpgradeRanch"]
-    if frame then
-        self:CloseFrame(frame, DEFAULT_SETTINGS)
-    end
-end
-
-function ButtonEffects:closeLog()
-    local frame = uiFrames["LogFrame"]
-    if frame then
-        self:CloseFrame(frame, DEFAULT_SETTINGS)
-    end
-end
-
-function ButtonEffects:closeCode()
-    local frame = uiFrames["CodeImg"]
-    if frame then
-        self:CloseFrame(frame, DEFAULT_SETTINGS)
-    end
-end
-
-function ButtonEffects:closePremiumShop()
-    local frame = uiFrames["PremiumShop"]
-    if frame then
-        self:CloseFrame(frame, DEFAULT_SETTINGS)
-    end
-end
-
 
 -- Remove all existing connections from a button
 function ButtonEffects:ClearConnections(button)
