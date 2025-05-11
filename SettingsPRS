@@ -139,7 +139,7 @@ SettingsCloseTextLabelStroke.Thickness = 3
 SettingsCloseTextLabelStroke.Color = Color3.fromRGB(0, 0, 0)
 SettingsCloseTextLabelStroke.Parent = SettingsCloseTextLabel
 
-game:GetService("Players").LocalPlayer.PlayerGui.MainGui.CenterUIFrame.SettingsFrame.SettingsInnerFrame.SettingsScrollingFrame.Settings_HideOtherPets.Toggle.Toggle.ImageTransparency = 1
+game:GetService("Players").LocalPlayer.PlayerGui.MainGui.CenterUIFrame.SettingsFrame.SettingsInnerFrame.SettingsScrollingFrame.Settings_HideOtherPets.Toggle.ImageTransparency = 1
 game:GetService("Players").LocalPlayer.PlayerGui.MainGui.CenterUIFrame.SettingsFrame.SettingsInnerFrame.SettingsScrollingFrame.Settings_HideOtherPets.Toggle.BackgroundTransparency = 1
 SHideOtherPets.SettingText.TextColor3 = Color3.fromRGB(255,255,255)
 SHideOtherPetsStroke = Instance.new("UIStroke")
