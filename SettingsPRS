@@ -139,7 +139,7 @@ SettingsCloseTextLabelStroke.Thickness = 3
 SettingsCloseTextLabelStroke.Color = Color3.fromRGB(0, 0, 0)
 SettingsCloseTextLabelStroke.Parent = SettingsCloseTextLabel
 
-game:GetService("Players").LocalPlayer.PlayerGui.MainGui.CenterUIFrame.SettingsFrame.SettingsInnerFrame.SettingsScrollingFrame.Settings_HideOtherPets.ZIndex = 10
+game:GetService("Players").LocalPlayer.PlayerGui.MainGui.CenterUIFrame.SettingsFrame.SettingsInnerFrame.SettingsScrollingFrame.Settings_HideOtherPets.ZIndex = 11
 game:GetService("Players").LocalPlayer.PlayerGui.MainGui.CenterUIFrame.SettingsFrame.SettingsInnerFrame.SettingsScrollingFrame.Settings_HideOtherPets.Toggle.Position = UDim2.new(0,650,0,25)
 game:GetService("Players").LocalPlayer.PlayerGui.MainGui.CenterUIFrame.SettingsFrame.SettingsInnerFrame.SettingsScrollingFrame.Settings_HideOtherPets.Toggle.Size = UDim2.new(0,130,0,50)
 game:GetService("Players").LocalPlayer.PlayerGui.MainGui.CenterUIFrame.SettingsFrame.SettingsInnerFrame.SettingsScrollingFrame.Settings_HideOtherPets.Toggle.ImageTransparency = 1
@@ -150,7 +150,7 @@ SHideOtherPetsStroke.Color = Color3.fromRGB(34, 34, 40)
 SHideOtherPetsStroke.Thickness = 5
 SHideOtherPetsStroke.Parent = SHideOtherPets.SettingText
 
-game:GetService("Players").LocalPlayer.PlayerGui.MainGui.CenterUIFrame.SettingsFrame.SettingsInnerFrame.SettingsScrollingFrame.Settings_HideAuras.ZIndex = 10
+game:GetService("Players").LocalPlayer.PlayerGui.MainGui.CenterUIFrame.SettingsFrame.SettingsInnerFrame.SettingsScrollingFrame.Settings_HideAuras.ZIndex = 11
 game:GetService("Players").LocalPlayer.PlayerGui.MainGui.CenterUIFrame.SettingsFrame.SettingsInnerFrame.SettingsScrollingFrame.Settings_HideAuras.Toggle.Position = UDim2.new(0,650,0,25)
 game:GetService("Players").LocalPlayer.PlayerGui.MainGui.CenterUIFrame.SettingsFrame.SettingsInnerFrame.SettingsScrollingFrame.Settings_HideAuras.Toggle.Size = UDim2.new(0,130,0,50)
 game:GetService("Players").LocalPlayer.PlayerGui.MainGui.CenterUIFrame.SettingsFrame.SettingsInnerFrame.SettingsScrollingFrame.Settings_HideAuras.Toggle.ImageTransparency = 1
@@ -161,7 +161,7 @@ SHideAurasStroke.Color = Color3.fromRGB(34, 34, 40)
 SHideAurasStroke.Thickness = 5
 SHideAurasStroke.Parent = SHideAuras.SettingText
 
-game:GetService("Players").LocalPlayer.PlayerGui.MainGui.CenterUIFrame.SettingsFrame.SettingsInnerFrame.SettingsScrollingFrame.Settings_HideOwnPets.ZIndex = 10
+game:GetService("Players").LocalPlayer.PlayerGui.MainGui.CenterUIFrame.SettingsFrame.SettingsInnerFrame.SettingsScrollingFrame.Settings_HideOwnPets.ZIndex = 11
 game:GetService("Players").LocalPlayer.PlayerGui.MainGui.CenterUIFrame.SettingsFrame.SettingsInnerFrame.SettingsScrollingFrame.Settings_HideOwnPets.Toggle.Position = UDim2.new(0,650,0,25)
 game:GetService("Players").LocalPlayer.PlayerGui.MainGui.CenterUIFrame.SettingsFrame.SettingsInnerFrame.SettingsScrollingFrame.Settings_HideOwnPets.Toggle.Size = UDim2.new(0,130,0,50)
 game:GetService("Players").LocalPlayer.PlayerGui.MainGui.CenterUIFrame.SettingsFrame.SettingsInnerFrame.SettingsScrollingFrame.Settings_HideOwnPets.Toggle.ImageTransparency = 1
@@ -172,7 +172,7 @@ SHideOwnPetsStroke.Color = Color3.fromRGB(34, 34, 40)
 SHideOwnPetsStroke.Thickness = 5
 SHideOwnPetsStroke.Parent = SHideOwnPets.SettingText
 
-game:GetService("Players").LocalPlayer.PlayerGui.MainGui.CenterUIFrame.SettingsFrame.SettingsInnerFrame.SettingsScrollingFrame.Settings_Sound.ZIndex = 10
+game:GetService("Players").LocalPlayer.PlayerGui.MainGui.CenterUIFrame.SettingsFrame.SettingsInnerFrame.SettingsScrollingFrame.Settings_Sound.ZIndex = 11
 game:GetService("Players").LocalPlayer.PlayerGui.MainGui.CenterUIFrame.SettingsFrame.SettingsInnerFrame.SettingsScrollingFrame.Settings_Sound.Toggle.Position = UDim2.new(0,650,0,25)
 game:GetService("Players").LocalPlayer.PlayerGui.MainGui.CenterUIFrame.SettingsFrame.SettingsInnerFrame.SettingsScrollingFrame.Settings_Sound.Toggle.Size = UDim2.new(0,130,0,50)
 game:GetService("Players").LocalPlayer.PlayerGui.MainGui.CenterUIFrame.SettingsFrame.SettingsInnerFrame.SettingsScrollingFrame.Settings_Sound.Toggle.ImageTransparency = 1
