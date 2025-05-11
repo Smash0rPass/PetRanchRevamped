@@ -28,13 +28,13 @@ local frameConfigs = {
         originalPos = UDim2.new(0, 455, 0, 200),
         offscreenPos = UDim2.new(0, 455, 0, 350),
         subFrames = {
-            MainFrame1 = CenterUIFrame.PetInventory.PetInventoryInnerFrame.NewGui.MainFrame1,
+            MainFrame1 = CenterUIFrame.PetInventory.PetInv.MainFrame1,
             MainFrame2 = CenterUIFrame.PetInventory.PetInventoryInnerFrame.NewGui.MainFrame2,
             AuraFrame = CenterUIFrame.PetInventory.AuraInventoryInnerFrame.ScreenGui.AuraFrame
         }
     },
     UpgradeRanch = {
-        frame = CenterUIFrame.UpgradeRanch,
+        frame = CenterUIFrame.UpgradeRanchFrame,
         originalPos = UDim2.new(0, 90, 0, 130),
         offscreenPos = UDim2.new(0, 90, 0, 230),
         subFrames = {
@@ -47,12 +47,12 @@ local frameConfigs = {
         offscreenPos = UDim2.new(0, 0, 0, 130)
     },
     LogFrame = {
-        frame = CenterUIFrame.LogFrame,
+        frame = CenterUIFrame.LoginFrame,
         originalPos = UDim2.new(0, 0, 0, 100),
         offscreenPos = UDim2.new(0, 0, 0, 130)
     },
     CodeImg = {
-        frame = CenterUIFrame.CodeImg,
+        frame = CenterUIFrame.Codes,
         originalPos = UDim2.new(0, 150, 0, 250),
         offscreenPos = UDim2.new(0, 150, 0, 300)
     },
@@ -77,7 +77,7 @@ local frameConfigs = {
         offscreenPos = UDim2.new(0, 0, 0, 130)
     },
     ReturningFrame = {
-        frame = CenterUIFrame.ReturningFrame,
+        frame = CenterUIFrame.ReturningCoinFrame,
         originalPos = UDim2.new(0, 70, 0, 140),
         offscreenPos = UDim2.new(0, 70, 0, 200)
     }
