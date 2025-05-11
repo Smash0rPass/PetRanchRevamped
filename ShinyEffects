@@ -1,0 +1,314 @@
+local Players = game:GetService("Players")
+local TweenService = game:GetService("TweenService")
+local LocalPlayer = Players.LocalPlayer
+
+-- Paths to check for pets
+local pathsToCheck = {
+    "game:GetService('Players').LocalPlayer.PlayerGui.MainGui.CenterUIFrame.PetInventory.PetInventoryInnerFrame.NewGui.MainFrame2.Pets.EquippedPets",
+    "game:GetService('Players').LocalPlayer.PlayerGui.MainGui.CenterUIFrame.PetInventory.PetInventoryInnerFrame.NewGui.MainFrame2.Pets.PetInventoryScrollingFrame",
+    "game:GetService('Players').LocalPlayer.PlayerGui.MainGui.CenterUIFrame.PetInventory.AuraInventoryInnerFrame.ScreenGui.AuraFrame.Auras.AuraInventoryScrollingFrame",
+    "game:GetService('Players').LocalPlayer.PlayerGui.MainGui.CenterUIFrame.PetInventory.AuraInventoryInnerFrame.ScreenGui.AuraFrame.Auras.EquippedAuras"
+}
+
+-- List of shiny pet image IDs
+shinyPets = {
+    "rbxassetid://3971991254", --["Shiny Atomizer"] // rarity = "Premium"
+    "rbxassetid://4154409438", --["Shiny Bolthead"] // rarity = "Premium"
+    "rbxassetid://3752083860", --["Shiny Bubble Squid"] // rarity = "Premium"
+    "rbxassetid://3326507581", --["Shiny Candy Unicorn"] // rarity = "Premium"
+    "rbxassetid://3326569610", --["Shiny Celebration Trio"] // rarity = "Premium"
+    "rbxassetid://3326507648", --["Shiny Crystal Golem"] // rarity = "Premium"
+    "rbxassetid://3326507712", --["Shiny Cyber Phoenix"] // rarity = "Premium"
+    "rbxassetid://3326507773", --["Shiny Electric Mouse"] // rarity = "Premium"
+    "rbxassetid://3326507838", --["Shiny Flame Wolf"] // rarity = "Premium"
+    "rbxassetid://3554098898", --["Shiny Funky Phoenix"] // rarity = "Premium"
+    "rbxassetid://3421476150", --["Shiny Ghost Blob"] // rarity = "Premium"
+    "rbxassetid://3324884003", --["Shiny Hatched Chick"] // rarity = "Premium"
+    "rbxassetid://3326507902", --["Shiny Inferno Fox"] // rarity = "Premium"
+    "rbxassetid://3326507962", --["Shiny Jester"] // rarity = "Premium"
+    "rbxassetid://3326508017", --["Shiny Light Serpent"] // rarity = "Premium"
+    "rbxassetid://3658310843", --["Shiny Polychrome"] // rarity = "Premium"
+    "rbxassetid://3321471966", --["Shiny Rainbow Songbird"] // rarity = "Premium"
+    "rbxassetid://3877247886", --["Shiny Studio Cat"] // rarity = "Premium"
+
+    "rbxassetid://4147751210", --["Shiny Firebrand"] // rarity = "Divine"
+    "rbxassetid://3652596988", --["Shiny Zenith"] // rarity = "Divine"
+
+    "rbxassetid://3652596347", --["Shiny Celestial Core"] // rarity = "Mythic"
+    "rbxassetid://3326569873", --["Shiny Gala"] // rarity = "Mythic"
+    "rbxassetid://4147751621", --["Shiny Necromancer"] // rarity = "Mythic"
+    "rbxassetid://3324793488", --["Shiny Omni"] // rarity = "Mythic"
+    "rbxassetid://3324821908", --["Shiny Prisma"] // rarity = "Mythic"
+    "rbxassetid://3877248268", --["Shiny Whirlwind"] // rarity = "Mythic"
+
+    "rbxassetid://4147750931", --["Shiny Alchemist"] // rarity = "Legendary"
+    "rbxassetid://3321469993", --["Shiny Alien"] // rarity = "Legendary"
+    "rbxassetid://3877247269", --["Shiny Ancient Earth Dragon"] // rarity = "Legendary"
+    "rbxassetid://3321327975", --["Shiny Android Dragon"] // rarity = "Legendary"
+    "rbxassetid://3321468917", --["Shiny Angel"] // rarity = "Legendary"
+    "rbxassetid://3326596048", --["Shiny Baby Sowopent"] // rarity = "Legendary"
+    "rbxassetid://3321396783", --["Shiny Cerberus"] // rarity = "Legendary"
+    "rbxassetid://3324793074", --["Shiny Chimera"] // rarity = "Legendary"
+    "rbxassetid://3471250034", --["Shiny Corrosive Phoenix"] // rarity = "Legendary"
+    "rbxassetid://3324821610", --["Shiny Cthulhu"] // rarity = "Legendary"
+    "rbxassetid://3324769737", --["Shiny Dark Serpent"] // rarity = "Legendary"
+    "rbxassetid://3321469058", --["Shiny Demon"] // rarity = "Legendary"
+    "rbxassetid://3324821754", --["Shiny Duality"] // rarity = "Legendary"
+    "rbxassetid://3324884140", --["Shiny Easter Serpent"] // rarity = "Legendary"
+    "rbxassetid://3324884225", --["Shiny Eggiverse"] // rarity = "Legendary"
+    "rbxassetid://3326569738", --["Shiny Emperor"] // rarity = "Legendary"
+    "rbxassetid://3321328105", --["Shiny Flame Fox"] // rarity = "Legendary"
+    "rbxassetid://3321471739", --["Shiny Flare Alicorn"] // rarity = "Legendary"
+    "rbxassetid://3877247516", --["Shiny Guardian Angel"] // rarity = "Legendary"
+    "rbxassetid://4147751493", --["Shiny Horror Serpent"] // rarity = "Legendary"
+    "rbxassetid://3321470132", --["Shiny Ice Phoenix"] // rarity = "Legendary"
+    "rbxassetid://3321471848", --["Shiny Inferno Serpent"] // rarity = "Legendary"
+    "rbxassetid://3324793394", --["Shiny Leviathan"] // rarity = "Legendary"
+    "rbxassetid://3877247741", --["Shiny Lightning Satyr"] // rarity = "Legendary"
+    "rbxassetid://3324769949", --["Shiny Monster Fox"] // rarity = "Legendary"
+    "rbxassetid://3326570020", --["Shiny Phantom Cerberus"] // rarity = "Legendary"
+    "rbxassetid://3471250372", --["Shiny Radiance"] // rarity = "Legendary"
+    "rbxassetid://3652596674", --["Shiny Rift Observer"] // rarity = "Legendary"
+    "rbxassetid://3324770355", --["Shiny Ruler"] // rarity = "Legendary"
+    "rbxassetid://3652596742", --["Shiny Singularity"] // rarity = "Legendary"
+    "rbxassetid://3471250459", --["Shiny Snow Elemental"] // rarity = "Legendary"
+    "rbxassetid://3321301272", --["Shiny Unicorn"] // rarity = "Legendary"
+    "rbxassetid://3321397063", --["Shiny Vampire Dragon"] // rarity = "Legendary"
+    "rbxassetid://3321472138", --["Shiny Void Gazer"] // rarity = "Legendary"
+    "rbxassetid://3652596913", --["Shiny Warped Wraith"] // rarity = "Legendary"
+    "rbxassetid://3324821447", --["Shiny Wisp"] // rarity = "Legendary"
+
+    "rbxassetid://3321272961", --["Shiny Angel Dog"] // rarity = "Epic"
+    "rbxassetid://3321470062", --["Shiny Bee"] // rarity = "Epic"
+    "rbxassetid://3321396676", --["Shiny Black Bear"] // rarity = "Epic"
+    "rbxassetid://3324883798", --["Shiny Bunny Lord"] // rarity = "Epic"
+    "rbxassetid://3326569532", --["Shiny Cake"] // rarity = "Epic"
+    "rbxassetid://3471249956", --["Shiny Cherry Blossom Owl"] // rarity = "Epic"
+    "rbxassetid://3321396849", --["Shiny Dark Unicorn"] // rarity = "Epic"
+    "rbxassetid://3471249879", --["Shiny Deep Sea Narwhal"] // rarity = "Epic"
+    "rbxassetid://3321471682", --["Shiny Direwolf"] // rarity = "Epic"
+    "rbxassetid://3326569673", --["Shiny Disco Robot"] // rarity = "Epic"
+    "rbxassetid://3324884316", --["Shiny Eggster Flock"] // rarity = "Epic"
+    "rbxassetid://3877247400", --["Shiny Ember Mouse"] // rarity = "Epic"
+    "rbxassetid://3324793165", --["Shiny Fairy"] // rarity = "Epic"
+    "rbxassetid://4147751353", --["Shiny Ghoul"] // rarity = "Epic"
+    "rbxassetid://3321301144", --["Shiny Midnight Bat"] // rarity = "Epic"
+    "rbxassetid://3321470190", --["Shiny Monkey"] // rarity = "Epic"
+    "rbxassetid://3321471903", --["Shiny Moonbear"] // rarity = "Epic"
+    "rbxassetid://3321469102", --["Shiny Narwhal"] // rarity = "Epic"
+    "rbxassetid://3471250281", --["Shiny Nesting Eagles"] // rarity = "Epic"
+    "rbxassetid://3324770049", --["Shiny Nova Fox"] // rarity = "Epic"
+    "rbxassetid://3321469162", --["Shiny Owl"] // rarity = "Epic"
+    "rbxassetid://3321328221", --["Shiny Panda"] // rarity = "Epic"
+    "rbxassetid://3324822013", --["Shiny Roc"] // rarity = "Epic"
+    "rbxassetid://4147751883", --["Shiny Scarecrow"] // rarity = "Epic"
+    "rbxassetid://3652596829", --["Shiny Sprite Swarm"] // rarity = "Epic"
+    "rbxassetid://3321472023", --["Shiny Thieving Crows"] // rarity = "Epic"
+    "rbxassetid://3324822097", --["Shiny Thunderbird"] // rarity = "Epic"
+    "rbxassetid://3877248031", --["Shiny Tropical Monkey"] // rarity = "Epic"
+    "rbxassetid://3326570094", --["Shiny Wonderful Present"] // rarity = "Epic"
+
+    "rbxassetid://3319957269", --["Shiny Awesome Dog"] // rarity = "Rare"
+    "rbxassetid://3326595985", --["Shiny Baby Serpent"] // rarity = "Rare"
+    "rbxassetid://3324821534", --["Shiny Basilisk"] // rarity = "Rare"
+    "rbxassetid://4147751076", --["Shiny Candy Corn Bat"] // rarity = "Rare"
+    "rbxassetid://3471250118", --["Shiny Dalmation"] // rarity = "Rare"
+    "rbxassetid://3324769842", --["Shiny Demon Dragon"] // rarity = "Rare"
+    "rbxassetid://3324883891", --["Shiny Dogbun"] // rarity = "Rare"
+    "rbxassetid://3324821828", --["Shiny Dwarf"] // rarity = "Rare"
+    "rbxassetid://3326569795", --["Shiny Firework Mouse"] // rarity = "Rare"
+    "rbxassetid://3321328040", --["Shiny Flame Butterfly"] // rarity = "Rare"
+    "rbxassetid://3321396923", --["Shiny Frozen Wolf"] // rarity = "Rare"
+    "rbxassetid://3324793264", --["Shiny Griffin"] // rarity = "Rare"
+    "rbxassetid://3321471795", --["Shiny Horse"] // rarity = "Rare"
+    "rbxassetid://3877247625", --["Shiny Jellyfish"] // rarity = "Rare"
+    "rbxassetid://3321470734", --["Shiny Lava Slime"] // rarity = "Rare"
+    "rbxassetid://3471250205", --["Shiny Lightspeed Bee"] // rarity = "Rare"
+    "rbxassetid://3652596501", --["Shiny Moonlight Sphinx"] // rarity = "Rare"
+    "rbxassetid://3652596602", --["Shiny Mossy Golem"] // rarity = "Rare"
+    "rbxassetid://3326569961", --["Shiny Party Fox"] // rarity = "Rare"
+    "rbxassetid://3324770144", --["Shiny Pegasus"] // rarity = "Rare"
+    "rbxassetid://3324770240", --["Shiny Phoenix"] // rarity = "Rare"
+    "rbxassetid://4147751762", --["Shiny Pumpkin"] // rarity = "Rare"
+    "rbxassetid://3321469214", --["Shiny Robot"] // rarity = "Rare"
+    "rbxassetid://3321273211", --["Shiny Sapphire Bunny"] // rarity = "Rare"
+    "rbxassetid://3321470797", --["Shiny Squid"] // rarity = "Rare"
+    "rbxassetid://3324793579", --["Shiny Troll"] // rarity = "Rare"
+    "rbxassetid://3877248140", --["Shiny Turkey"] // rarity = "Rare"
+    "rbxassetid://3321472084", --["Shiny Turtle"] // rarity = "Rare"
+    "rbxassetid://3321301348", --["Shiny Vampire Bat"] // rarity = "Rare"
+    "rbxassetid://3324793682", --["Shiny Yeti"] // rarity = "Rare"
+
+    "rbxassetid://3321396725", --["Shiny Brown Wolf"] // rarity = "Uncommon"
+    "rbxassetid://3319957364", --["Shiny Bunny"] // rarity = "Uncommon"
+    "rbxassetid://3321468985", --["Shiny Deer"] // rarity = "Uncommon"
+    "rbxassetid://3321328173", --["Shiny Midnight Cat"] // rarity = "Uncommon"
+    "rbxassetid://3324883581", --["Shiny Polka Dot Butterfly"] // rarity = "Uncommon"
+    "rbxassetid://3321273142", --["Shiny Ruby Bunny"] // rarity = "Uncommon"
+    "rbxassetid://3321469262", --["Shiny Slime"] // rarity = "Uncommon"
+    "rbxassetid://3321301205", --["Shiny Stone Dog"] // rarity = "Uncommon"
+    "rbxassetid://3321470334", --["Shiny Tuxedo Cat"] // rarity = "Uncommon"
+
+    "rbxassetid://3321273024", --["Shiny Bat"] // rarity = "Common"
+    "rbxassetid://3321301027", --["Shiny Blue Butterfly"] // rarity = "Common"
+    "rbxassetid://3321301083", --["Shiny Brown Fox"] // rarity = "Common"
+    "rbxassetid://3319957475", --["Shiny Dog"] // rarity = "Common"
+    "rbxassetid://3319957578", --["Shiny Fox"] // rarity = "Common"
+    "rbxassetid://3321273075", --["Shiny Ice Cat"] // rarity = "Common"
+    "rbxassetid://3321396991", --["Shiny Polar Bear"] // rarity = "Common"
+    "rbxassetid://3710867266", --["Shiny Red Butterfly"] // rarity = "Common"
+    "rbxassetid://3321328346", --["Shiny Snow Fox"] // rarity = "Common"
+    "rbxassetid://3324883683", --["Shiny Sweets Bat"] // rarity = "Common"
+    "rbxassetid://3319957680", --["Shiny White Cat"] // rarity = "Common"
+    "rbxassetid://3321273272", --["Shiny Wolf"] // rarity = "Common"
+}
+
+-- Keep track of pets that already have effects applied
+local petsWithEffects = {}
+
+-- Function to create shiny effect for a pet image
+local function applyShinyEffect(petImage)
+    -- Generate a unique identifier for this pet image
+    local petId = tostring(petImage:GetFullName())
+    
+    -- Check if effect already applied to this specific pet
+    if petsWithEffects[petId] then
+        return
+    end
+    
+    -- Mark this pet as having an effect
+    petsWithEffects[petId] = true
+    
+    -- Remove any existing ShinyEffect (cleanup)
+    local existingEffect = petImage.Parent:FindFirstChild("ShinyEffect")
+    if existingEffect then
+        existingEffect:Destroy()
+    end
+    
+    -- Create shiny effect frame
+    local shinyEffect = Instance.new("Frame")
+    shinyEffect.Name = "ShinyEffect"
+    shinyEffect.Size = UDim2.fromScale(1, 1)
+    shinyEffect.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    shinyEffect.BorderSizePixel = 0
+    shinyEffect.ZIndex = petImage.ZIndex + 1
+    shinyEffect.BackgroundTransparency = 0
+    
+    -- Create UI gradient for the shine effect
+    local gradient = Instance.new("UIGradient")
+    gradient.Transparency = NumberSequence.new({
+        NumberSequenceKeypoint.new(0, 1),
+        NumberSequenceKeypoint.new(0.3, 0.5),
+        NumberSequenceKeypoint.new(0.5, 0.3),
+        NumberSequenceKeypoint.new(0.7, 0.5),
+        NumberSequenceKeypoint.new(1, 1)
+    })
+    gradient.Rotation = 50
+    gradient.Parent = shinyEffect
+    
+    -- Parent the effect to the pet image's parent
+    shinyEffect.Parent = petImage.Parent
+    
+    -- Function to animate the shine effect
+    local function animateShine()
+        local running = true
+        
+        -- Create a connection to detect when the effect is removed
+        local ancestryChangedConnection
+        ancestryChangedConnection = shinyEffect.AncestryChanged:Connect(function(_, newParent)
+            if newParent == nil then
+                running = false
+                petsWithEffects[petId] = nil
+                if ancestryChangedConnection then
+                    ancestryChangedConnection:Disconnect()
+                end
+            end
+        end)
+        
+        while running and shinyEffect and shinyEffect.Parent do
+            -- Create tween for shine animation
+            local tween = TweenService:Create(
+                gradient, 
+                TweenInfo.new(2, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut),
+                {Offset = Vector2.new(2, 0)}
+            )
+            
+            -- Reset position and start animation
+            gradient.Offset = Vector2.new(-2, 0)
+            tween:Play()
+            
+            -- Wait for tween to complete and then wait before next animation
+            tween.Completed:Wait()
+            
+            -- Only continue if the effect still exists
+            if not (shinyEffect and shinyEffect.Parent) then
+                break
+            end
+            
+            wait(math.random(3, 5))
+        end
+    end
+    
+    -- Start animation in a separate thread
+    coroutine.wrap(animateShine)()
+end
+
+-- Function to check if an image ID is in the shiny pets list
+local function isShinyPet(imageId)
+    for _, shinyId in ipairs(shinyPets) do
+        if imageId == shinyId then
+            return true
+        end
+    end
+    return false
+end
+
+-- Function to process a container and check for pet images
+local function processPetContainer(container)
+    if not container then return end
+    
+    -- Process all children in the container
+    for _, child in pairs(container:GetDescendants()) do
+        if child:IsA("ImageButton") and child.Name == "PetImage" then
+            local imageId = child.Image
+            if isShinyPet(imageId) then
+                applyShinyEffect(child)
+            end
+        end
+    end
+end
+
+-- Function to clean up effects for pets that no longer exist
+local function cleanupEffects()
+    for petId in pairs(petsWithEffects) do
+        -- Try to find the pet by its full name
+        local success, pet = pcall(function()
+            return game:GetService("CoreGui"):FindFirstChild(petId, true)
+        end)
+        
+        -- If pet doesn't exist anymore, remove it from our tracking
+        if not (success and pet) then
+            petsWithEffects[petId] = nil
+        end
+    end
+end
+
+-- Main loop to continuously check for shiny pets
+while true do
+    -- Clean up effects for pets that no longer exist
+    cleanupEffects()
+    
+    -- Check each container path
+    for _, pathString in ipairs(pathsToCheck) do
+        local success, container = pcall(function()
+            return loadstring("return " .. pathString)()
+        end)
+        
+        if success and container then
+            processPetContainer(container)
+        end
+    end
+    
+    -- Wait before checking again
+    wait(math.random(3, 5))
+end
