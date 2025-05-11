@@ -9,6 +9,8 @@ SHideAuras =game:GetService("Players").LocalPlayer.PlayerGui.MainGui.CenterUIFra
 SHideOwnPets = game:GetService("Players").LocalPlayer.PlayerGui.MainGui.CenterUIFrame.SettingsFrame.SettingsInnerFrame.SettingsScrollingFrame.Settings_HideOwnPets
 SSound = game:GetService("Players").LocalPlayer.PlayerGui.MainGui.CenterUIFrame.SettingsFrame.SettingsInnerFrame.SettingsScrollingFrame.Settings_Sound
 
+SettingsClose.ZIndex = 10
+
 SettingsInner.ImageTransparency = 1
 SettingsScrll.ScrollBarThickness = 0
 SettingsScrll.ScrollingEnabled = false
