@@ -139,32 +139,32 @@ SettingsCloseTextLabelStroke.Thickness = 3
 SettingsCloseTextLabelStroke.Color = Color3.fromRGB(0, 0, 0)
 SettingsCloseTextLabelStroke.Parent = SettingsCloseTextLabel
 
-SHideOtherPets.Toggle.Toggle.ImageTransparency = 1
-SHideOtherPets.Toggle.BackgroundTransparency = 1
+game:GetService("Players").LocalPlayer.PlayerGui.MainGui.CenterUIFrame.SettingsFrame.SettingsInnerFrame.SettingsScrollingFrame.Settings_HideOtherPets.Toggle.Toggle.ImageTransparency = 1
+game:GetService("Players").LocalPlayer.PlayerGui.MainGui.CenterUIFrame.SettingsFrame.SettingsInnerFrame.SettingsScrollingFrame.Settings_HideOtherPets.Toggle.BackgroundTransparency = 1
 SHideOtherPets.SettingText.TextColor3 = Color3.fromRGB(255,255,255)
 SHideOtherPetsStroke = Instance.new("UIStroke")
 SHideOtherPetsStroke.Color = Color3.fromRGB(34, 34, 40)
 SHideOtherPetsStroke.Thickness = 5
 SHideOtherPetsStroke.Parent = SHideOtherPets.SettingText
 
-SHideAuras.Toggle.ImageTransparency = 1
-SHideAuras.Toggle.BackgroundTransparency = 1
+game:GetService("Players").LocalPlayer.PlayerGui.MainGui.CenterUIFrame.SettingsFrame.SettingsInnerFrame.SettingsScrollingFrame.Settings_HideAuras.Toggle.ImageTransparency = 1
+game:GetService("Players").LocalPlayer.PlayerGui.MainGui.CenterUIFrame.SettingsFrame.SettingsInnerFrame.SettingsScrollingFrame.Settings_HideAuras.Toggle.BackgroundTransparency = 1
 SHideAuras.SettingText.TextColor3 = Color3.fromRGB(255,255,255)
 SHideAurasStroke = Instance.new("UIStroke")
 SHideAurasStroke.Color = Color3.fromRGB(34, 34, 40)
 SHideAurasStroke.Thickness = 5
 SHideAurasStroke.Parent = SHideAuras.SettingText
 
-SHideOwnPets.Toggle.ImageTransparency = 1
-SHideOwnPets.Toggle.BackgroundTransparency = 1
+game:GetService("Players").LocalPlayer.PlayerGui.MainGui.CenterUIFrame.SettingsFrame.SettingsInnerFrame.SettingsScrollingFrame.Settings_HideOwnPets.Toggle.ImageTransparency = 1
+game:GetService("Players").LocalPlayer.PlayerGui.MainGui.CenterUIFrame.SettingsFrame.SettingsInnerFrame.SettingsScrollingFrame.Settings_HideOwnPets.Toggle.BackgroundTransparency = 1
 SHideOwnPets.SettingText.TextColor3 = Color3.fromRGB(255,255,255)
 SHideOwnPetsStroke = Instance.new("UIStroke")
 SHideOwnPetsStroke.Color = Color3.fromRGB(34, 34, 40)
 SHideOwnPetsStroke.Thickness = 5
 SHideOwnPetsStroke.Parent = SHideOwnPets.SettingText
 
-SSound.Toggle.ImageTransparency = 1
-SSound.Toggle.BackgroundTransparency = 1
+game:GetService("Players").LocalPlayer.PlayerGui.MainGui.CenterUIFrame.SettingsFrame.SettingsInnerFrame.SettingsScrollingFrame.Settings_Sound.Toggle.ImageTransparency = 1
+game:GetService("Players").LocalPlayer.PlayerGui.MainGui.CenterUIFrame.SettingsFrame.SettingsInnerFrame.SettingsScrollingFrame.Settings_Sound.Toggle.BackgroundTransparency = 1
 SSound.SettingText.TextColor3 = Color3.fromRGB(255,255,255)
 SSoundStroke = Instance.new("UIStroke")
 SSoundStroke.Color = Color3.fromRGB(34, 34, 40)
