@@ -1,0 +1,569 @@
+SettingsFrame = game:GetService("Players").LocalPlayer.PlayerGui.MainGui.CenterUIFrame.SettingsFrame
+SettingsInner = game:GetService("Players").LocalPlayer.PlayerGui.MainGui.CenterUIFrame.SettingsFrame.SettingsInnerFrame
+SettingsScrll = game:GetService("Players").LocalPlayer.PlayerGui.MainGui.CenterUIFrame.SettingsFrame.SettingsInnerFrame.SettingsScrollingFrame
+SettingsTitle = game:GetService("Players").LocalPlayer.PlayerGui.MainGui.CenterUIFrame.SettingsFrame.Title
+SettingsClose = game:GetService("Players").LocalPlayer.PlayerGui.MainGui.CenterUIFrame.SettingsFrame.SettingsClose
+
+SHideOtherPets = game:GetService("Players").LocalPlayer.PlayerGui.MainGui.CenterUIFrame.SettingsFrame.SettingsInnerFrame.SettingsScrollingFrame.Settings_HideOtherPets
+SHideAuras =game:GetService("Players").LocalPlayer.PlayerGui.MainGui.CenterUIFrame.SettingsFrame.SettingsInnerFrame.SettingsScrollingFrame.Settings_HideAuras
+SHideOwnPets = game:GetService("Players").LocalPlayer.PlayerGui.MainGui.CenterUIFrame.SettingsFrame.SettingsInnerFrame.SettingsScrollingFrame.Settings_HideOwnPets
+SSound = game:GetService("Players").LocalPlayer.PlayerGui.MainGui.CenterUIFrame.SettingsFrame.SettingsInnerFrame.SettingsScrollingFrame.Settings_Sound
+
+SettingsInner.ImageTransparency = 1
+SettingsScrll.ScrollBarThickness = 0
+SettingsScrll.ScrollingEnabled = false
+
+SettingsFrame.ImageTransparency = 1
+SettingsFrame.Size = UDim2.new(0, 970, 0, 700)
+SettingsFrame.Position = UDim2.new(0.00302992761, 0, 0.0834555626, 0)
+
+SettingsBckgFrame = Instance.new("Frame")
+SettingsBckgFrame.Size = UDim2.new(0, 970, 0, 700)
+SettingsBckgFrame.BackgroundColor3 = Color3.fromRGB(255,255,255)
+SettingsBckgFrame.BackgroundTransparency = 0
+SettingsBckgFrame.Parent = SettingsFrame
+
+SettingsBckgFrameImg = Instance.new("ImageLabel")
+SettingsBckgFrameImg.Name = "SettingsBckgFrameImg"
+SettingsBckgFrameImg.Size = UDim2.new(1, 0, 1, 0)
+SettingsBckgFrameImg.BackgroundTransparency = 1
+SettingsBckgFrameImg.Image = "rbxassetid://90803316340171"
+SettingsBckgFrameImg.ImageColor3 = Color3.fromRGB(20, 58, 67)
+SettingsBckgFrameImg.ImageTransparency = 0.95
+SettingsBckgFrameImg.ScaleType = Enum.ScaleType.Tile
+SettingsBckgFrameImg.TileSize = UDim2.new(0, 100, 0, 100)
+SettingsBckgFrameImg.Parent = SettingsBckgFrame
+
+
+SettingsBckgFrameCorner = Instance.new("UICorner")
+SettingsBckgFrameCorner.CornerRadius = UDim.new(0, 20)
+SettingsBckgFrameCorner.Parent = SettingsBckgFrame
+
+SettingsBckgFrameStroke = Instance.new("UIStroke")
+SettingsBckgFrameStroke.Color = Color3.fromRGB(46,46,53)
+SettingsBckgFrameStroke.Thickness = 5
+SettingsBckgFrameStroke.Parent = SettingsBckgFrame
+
+
+SettingsBckgFrameGradient = Instance.new("UIGradient")
+SettingsBckgFrameGradient.Rotation = -90
+SettingsBckgFrameGradient.Color = ColorSequence.new({
+ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),
+ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255))
+})
+SettingsBckgFrameGradient.Transparency = NumberSequence.new({
+NumberSequenceKeypoint.new(0, 0),
+NumberSequenceKeypoint.new(0.31, 0.58),
+NumberSequenceKeypoint.new(0.507, 0.757),
+NumberSequenceKeypoint.new(0.756, 0.994),
+NumberSequenceKeypoint.new(1, 1.29)
+})
+SettingsBckgFrameGradient.Parent = SettingsBckgFrameImg
+
+SettingsBckgFrameGradientCorner = Instance.new("UICorner")
+SettingsBckgFrameGradientCorner.CornerRadius = UDim.new(0, 20)
+SettingsBckgFrameGradientCorner.Parent = SettingsBckgFrameGradient
+
+SettingsTitle.Position = UDim2.new(0,0,0,-70)
+SettingsTitle.Size = UDim2.new(1,0,0.2,0)
+SettingsTitle.TextColor3 = Color3.fromRGB(255,255,255)
+
+SettingsTitleStroke = Instance.new("UIStroke")
+SettingsTitleStroke.Color = Color3.fromRGB(0, 170, 170)
+SettingsTitleStroke.Thickness = 5
+SettingsTitleStroke.Parent = SettingsTitle
+
+SettingsTitleGradient = Instance.new("UIGradient")
+SettingsTitleGradient.Rotation = -90
+SettingsTitleGradient.Color = ColorSequence.new({
+ColorSequenceKeypoint.new(0, Color3.fromRGB(170, 170, 170)),
+ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255))
+})
+SettingsTitleGradient.Parent = SettingsTitleStroke
+
+
+SettingsClose.Image = "rbxassetid://14423621163"
+SettingsClose.Rotation = 0
+SettingsClose.Position = UDim2.new(0, 920, 0, -45)
+SettingsClose.Size = UDim2.new(0, 100, 0, 100)
+
+SettingsCloseAspectRatio = Instance.new("UIAspectRatioConstraint")
+SettingsCloseAspectRatio.Name = "PSCloseAspectRatio"
+SettingsCloseAspectRatio.Parent = SettingsClose
+
+
+SettingsCloseGradient = Instance.new("UIGradient")
+SettingsCloseGradient.Rotation = -90
+SettingsCloseGradient.Color = ColorSequence.new({
+ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 2, 61)),
+ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 39, 125))
+})
+SettingsCloseGradient.Parent = SettingsClose
+
+
+SettingsCloseUIScale = Instance.new("UIScale")
+SettingsCloseUIScale.Scale = 1
+SettingsCloseUIScale.Parent = SettingsClose
+
+
+SettingsCloseShadow = Instance.new("ImageLabel")
+SettingsCloseShadow.Name = "PSShadow"
+SettingsCloseShadow.Size = UDim2.new(1, 0, 1.1, 0)
+SettingsCloseShadow.ImageTransparency = 0.5
+SettingsCloseShadow.Position = UDim2.new(0, 0, 0, 0)
+SettingsCloseShadow.BackgroundTransparency = 1
+SettingsCloseShadow.Image = "rbxassetid://14001321443"
+SettingsCloseShadow.ImageColor3 = Color3.fromRGB(0, 0, 0)
+SettingsCloseShadow.ZIndex = 0
+SettingsCloseShadow.Parent = SettingsClose
+
+
+SettingsCloseTextLabel = Instance.new("TextLabel")
+SettingsCloseTextLabel.Name = "PSX"
+SettingsCloseTextLabel.Size = UDim2.new(0.9, 0, 0.6, 0)
+SettingsCloseTextLabel.Position = UDim2.new(0.06, 0, 0.2, 0)
+SettingsCloseTextLabel.BackgroundTransparency = 1
+SettingsCloseTextLabel.Text = "X"
+SettingsCloseTextLabel.TextSize = 18
+SettingsCloseTextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+SettingsCloseTextLabel.TextScaled = true
+SettingsCloseTextLabel.Font = Enum.Font.FredokaOne
+SettingsCloseTextLabel.ZIndex = 10
+SettingsCloseTextLabel.Parent = SettingsClose
+
+
+SettingsCloseTextLabelStroke = Instance.new("UIStroke")
+SettingsCloseTextLabelStroke.Thickness = 3
+SettingsCloseTextLabelStroke.Color = Color3.fromRGB(0, 0, 0)
+SettingsCloseTextLabelStroke.Parent = SettingsCloseTextLabel
+
+SHideOtherPets.Toggle:Destroy()
+SHideOtherPets.SettingText.TextColor3 = Color3.fromRGB(255,255,255)
+SHideOtherPetsStroke = Instance.new("UIStroke")
+SHideOtherPetsStroke.Color = Color3.fromRGB(34, 34, 40)
+SHideOtherPetsStroke.Thickness = 5
+SHideOtherPetsStroke.Parent = SHideOtherPets.SettingText
+
+SHideAuras.Toggle:Destroy()
+SHideAuras.SettingText.TextColor3 = Color3.fromRGB(255,255,255)
+SHideAurasStroke = Instance.new("UIStroke")
+SHideAurasStroke.Color = Color3.fromRGB(34, 34, 40)
+SHideAurasStroke.Thickness = 5
+SHideAurasStroke.Parent = SHideAuras.SettingText
+
+SHideOwnPets.Toggle:Destroy()
+SHideOwnPets.SettingText.TextColor3 = Color3.fromRGB(255,255,255)
+SHideOwnPetsStroke = Instance.new("UIStroke")
+SHideOwnPetsStroke.Color = Color3.fromRGB(34, 34, 40)
+SHideOwnPetsStroke.Thickness = 5
+SHideOwnPetsStroke.Parent = SHideOwnPets.SettingText
+
+SSound.Toggle:Destroy()
+SSound.SettingText.TextColor3 = Color3.fromRGB(255,255,255)
+SSoundStroke = Instance.new("UIStroke")
+SSoundStroke.Color = Color3.fromRGB(34, 34, 40)
+SSoundStroke.Thickness = 5
+SSoundStroke.Parent = SSound.SettingText
+
+HideAurasToggle = Instance.new("Frame")
+HideAurasToggle.Name = "ToggleFrame"
+HideAurasToggle.BackgroundColor3 = Color3.fromRGB(220,220,220)
+HideAurasToggle.Position = UDim2.new(0, 650,0,25)
+HideAurasToggle.Size = UDim2.new(0,130,0,50)
+HideAurasToggle.ZIndex = 6
+HideAurasToggle.Parent = SHideAuras
+
+HideAurasToggleCorner = Instance.new("UICorner")
+HideAurasToggleCorner.CornerRadius = UDim.new(0,10)
+HideAurasToggleCorner.Parent = HideAurasToggle
+
+HideAurasToggleStroke = Instance.new("UIStroke")
+HideAurasToggleStroke.Color = Color3.fromRGB(185, 185, 185)
+HideAurasToggleStroke.Thickness = 5
+HideAurasToggleStroke.Parent = HideAurasToggle
+
+HideAurasToggleStrokeGradient = Instance.new("UIGradient")
+HideAurasToggleStrokeGradient.Rotation = -90
+HideAurasToggleStrokeGradient.Color = ColorSequence.new({
+ColorSequenceKeypoint.new(0, Color3.fromRGB(170, 170, 170)),
+ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255))
+})
+HideAurasToggleStrokeGradient.Parent = HideAurasToggleStroke
+
+HideAurasToggleGradient = Instance.new("UIGradient")
+HideAurasToggleGradient.Rotation = -90
+HideAurasToggleGradient.Color = ColorSequence.new({
+ColorSequenceKeypoint.new(0, Color3.fromRGB(170, 170, 170)),
+ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255))
+})
+HideAurasToggleGradient.Parent = HideAurasToggle
+
+ImageToggle = Instance.new("ImageButton")
+ImageToggle.AnchorPoint = Vector2.new(1,1)
+ImageToggle.BackgroundColor3 = Color3.fromRGB(255,60,76)
+ImageToggle.Position = UDim2.new(0,60,0,55)
+ImageToggle.Size = UDim2.new(0,60,0,60)
+ImageToggle.ZIndex = 10
+ImageToggle.Parent = HideAurasToggle
+
+ImageToggleCorner = Instance.new("UICorner")
+ImageToggleCorner.CornerRadius = UDim.new(0,10)
+ImageToggleCorner.Parent = ImageToggle
+
+ImageToggleStroke = Instance.new("UIStroke")
+ImageToggleStroke.Color = Color3.fromRGB(180,25,41)
+ImageToggleStroke.Thickness = 5
+ImageToggleStroke.Parent = ImageToggle
+
+ImageToggleStrokeGradient = Instance.new("UIGradient")
+ImageToggleStrokeGradient.Rotation = -90
+ImageToggleStrokeGradient.Color = ColorSequence.new({
+ColorSequenceKeypoint.new(0, Color3.fromRGB(170, 170, 170)),
+ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255))
+})
+ImageToggleStrokeGradient.Parent = ImageToggleStroke
+
+ImageToggleGradient = Instance.new("UIGradient")
+ImageToggleGradient.Rotation = -90
+ImageToggleGradient.Color = ColorSequence.new({
+ColorSequenceKeypoint.new(0, Color3.fromRGB(170, 170, 170)),
+ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255))
+})
+ImageToggleGradient.Parent = ImageToggle
+
+
+
+
+HideOtherPetsToggle = Instance.new("Frame")
+HideOtherPetsToggle.Name = "ToggleFrame"
+HideOtherPetsToggle.BackgroundColor3 = Color3.fromRGB(220,220,220)
+HideOtherPetsToggle.Position = UDim2.new(0, 650,0,25)
+HideOtherPetsToggle.Size = UDim2.new(0,130,0,50)
+HideOtherPetsToggle.ZIndex = 6
+HideOtherPetsToggle.Parent = SHideOtherPets
+
+HideOtherPetsToggleCorner = Instance.new("UICorner")
+HideOtherPetsToggleCorner.CornerRadius = UDim.new(0,10)
+HideOtherPetsToggleCorner.Parent = HideOtherPetsToggle
+
+HideOtherPetsToggleStroke = Instance.new("UIStroke")
+HideOtherPetsToggleStroke.Color = Color3.fromRGB(185, 185, 185)
+HideOtherPetsToggleStroke.Thickness = 5
+HideOtherPetsToggleStroke.Parent = HideOtherPetsToggle
+
+HideOtherPetsToggleStrokeGradient = Instance.new("UIGradient")
+HideOtherPetsToggleStrokeGradient.Rotation = -90
+HideOtherPetsToggleStrokeGradient.Color = ColorSequence.new({
+ColorSequenceKeypoint.new(0, Color3.fromRGB(170, 170, 170)),
+ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255))
+})
+HideOtherPetsToggleStrokeGradient.Parent = HideOtherPetsToggleStroke
+
+HideOtherPetsToggleGradient = Instance.new("UIGradient")
+HideOtherPetsToggleGradient.Rotation = -90
+HideOtherPetsToggleGradient.Color = ColorSequence.new({
+ColorSequenceKeypoint.new(0, Color3.fromRGB(170, 170, 170)),
+ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255))
+})
+HideOtherPetsToggleGradient.Parent = HideOtherPetsToggle
+
+ImageToggleOtherPets = Instance.new("ImageButton")
+ImageToggleOtherPets.AnchorPoint = Vector2.new(1,1)
+ImageToggleOtherPets.BackgroundColor3 = Color3.fromRGB(255,60,76)
+ImageToggleOtherPets.Position = UDim2.new(0,60,0,55)
+ImageToggleOtherPets.Size = UDim2.new(0,60,0,60)
+ImageToggleOtherPets.ZIndex = 10
+ImageToggleOtherPets.Parent = HideOtherPetsToggle
+
+ImageToggleOtherPetsCorner = Instance.new("UICorner")
+ImageToggleOtherPetsCorner.CornerRadius = UDim.new(0,10)
+ImageToggleOtherPetsCorner.Parent = ImageToggleOtherPets
+
+ImageToggleOtherPetsStroke = Instance.new("UIStroke")
+ImageToggleOtherPetsStroke.Color = Color3.fromRGB(180,25,41)
+ImageToggleOtherPetsStroke.Thickness = 5
+ImageToggleOtherPetsStroke.Parent = ImageToggleOtherPets
+
+ImageToggleOtherPetsStrokeGradient = Instance.new("UIGradient")
+ImageToggleOtherPetsStrokeGradient.Rotation = -90
+ImageToggleOtherPetsStrokeGradient.Color = ColorSequence.new({
+ColorSequenceKeypoint.new(0, Color3.fromRGB(170, 170, 170)),
+ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255))
+})
+ImageToggleOtherPetsStrokeGradient.Parent = ImageToggleOtherPetsStroke
+
+ImageToggleOtherPetsGradient = Instance.new("UIGradient")
+ImageToggleOtherPetsGradient.Rotation = -90
+ImageToggleOtherPetsGradient.Color = ColorSequence.new({
+ColorSequenceKeypoint.new(0, Color3.fromRGB(170, 170, 170)),
+ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255))
+})
+ImageToggleOtherPetsGradient.Parent = ImageToggleOtherPets
+
+
+
+
+
+
+HideOwnPetsToggle = Instance.new("Frame")
+HideOwnPetsToggle.Name = "ToggleFrame"
+HideOwnPetsToggle.BackgroundColor3 = Color3.fromRGB(220,220,220)
+HideOwnPetsToggle.Position = UDim2.new(0, 650,0,25)
+HideOwnPetsToggle.Size = UDim2.new(0,130,0,50)
+HideOwnPetsToggle.ZIndex = 6
+HideOwnPetsToggle.Parent = SHideOwnPets
+
+HideOwnPetsToggleCorner = Instance.new("UICorner")
+HideOwnPetsToggleCorner.CornerRadius = UDim.new(0,10)
+HideOwnPetsToggleCorner.Parent = HideOwnPetsToggle
+
+HideOwnPetsToggleStroke = Instance.new("UIStroke")
+HideOwnPetsToggleStroke.Color = Color3.fromRGB(185, 185, 185)
+HideOwnPetsToggleStroke.Thickness = 5
+HideOwnPetsToggleStroke.Parent = HideOwnPetsToggle
+
+HideAurasToggleStrokeGradient = Instance.new("UIGradient")
+HideAurasToggleStrokeGradient.Rotation = -90
+HideAurasToggleStrokeGradient.Color = ColorSequence.new({
+ColorSequenceKeypoint.new(0, Color3.fromRGB(170, 170, 170)),
+ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255))
+})
+HideAurasToggleStrokeGradient.Parent = HideOwnPetsToggleStroke
+
+HideAurasToggleGradient = Instance.new("UIGradient")
+HideAurasToggleGradient.Rotation = -90
+HideAurasToggleGradient.Color = ColorSequence.new({
+ColorSequenceKeypoint.new(0, Color3.fromRGB(170, 170, 170)),
+ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255))
+})
+HideAurasToggleGradient.Parent = HideOwnPetsToggle
+
+HideOwnPetsImageToggle = Instance.new("ImageButton")
+HideOwnPetsImageToggle.AnchorPoint = Vector2.new(1,1)
+HideOwnPetsImageToggle.BackgroundColor3 = Color3.fromRGB(255,60,76)
+HideOwnPetsImageToggle.Position = UDim2.new(0,60,0,55)
+HideOwnPetsImageToggle.Size = UDim2.new(0,60,0,60)
+HideOwnPetsImageToggle.ZIndex = 10
+HideOwnPetsImageToggle.Parent = HideOwnPetsToggle
+
+HideOwnPetsImageToggleCorner = Instance.new("UICorner")
+HideOwnPetsImageToggleCorner.CornerRadius = UDim.new(0,10)
+HideOwnPetsImageToggleCorner.Parent = HideOwnPetsImageToggle
+
+HideOwnPetsImageToggleStroke = Instance.new("UIStroke")
+HideOwnPetsImageToggleStroke.Color = Color3.fromRGB(180,25,41)
+HideOwnPetsImageToggleStroke.Thickness = 5
+HideOwnPetsImageToggleStroke.Parent = HideOwnPetsImageToggle
+
+HideOwnPetsImageToggleStrokeGradient = Instance.new("UIGradient")
+HideOwnPetsImageToggleStrokeGradient.Rotation = -90
+HideOwnPetsImageToggleStrokeGradient.Color = ColorSequence.new({
+ColorSequenceKeypoint.new(0, Color3.fromRGB(170, 170, 170)),
+ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255))
+})
+HideOwnPetsImageToggleStrokeGradient.Parent = HideOwnPetsImageToggleStroke
+
+HideOwnPetsImageToggleGradient = Instance.new("UIGradient")
+HideOwnPetsImageToggleGradient.Rotation = -90
+HideOwnPetsImageToggleGradient.Color = ColorSequence.new({
+ColorSequenceKeypoint.new(0, Color3.fromRGB(170, 170, 170)),
+ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255))
+})
+HideOwnPetsImageToggleGradient.Parent = HideOwnPetsImageToggle
+
+
+
+
+
+
+
+
+SSoundToggle = Instance.new("Frame")
+SSoundToggle.Name = "ToggleFrame"
+SSoundToggle.BackgroundColor3 = Color3.fromRGB(220,220,220)
+SSoundToggle.Position = UDim2.new(0, 650,0,25)
+SSoundToggle.Size = UDim2.new(0,130,0,50)
+SSoundToggle.ZIndex = 6
+SSoundToggle.Parent = SSound
+
+SSoundToggleCorner = Instance.new("UICorner")
+SSoundToggleCorner.CornerRadius = UDim.new(0,10)
+SSoundToggleCorner.Parent = SSoundToggle
+
+SSoundToggleStroke = Instance.new("UIStroke")
+SSoundToggleStroke.Color = Color3.fromRGB(185, 185, 185)
+SSoundToggleStroke.Thickness = 5
+SSoundToggleStroke.Parent = SSoundToggle
+
+SSoundToggleStrokeGradient = Instance.new("UIGradient")
+SSoundToggleStrokeGradient.Rotation = -90
+SSoundToggleStrokeGradient.Color = ColorSequence.new({
+ColorSequenceKeypoint.new(0, Color3.fromRGB(170, 170, 170)),
+ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255))
+})
+SSoundToggleStrokeGradient.Parent = SSoundToggleStroke
+
+SSoundToggleGradient = Instance.new("UIGradient")
+SSoundToggleGradient.Rotation = -90
+SSoundToggleGradient.Color = ColorSequence.new({
+ColorSequenceKeypoint.new(0, Color3.fromRGB(170, 170, 170)),
+ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255))
+})
+SSoundToggleGradient.Parent = SSoundToggle
+
+SSoundImageToggle = Instance.new("ImageButton")
+SSoundImageToggle.AnchorPoint = Vector2.new(1,1)
+SSoundImageToggle.BackgroundColor3 = Color3.fromRGB(255,60,76)
+SSoundImageToggle.Position = UDim2.new(0,60,0,55)
+SSoundImageToggle.Size = UDim2.new(0,60,0,60)
+SSoundImageToggle.ZIndex = 10
+SSoundImageToggle.Parent = SSoundToggle
+
+SSoundImageToggleCorner = Instance.new("UICorner")
+SSoundImageToggleCorner.CornerRadius = UDim.new(0,10)
+SSoundImageToggleCorner.Parent = SSoundImageToggle
+
+SSoundImageToggleStroke = Instance.new("UIStroke")
+SSoundImageToggleStroke.Color = Color3.fromRGB(180,25,41)
+SSoundImageToggleStroke.Thickness = 5
+SSoundImageToggleStroke.Parent = SSoundImageToggle
+
+SSoundImageToggleStrokeGradient = Instance.new("UIGradient")
+SSoundImageToggleStrokeGradient.Rotation = -90
+SSoundImageToggleStrokeGradient.Color = ColorSequence.new({
+ColorSequenceKeypoint.new(0, Color3.fromRGB(170, 170, 170)),
+ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255))
+})
+SSoundImageToggleStrokeGradient.Parent = SSoundImageToggleStroke
+
+SSoundImageToggleGradient = Instance.new("UIGradient")
+SSoundImageToggleGradient.Rotation = -90
+SSoundImageToggleGradient.Color = ColorSequence.new({
+ColorSequenceKeypoint.new(0, Color3.fromRGB(170, 170, 170)),
+ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255))
+})
+SSoundImageToggleGradient.Parent = SSoundImageToggle
+
+local Players = game:GetService("Players")
+local TweenService = game:GetService("TweenService")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+local player = Players.LocalPlayer
+local mainRemoteEvent = ReplicatedStorage:WaitForChild("RemoteEvents"):WaitForChild("MainRemoteEvent")
+
+local playerUsername = player.Name
+local statDisplayName = playerUsername .. "StatDisplay"
+local statDisplay = ReplicatedStorage:WaitForChild(statDisplayName)
+
+local toggleSettings = {
+    {
+        path = "Settings_HideAuras",
+        settingName = "Setting_HideAuras"
+    },
+    {
+        path = "Settings_HideOtherPets",
+        settingName = "Setting_HideOtherPets"
+    },
+    {
+        path = "Settings_HideOwnPets",
+        settingName = "Setting_HideOwnPets"
+    },
+    {
+        path = "Settings_Sound",
+        settingName = "Setting_MuteSound"
+    }
+}
+
+local hoverTweenInfo = TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
+local positionTweenInfo = TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
+
+local onPosition = UDim2.new(0, 130, 0, 55)
+local offPosition = UDim2.new(0, 60, 0, 55)
+
+local onColor = Color3.fromRGB(60, 255, 76)
+local offColor = Color3.fromRGB(255, 60, 76)
+local onStrokeColor = Color3.fromRGB(39, 168, 50)
+local offStrokeColor = Color3.fromRGB(169, 40, 50)
+
+local function enhanceToggleButton(config)
+    local settingsFrame = player.PlayerGui.MainGui.CenterUIFrame.SettingsFrame.SettingsInnerFrame.SettingsScrollingFrame
+    local toggleFrame = settingsFrame[config.path].ToggleFrame
+    local button = toggleFrame.ImageButton
+    
+    local uiStroke = button:FindFirstChildOfClass("UIStroke")
+    if not uiStroke then
+        uiStroke = Instance.new("UIStroke")
+        uiStroke.Parent = button
+    end
+    
+    local uiScale = button:FindFirstChildOfClass("UIScale")
+    if not uiScale then
+        uiScale = Instance.new("UIScale")
+        uiScale.Scale = 1
+        uiScale.Parent = button
+    end
+    
+    local isToggled = statDisplay[config.settingName].Value
+    
+    local function updateButtonAppearance()
+        local targetPosition = isToggled and onPosition or offPosition
+        local targetColor = isToggled and onColor or offColor
+        local targetStrokeColor = isToggled and onStrokeColor or offStrokeColor
+        
+        local positionTween = TweenService:Create(button, positionTweenInfo, {Position = targetPosition})
+        local colorTween = TweenService:Create(button, positionTweenInfo, {BackgroundColor3 = targetColor})
+        local strokeTween = TweenService:Create(uiStroke, positionTweenInfo, {Color = targetStrokeColor})
+        
+        positionTween:Play()
+        colorTween:Play()
+        strokeTween:Play()
+    end
+    
+    local function handleToggle()
+        isToggled = not isToggled
+        
+        local args = {
+            "ChangeSetting",
+            config.settingName,
+            isToggled
+        }
+        mainRemoteEvent:FireServer(unpack(args))
+        
+        updateButtonAppearance()
+    end
+    
+    button.MouseEnter:Connect(function()
+        TweenService:Create(uiScale, hoverTweenInfo, {Scale = 1.1}):Play()
+    end)
+    
+    button.MouseLeave:Connect(function()
+        TweenService:Create(uiScale, hoverTweenInfo, {Scale = 1}):Play()
+    end)
+    
+    for _, connection in pairs(getconnections(button.MouseButton1Click)) do
+        connection:Disable()
+    end
+    
+    button.MouseButton1Click:Connect(handleToggle)
+    
+    updateButtonAppearance()
+    
+    statDisplay[config.settingName].Changed:Connect(function(newValue)
+        isToggled = newValue
+        updateButtonAppearance()
+    end)
+    
+    return {
+        button = button,
+        isToggled = function() return isToggled end,
+        setToggled = function(value) 
+            isToggled = value
+            updateButtonAppearance()
+        end
+    }
+end
+
+local toggleButtons = {}
+for _, toggleSetting in ipairs(toggleSettings) do
+    toggleButtons[toggleSetting.settingName] = enhanceToggleButton(toggleSetting)
+end
