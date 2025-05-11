@@ -8,7 +8,7 @@ local LocalPlayer = Players.LocalPlayer
 -- UI References
 local MainGui = LocalPlayer.PlayerGui.MainGui
 local CenterUIFrame = MainGui.CenterUIFrame
-local HUD = MainGui.HUD
+local HUD = MainGui.RightUIFrame.HUD
 
 -- State tracking
 local openFrames = {}
