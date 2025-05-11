@@ -189,7 +189,7 @@ local function applyShinyEffect(petImage)
     gradient.Transparency = NumberSequence.new({
         NumberSequenceKeypoint.new(0, 1),
         NumberSequenceKeypoint.new(0.3, 0.5),
-        NumberSequenceKeypoint.new(0.5, 0.3),
+        NumberSequenceKeypoint.new(0.5, 0),
         NumberSequenceKeypoint.new(0.7, 0.5),
         NumberSequenceKeypoint.new(1, 1)
     })
@@ -269,49 +269,24 @@ local function cleanupEffects()
     end
 end
 
--- Function to check pet inventory
-local function runPetInventoryChecks()
-    cleanupEffects()
-    
-    -- Check the pet inventory paths
-    local petPaths = {
-        pathsToCheck[1],
-        pathsToCheck[2]
-    }
-    
-    for _, pathString in ipairs(petPaths) do
-        local success, container = pcall(function()
-            return loadstring("return " .. pathString)()
-        end)
+-- Start the shiny effects in a separate thread
+coroutine.wrap(function()
+    while true do
+        cleanupEffects()
         
-        if success and container then
-            processPetContainer(container)
+        for _, pathString in ipairs(pathsToCheck) do
+            local success, container = pcall(function()
+                return loadstring("return " .. pathString)()
+            end)
+            
+            if success and container then
+                processPetContainer(container)
+            end
         end
-    end
-end
-
--- Function to check aura inventory
-local function runAuraInventoryChecks()
-    -- Check the aura inventory paths
-    local auraPaths = {
-        pathsToCheck[3],
-        pathsToCheck[4]
-    }
-    
-    for _, pathString in ipairs(auraPaths) do
-        local success, container = pcall(function()
-            return loadstring("return " .. pathString)()
-        end)
         
-        if success and container then
-            processPetContainer(container)
-        end
+        wait(2)
     end
-end
+end)()
 
-wait(math.random(3, 5))
--- Return the functions instead of running an infinite loop
-return {
-    runPetInventoryChecks = runPetInventoryChecks,
-    runAuraInventoryChecks = runAuraInventoryChecks
-}
+-- Return true to indicate the script has started
+return true
