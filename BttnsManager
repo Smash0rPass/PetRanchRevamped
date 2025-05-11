@@ -1,0 +1,346 @@
+local UIManager = {}
+
+-- Services
+local TweenService = game:GetService("TweenService")
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+
+-- UI References
+local MainGui = LocalPlayer.PlayerGui.MainGui
+local CenterUIFrame = MainGui.CenterUIFrame
+local HUD = MainGui.HUD
+
+-- State tracking
+local openFrames = {}
+local lastOpenTab = "Pets"
+
+-- Tween configurations
+local tweenConfigs = {
+    hover = TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+    popUp = TweenInfo.new(0.5, Enum.EasingStyle.Back, Enum.EasingDirection.Out),
+    popDown = TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.In)
+}
+
+-- Frame configurations
+local frameConfigs = {
+    PetInventory = {
+        frame = CenterUIFrame.PetInventory,
+        originalPos = UDim2.new(0, 455, 0, 200),
+        offscreenPos = UDim2.new(0, 455, 0, 350),
+        subFrames = {
+            MainFrame1 = CenterUIFrame.PetInventory.PetInventoryInnerFrame.NewGui.MainFrame1,
+            MainFrame2 = CenterUIFrame.PetInventory.PetInventoryInnerFrame.NewGui.MainFrame2,
+            AuraFrame = CenterUIFrame.PetInventory.AuraInventoryInnerFrame.ScreenGui.AuraFrame
+        }
+    },
+    UpgradeRanch = {
+        frame = CenterUIFrame.UpgradeRanch,
+        originalPos = UDim2.new(0, 90, 0, 130),
+        offscreenPos = UDim2.new(0, 90, 0, 230),
+        subFrames = {
+            UpgradeFrameHUD = CenterUIFrame.UpgradeRanch.UpgradeFrameHUD
+        }
+    },
+    RebirthFrame = {
+        frame = CenterUIFrame.RebirthFrame,
+        originalPos = UDim2.new(0, 0, 0, 100),
+        offscreenPos = UDim2.new(0, 0, 0, 130)
+    },
+    LogFrame = {
+        frame = CenterUIFrame.LogFrame,
+        originalPos = UDim2.new(0, 0, 0, 100),
+        offscreenPos = UDim2.new(0, 0, 0, 130)
+    },
+    CodeImg = {
+        frame = CenterUIFrame.CodeImg,
+        originalPos = UDim2.new(0, 150, 0, 250),
+        offscreenPos = UDim2.new(0, 150, 0, 300)
+    },
+    PremiumShop = {
+        frame = CenterUIFrame.PremiumShop,
+        originalPos = UDim2.new(0, -70, 0, 70),
+        offscreenPos = UDim2.new(0, -70, 0, 100)
+    },
+    PetIndex = {
+        frame = CenterUIFrame.PetIndex,
+        originalPos = UDim2.new(0, 0, 0, 100),
+        offscreenPos = UDim2.new(0, 0, 0, 130)
+    },
+    GiftFrame = {
+        frame = CenterUIFrame.GiftFrame,
+        originalPos = UDim2.new(0, 0, 0, 80),
+        offscreenPos = UDim2.new(0, 0, 0, 130)
+    },
+    SettingsFrame = {
+        frame = CenterUIFrame.SettingsFrame,
+        originalPos = UDim2.new(0, 0, 0, 80),
+        offscreenPos = UDim2.new(0, 0, 0, 130)
+    },
+    ReturningFrame = {
+        frame = CenterUIFrame.ReturningFrame,
+        originalPos = UDim2.new(0, 70, 0, 140),
+        offscreenPos = UDim2.new(0, 70, 0, 200)
+    }
+}
+
+-- Button configurations
+local buttonConfigs = {
+    PetInventory = {
+        button = MainGui.LeftSideFrame.PetInventoryButton,
+        hoverSize = UDim2.new(0.44, 0, 0.165, 0),
+        originalSize = UDim2.new(0.4, 0, 0.15, 0)
+    },
+    UpgradeRanch = {
+        button = HUD.ButtonsFrame1["0-RanchUpgradeOpen"]
+    },
+    RebirthFrame = {
+        button = HUD.ButtonsFrame1["1-RebirthOpen"]
+    },
+    LogFrame = {
+        button = HUD.ButtonsFrame2["2-LoginOpen"]
+    },
+    CodeImg = {
+        button = HUD.ButtonsFrame1["2-CodeOpen"]
+    },
+    PremiumShop = {
+        button = HUD.ButtonsFrame2["1-ShopOpen"]
+    },
+    PetIndex = {
+        button = HUD.ButtonsFrame2["3-IndexOpen"]
+    },
+    GiftFrame = {
+        button = HUD.ButtonsFrame1["3-GiftOpen"]
+    },
+    SettingsFrame = {
+        button = HUD.ButtonsFrame2["4-SettingsOpen"]
+    }
+}
+
+-- Initialize all frames to be hidden
+function UIManager.Initialize()
+    for name, config in pairs(frameConfigs) do
+        local frame = config.frame
+        frame.Position = config.offscreenPos
+        frame.Visible = false
+        
+        if config.subFrames then
+            for _, subFrame in pairs(config.subFrames) do
+                subFrame.Position = config.offscreenPos
+                subFrame.Visible = false
+            end
+        end
+    end
+    
+    UIManager.SetupButtonConnections()
+end
+
+-- Close all open frames
+function UIManager.CloseAllFrames()
+    for name, _ in pairs(openFrames) do
+        UIManager.CloseFrame(name)
+    end
+end
+
+-- Open a specific frame
+function UIManager.OpenFrame(frameName)
+    local config = frameConfigs[frameName]
+    if not config then return end
+    
+    UIManager.CloseAllFrames()
+    
+    local frame = config.frame
+    frame.Position = config.offscreenPos
+    
+    for _, child in pairs(CenterUIFrame:GetChildren()) do
+        child.Visible = false
+    end
+    
+    frame.Visible = true
+    
+    local popUpTween = TweenService:Create(frame, tweenConfigs.popUp, {Position = config.originalPos})
+    popUpTween:Play()
+    
+    if config.subFrames then
+        for name, subFrame in pairs(config.subFrames) do
+            subFrame.Visible = true
+            local subTween = TweenService:Create(subFrame, tweenConfigs.popUp, {Position = config.originalPos})
+            subTween:Play()
+        end
+    end
+    
+    openFrames[frameName] = true
+    
+    if frameName == "PetInventory" then
+        local inventoryLabel = CenterUIFrame.PetInventory.PetInventoryInnerFrame.NewGui.MainFrame2.InventoryLabel
+        local auraScreenGui = CenterUIFrame.PetInventory.AuraInventoryInnerFrame.ScreenGui
+        
+        if lastOpenTab == "Auras" then
+            auraScreenGui.Enabled = true
+            inventoryLabel.Text = "Auras"
+        else
+            inventoryLabel.Text = "Pets"
+        end
+    end
+end
+
+-- Close a specific frame
+function UIManager.CloseFrame(frameName)
+    local config = frameConfigs[frameName]
+    if not config or not openFrames[frameName] then return end
+    
+    local frame = config.frame
+    
+    local popDownTween = TweenService:Create(frame, tweenConfigs.popDown, {Position = config.offscreenPos})
+    popDownTween:Play()
+    
+    if config.subFrames then
+        for name, subFrame in pairs(config.subFrames) do
+            local subTween = TweenService:Create(subFrame, tweenConfigs.popDown, {Position = config.offscreenPos})
+            subTween:Play()
+        end
+    end
+    
+    task.wait(0.1)
+    
+    frame.Visible = false
+    
+    if config.subFrames then
+        for name, subFrame in pairs(config.subFrames) do
+            subFrame.Visible = false
+        end
+    end
+    
+    if frameName == "PetInventory" then
+        local inventoryLabel = CenterUIFrame.PetInventory.PetInventoryInnerFrame.NewGui.MainFrame2.InventoryLabel
+        lastOpenTab = inventoryLabel.Text
+        
+        if inventoryLabel.Text == "Auras" then
+            local auraScreenGui = CenterUIFrame.PetInventory.AuraInventoryInnerFrame.ScreenGui
+            auraScreenGui.Enabled = false
+        end
+    end
+    
+    openFrames[frameName] = nil
+end
+
+-- Toggle a frame (open if closed, close if open)
+function UIManager.ToggleFrame(frameName)
+    if openFrames[frameName] then
+        UIManager.CloseFrame(frameName)
+    else
+        UIManager.OpenFrame(frameName)
+    end
+end
+
+-- Setup button hover effects
+function UIManager.SetupButtonHover(button, hoverSize, originalSize)
+    if not button then return end
+    
+    local hoverTween = TweenService:Create(button, tweenConfigs.hover, {Size = hoverSize})
+    local unhoverTween = TweenService:Create(button, tweenConfigs.hover, {Size = originalSize})
+    
+    button.MouseEnter:Connect(function()
+        hoverTween:Play()
+    end)
+    
+    button.MouseLeave:Connect(function()
+        unhoverTween:Play()
+    end)
+end
+
+-- Setup all button connections
+function UIManager.SetupButtonConnections()
+    for frameName, config in pairs(buttonConfigs) do
+        local button = config.button
+        if not button then continue end
+        
+        for _, connection in pairs(getconnections(button.MouseButton1Click)) do
+            connection:Disable()
+        end
+        
+        if config.hoverSize and config.originalSize then
+            UIManager.SetupButtonHover(button, config.hoverSize, config.originalSize)
+        end
+        
+        button.MouseButton1Click:Connect(function()
+            UIManager.ToggleFrame(frameName)
+        end)
+    end
+    
+    local closeButtons = {
+        PetInventory = CenterUIFrame.PetInventory.PetInventoryInnerFrame.NewGui.MainFrame2.CloseButton
+    }
+    
+    for frameName, closeButton in pairs(closeButtons) do
+        if closeButton then
+            for _, connection in pairs(getconnections(closeButton.MouseButton1Click)) do
+                connection:Disable()
+            end
+            
+            closeButton.MouseButton1Click:Connect(function()
+                UIManager.CloseFrame(frameName)
+            end)
+        end
+    end
+end
+
+-- Special function for returning frame
+function UIManager.HandleReturningFrame()
+    local returningFrame = frameConfigs.ReturningFrame.frame
+    
+    if returningFrame.Visible then
+        UIManager.CloseFrame("ReturningFrame")
+        task.wait(1)
+        
+        returningFrame.Position = frameConfigs.ReturningFrame.offscreenPos
+        returningFrame.Visible = true
+        
+        local popUpTween = TweenService:Create(
+            returningFrame, 
+            tweenConfigs.popUp, 
+            {Position = frameConfigs.ReturningFrame.originalPos}
+        )
+        popUpTween:Play()
+        
+        openFrames["ReturningFrame"] = true
+    end
+end
+
+-- Add a new UI element to manage
+function UIManager.AddUIElement(name, frame, button, originalPos, offscreenPos, subFrames)
+    frameConfigs[name] = {
+        frame = frame,
+        originalPos = originalPos,
+        offscreenPos = offscreenPos,
+        subFrames = subFrames
+    }
+    
+    if button then
+        buttonConfigs[name] = {
+            button = button
+        }
+        
+        for _, connection in pairs(getconnections(button.MouseButton1Click)) do
+            connection:Disable()
+        end
+        
+        button.MouseButton1Click:Connect(function()
+            UIManager.ToggleFrame(name)
+        end)
+    end
+    
+    frame.Position = offscreenPos
+    frame.Visible = false
+    
+    if subFrames then
+        for _, subFrame in pairs(subFrames) do
+            subFrame.Position = offscreenPos
+            subFrame.Visible = false
+        end
+    end
+end
+
+-- Initialize the UI manager
+UIManager.Initialize()
+
+return UIManager
