@@ -270,6 +270,49 @@ local function createLatestPetsUI()
     return screenGui, petsContainer, mainFrame
 end
 
+-- Function to remove oldest pets when we exceed the maximum
+local function removeOldestPets(container, maxPets)
+    local children = container:GetChildren()
+    local petFrames = {}
+    
+    -- Collect all pet frames and sort them by LayoutOrder
+    for _, child in pairs(children) do
+        if child:IsA("Frame") and child.Name == "PetEntry" then
+            table.insert(petFrames, child)
+        end
+    end
+    
+    -- Sort by LayoutOrder (highest LayoutOrder = oldest pet)
+    table.sort(petFrames, function(a, b)
+        return a.LayoutOrder > b.LayoutOrder
+    end)
+    
+    -- Remove excess pets
+    for i = maxPets + 1, #petFrames do
+        local oldEntry = petFrames[i]
+        
+        -- Clean up any color cycle connections
+        local oldRarityLabel = oldEntry:FindFirstChild("RarityLabel")
+        local oldBackground = oldEntry:FindFirstChild("Background")
+        
+        if oldRarityLabel and colorCycleConnections[oldRarityLabel] then
+            colorCycleConnections[oldRarityLabel]:Disconnect()
+            colorCycleConnections[oldRarityLabel] = nil
+        end
+        
+        if oldBackground and colorCycleConnections[oldBackground] then
+            colorCycleConnections[oldBackground]:Disconnect()
+            colorCycleConnections[oldBackground] = nil
+        end
+        
+        local fadeOutTween = TweenService:Create(oldEntry, TweenInfo.new(0.3), {Position = UDim2.new(0, 0, 1, 0)})
+        fadeOutTween:Play()
+        fadeOutTween.Completed:Connect(function()
+            oldEntry:Destroy()
+        end)
+    end
+end
+
 local function addPetEntry(container, imageId, rarity)
     local entryFrame = Instance.new("Frame")
     entryFrame.Name = "PetEntry"
@@ -309,12 +352,12 @@ local function addPetEntry(container, imageId, rarity)
     rarityLabel.TextSize = 16
     rarityLabel.Font = Enum.Font.FredokaOne
     rarityLabel.Parent = entryFrame
-
-    rarityLabelStroke = Instance.new("UIStroke")
+    
+    local rarityLabelStroke = Instance.new("UIStroke")
     rarityLabelStroke.Color = Color3.fromRGB(0,0,0)
     rarityLabelStroke.Thickness = 2
-    rarityLabelStroke.Parent = rarityLabel 
-    
+    rarityLabelStroke.Parent = rarityLabel
+     
     -- Apply rarity color or effect to both text and background
     if rarity then
         local rarityLower = rarity:lower()
@@ -364,39 +407,10 @@ local function addPetEntry(container, imageId, rarity)
     local tween = TweenService:Create(entryFrame, tweenInfo, {Position = UDim2.new(0, 0, 0, 0)})
     tween:Play()
     
-    if #container:GetChildren() - 1 > 7 then
-        local oldestEntry = nil
-        local highestLayoutOrder = -math.huge
-        
-        for _, child in pairs(container:GetChildren()) do
-            if child:IsA("Frame") and child.LayoutOrder > highestLayoutOrder then
-                highestLayoutOrder = child.LayoutOrder
-                oldestEntry = child
-            end
-        end
-        
-        if oldestEntry then
-            -- Clean up any color cycle connections
-            local oldRarityLabel = oldestEntry:FindFirstChild("RarityLabel")
-            local oldBackground = oldestEntry:FindFirstChild("Background")
-            
-            if oldRarityLabel and colorCycleConnections[oldRarityLabel] then
-                colorCycleConnections[oldRarityLabel]:Disconnect()
-                colorCycleConnections[oldRarityLabel] = nil
-            end
-            
-            if oldBackground and colorCycleConnections[oldBackground] then
-                colorCycleConnections[oldBackground]:Disconnect()
-                colorCycleConnections[oldBackground] = nil
-            end
-            
-            local fadeOutTween = TweenService:Create(oldestEntry, TweenInfo.new(0.3), {Position = UDim2.new(0, 0, 1, 0)})
-            fadeOutTween:Play()
-            fadeOutTween.Completed:Connect(function()
-                oldestEntry:Destroy()
-            end)
-        end
-    end
+    -- Keep only the 6 most recent pets
+    task.defer(function()
+        removeOldestPets(container, 6)
+    end)
 end
 
 local latestPetsGui, petsContainer, mainFrame = createLatestPetsUI()
