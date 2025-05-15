@@ -19,7 +19,13 @@ local function saveAndHideGuis()
     if player and player:FindFirstChild("PlayerGui") then
         for _, gui in pairs(player.PlayerGui:GetChildren()) do
             if gui:IsA("ScreenGui") or gui:IsA("BillboardGui") then
-                table.insert(savedGuis, {instance = gui, enabled = gui.Enabled})
+                -- Save the GUI's properties including DisplayOrder
+                table.insert(savedGuis, {
+                    instance = gui, 
+                    enabled = gui.Enabled,
+                    displayOrder = gui:IsA("ScreenGui") and gui.DisplayOrder or nil,
+                    zIndexBehavior = gui:IsA("ScreenGui") and gui.ZIndexBehavior or nil
+                })
                 gui.Enabled = false
             end
         end
@@ -37,25 +43,51 @@ local function saveAndHideGuis()
     
     for _, gui in pairs(game:GetService("CoreGui"):GetChildren()) do
         if gui:IsA("ScreenGui") and gui.Name ~= "CustomLoadingScreen" then
-            table.insert(savedGuis, {instance = gui, enabled = gui.Enabled})
+            table.insert(savedGuis, {
+                instance = gui, 
+                enabled = gui.Enabled,
+                displayOrder = gui.DisplayOrder,
+                zIndexBehavior = gui.ZIndexBehavior
+            })
             gui.Enabled = false
         end
     end
     
     for _, gui in pairs(game:GetService("StarterGui"):GetChildren()) do
         if gui:IsA("ScreenGui") or gui:IsA("BillboardGui") then
-            table.insert(savedGuis, {instance = gui, enabled = gui.Enabled})
+            table.insert(savedGuis, {
+                instance = gui, 
+                enabled = gui.Enabled,
+                displayOrder = gui:IsA("ScreenGui") and gui.DisplayOrder or nil,
+                zIndexBehavior = gui:IsA("ScreenGui") and gui.ZIndexBehavior or nil
+            })
             gui.Enabled = false
         end
     end
 end
 
 local function restoreGuis()
+    -- Wait a short delay to ensure proper restoration
+    wait(0.1)
+    
     for _, guiData in pairs(savedGuis) do
         if guiData.instance and guiData.instance:IsDescendantOf(game) then
+            -- Restore all saved properties
             guiData.instance.Enabled = guiData.enabled
+            
+            -- Restore DisplayOrder and ZIndexBehavior if they were saved
+            if guiData.instance:IsA("ScreenGui") then
+                if guiData.displayOrder then
+                    guiData.instance.DisplayOrder = guiData.displayOrder
+                end
+                
+                if guiData.zIndexBehavior then
+                    guiData.instance.ZIndexBehavior = guiData.zIndexBehavior
+                end
+            end
         end
     end
+    
     savedGuis = {}
 end
 
@@ -230,7 +262,6 @@ end)
 
 playButton.MouseButton1Click:Connect(function()
     TweenService:Create(playButton, TweenInfo.new(0.1), {BackgroundColor3 = Color3.fromRGB(60, 120, 90), Size = UDim2.fromScale(0.19, 0.095)}):Play()
-    
     wait(0.2)
     isLoadingScreenActive = false
     
@@ -246,10 +277,12 @@ playButton.MouseButton1Click:Connect(function()
     camera.CameraSubject = originalCameraSubject
     camera.CFrame = originalCameraPosition
     
-    restoreGuis()
-    
-    screenGui:Destroy()
+    -- Remove loading screen elements first
     blurEffect:Destroy()
+    screenGui:Destroy()
+    
+    -- Then restore GUIs
+    restoreGuis()
     
     local finalFadeFrame = Instance.new("Frame")
     finalFadeFrame.Size = UDim2.fromScale(1, 1)
@@ -259,6 +292,7 @@ playButton.MouseButton1Click:Connect(function()
     
     local finalScreenGui = Instance.new("ScreenGui")
     finalScreenGui.IgnoreGuiInset = true
+    finalScreenGui.DisplayOrder = 9999 -- Set to highest to ensure it's on top
     finalScreenGui.Parent = game.CoreGui
     finalFadeFrame.Parent = finalScreenGui
     
@@ -266,13 +300,14 @@ playButton.MouseButton1Click:Connect(function()
     wait(1.1)
     finalScreenGui:Destroy()
 end)
-
 local function fadeInOut(callback)
     local fadeInTween = TweenService:Create(fadeFrame, TweenInfo.new(1), {BackgroundTransparency = 0})
     fadeInTween:Play()
     fadeInTween.Completed:Wait()
     
-    if callback then callback() end
+    if callback then
+        callback()
+    end
     
     local fadeOutTween = TweenService:Create(fadeFrame, TweenInfo.new(1), {BackgroundTransparency = 1})
     fadeOutTween:Play()
@@ -282,155 +317,111 @@ end
 local function willCameraClip(fromPosition, toPosition)
     local direction = (toPosition - fromPosition).Unit
     local distance = (toPosition - fromPosition).Magnitude
-    
     local raycastParams = RaycastParams.new()
     raycastParams.FilterType = Enum.RaycastFilterType.Blacklist
     raycastParams.FilterDescendantsInstances = {camera, player.Character}
-    
     local raycastResult = workspace:Raycast(fromPosition, direction * distance, raycastParams)
     return raycastResult ~= nil
 end
 
 local function isValidCameraPosition(position)
-    if position.Y < minimumHeight - 10 then
+    if position.Y < minimumHeight then
         return false
     end
     
-    local direction = (targetPosition - position).Unit
-    local distance = (targetPosition - position).Magnitude
-    
-    local raycastParams = RaycastParams.new()
-    raycastParams.FilterType = Enum.RaycastFilterType.Blacklist
-    raycastParams.FilterDescendantsInstances = {camera, player.Character}
-    
-    local raycastResult = workspace:Raycast(position, direction * distance, raycastParams)
-    if raycastResult then
+    if willCameraClip(camera.CFrame.Position, position) then
         return false
     end
     
     return true
 end
 
-local function findValidCameraPosition(requestedPosition)
-    if isValidCameraPosition(requestedPosition) then
-        return requestedPosition
+local function setupCamera()
+    originalCameraType = camera.CameraType
+    originalCameraSubject = camera.CameraSubject
+    originalCameraPosition = camera.CFrame
+    
+    camera.CameraType = Enum.CameraType.Scriptable
+    
+    local validPosition = targetPosition
+    if not isValidCameraPosition(validPosition) then
+        validPosition = Vector3.new(targetPosition.X, minimumHeight, targetPosition.Z)
     end
     
-    if requestedPosition.Y < minimumHeight then
-        local adjustedPosition = Vector3.new(
-            requestedPosition.X,
-            minimumHeight + math.random(10, 30),
-            requestedPosition.Z
-        )
-        
-        if isValidCameraPosition(adjustedPosition) then
-            return adjustedPosition
-        end
-    end
+    local lookAt = Vector3.new(validPosition.X, validPosition.Y - 10, validPosition.Z)
+    local targetCFrame = CFrame.new(validPosition, lookAt)
     
-    local centerX, centerZ = requestedPosition.X, requestedPosition.Z
-    local height = math.max(requestedPosition.Y, minimumHeight + 20)
-    
-    for radius = 10, 50, 10 do
-        for angle = 0, 360, 45 do
-            local rad = math.rad(angle)
-            local testPosition = Vector3.new(
-                centerX + radius * math.cos(rad),
-                height,
-                centerZ + radius * math.sin(rad)
-            )
-            
-            if isValidCameraPosition(testPosition) then
-                return testPosition
-            end
-        end
-        
-        height = height + 10
-    end
-    
-    return Vector3.new(targetPosition.X, targetPosition.Y + 50, targetPosition.Z + 100)
-end
-
-local function tweenCamera(fromPosition, toPosition)
-    if activeTween then
-        activeTween:Cancel()
-    end
-    
-    local validPosition = findValidCameraPosition(toPosition)
-    
-    if willCameraClip(fromPosition, validPosition) then
-        validPosition = findValidCameraPosition(Vector3.new(
-            validPosition.X + math.random(-20, 20),
-            validPosition.Y + math.random(5, 15),
-            validPosition.Z + math.random(-20, 20)
-        ))
-    end
-    
-    local tweenInfo = TweenInfo.new(
-        6,
-        Enum.EasingStyle.Cubic,
-        Enum.EasingDirection.InOut
+    activeTween = TweenService:Create(
+        camera,
+        TweenInfo.new(2, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out),
+        {CFrame = targetCFrame}
     )
-    
-    activeTween = TweenService:Create(camera, tweenInfo, {CFrame = CFrame.new(validPosition, targetPosition)})
     activeTween:Play()
-    return activeTween
 end
 
-local PetContainer = Instance.new("Frame")
-PetContainer.Name = "PetContainer"
-PetContainer.Size = UDim2.fromScale(1, 1)
-PetContainer.BackgroundTransparency = 1
-PetContainer.Parent = mainContainer
-
-local particleContainer = Instance.new("Frame")
-particleContainer.Name = "ParticleContainer"
-particleContainer.Size = UDim2.fromScale(2, 2)
-particleContainer.Position = UDim2.fromScale(-0.5, -0.5)
-particleContainer.BackgroundTransparency = 1
-particleContainer.ZIndex = 0
-particleContainer.Parent = initialLoadingContainer
+local function simulateLoading()
+    local totalAssets = 100
+    local loadedAssets = 0
+    local randomTip = loadingTips[math.random(1, #loadingTips)]
+    loadingTip.Text = randomTip
+    
+    local function updateLoadingBar(percentage)
+        loadingBar.Size = UDim2.fromScale(percentage, 1)
+        loadingPercentage.Text = math.floor(percentage * 100) .. "%"
+    end
+    
+    while loadedAssets < totalAssets and isLoadingScreenActive do
+        local increment = math.random(1, 5)
+        loadedAssets = math.min(loadedAssets + increment, totalAssets)
+        local percentage = loadedAssets / totalAssets
+        
+        updateLoadingBar(percentage)
+        
+        if loadedAssets >= totalAssets then
+            break
+        end
+        
+        wait(math.random(10, 20) / 100)
+    end
+    
+    updateLoadingBar(1)
+    wait(0.5)
+    
+    fadeInOut(function()
+        initialLoadingContainer.Visible = false
+        mainContainer.Visible = true
+    end)
+end
 
 local function createPawTrailSystem()
-    local screenWidth = particleContainer.AbsoluteSize.X
-    local screenHeight = particleContainer.AbsoluteSize.Y
+    local screenWidth = screenGui.AbsoluteSize.X
+    local screenHeight = screenGui.AbsoluteSize.Y
     
-    -- Starting position for the trail (left middle area)
+    local pawContainer = Instance.new("Frame")
+    pawContainer.Name = "PawContainer"
+    pawContainer.Size = UDim2.fromScale(1, 1)
+    pawContainer.BackgroundTransparency = 1
+    pawContainer.Parent = mainContainer
+    
     local currentX = screenWidth * 0.2
     local currentY = screenHeight * 0.5
     
-    -- Direction and parameters
-    local directionX = 1  -- Moving right
-    local stepLength = 100 -- Average distance between paw prints
-    local pathVariation = 15 -- How much the path can vary up/down
-    
-    -- Create paw prints along a path
     spawn(function()
-        while true do
-            -- Determine next position with some randomness
-            currentX = currentX + (stepLength + math.random(-5, 10)) * directionX
-            currentY = currentY + math.random(-pathVariation, pathVariation)
-            
-            -- Keep within middle area of screen
-            currentX = math.clamp(currentX, screenWidth * 0.3, screenWidth * 0.8)
-            currentY = math.clamp(currentY, screenHeight * 0.5, screenHeight * 0.7)
-            
-            -- Create a paw print at the current position
+        while isLoadingScreenActive do
             local pawPrint = Instance.new("ImageLabel")
-            pawPrint.Size = UDim2.fromOffset(80, 80) -- Bigger paw prints
+            pawPrint.Size = UDim2.fromOffset(30, 30)
             pawPrint.Position = UDim2.fromOffset(currentX, currentY)
             pawPrint.BackgroundTransparency = 1
-            pawPrint.Image = "rbxassetid://3318943825"
-            pawPrint.ImageTransparency = 0.2
-            pawPrint.ImageColor3 = Color3.fromRGB(255, 255, 255)
-            pawPrint.AnchorPoint = Vector2.new(0.5, 0.5)
+            pawPrint.Image = "rbxassetid://6444378561" -- Paw print image
+            pawPrint.ImageColor3 = Color3.fromRGB(85, 170, 127)
+            pawPrint.ImageTransparency = 0.3
+            pawPrint.Rotation = math.random(-20, 20)
+            pawPrint.Parent = pawContainer
             
-            -- Rotate paws to point to the right (90 degrees + small random variation)
-            pawPrint.Rotation = 90 + math.random(-10, 10)
+            -- Move to next position
+            currentX = currentX + math.random(40, 60)
             
-            pawPrint.Parent = particleContainer
-            
-            -- Alternate between left and right paw prints by slightly offsetting Y and flipping rotation
+            -- Alternate paws slightly up and down
             if math.random() > 0.5 then
                 pawPrint.Position = UDim2.fromOffset(currentX, currentY + 25)
             end
@@ -438,7 +429,6 @@ local function createPawTrailSystem()
             -- Fade out and remove the paw print after some time
             spawn(function()
                 wait(math.random(1.5, 1.5)) -- Keep visible for a few seconds
-                
                 local fadeOutTween = TweenService:Create(
                     pawPrint,
                     TweenInfo.new(1, Enum.EasingStyle.Sine, Enum.EasingDirection.Out),
@@ -446,22 +436,20 @@ local function createPawTrailSystem()
                 )
                 fadeOutTween:Play()
                 fadeOutTween.Completed:Wait()
-                
                 pawPrint:Destroy()
             end)
             
             -- When reaching right edge, reset to left side at a different height
-            if currentX >= screenWidth * 1 then
+            if currentX > screenWidth * 1 then
                 currentX = screenWidth * 0.2 -- Reset to left side
                 currentY = math.random(screenHeight * 0.3, screenHeight * 0.7) -- Random height in middle area
             end
             
             -- Wait a bit before the next paw print
-            wait(math.random(5, 10) / 10) -- 0.2 to 0.4 seconds between prints
+            wait(math.random(5, 10) / 10) -- 0.5 to 1.0 seconds between prints
         end
     end)
 end
-
 
 local function createShiningStars()
     for i = 1, 15 do
@@ -477,7 +465,6 @@ local function createShiningStars()
         spawn(function()
             while star.Parent do
                 local sizeMult = math.random(80, 120) / 100
-                
                 local growTween = TweenService:Create(
                     star,
                     TweenInfo.new(math.random(1, 3), Enum.EasingStyle.Sine, Enum.EasingDirection.InOut),
@@ -498,8 +485,8 @@ local function createShiningStars()
     end
 end
 
-    createPawTrailSystem()
-    createShiningStars()
+createPawTrailSystem()
+createShiningStars()
 
 local function createFloatingPets()
     local petImages = {
@@ -845,435 +832,88 @@ local function createFloatingPets()
     "rbxassetid://3321273272" --["Shiny Wolf"] // rarity = "Common"
     }
     
-for i = 1, 15 do
-    local function createNewPet()
-        local petFrame = Instance.new("Frame")
-        petFrame.Size = UDim2.fromOffset(80, 80)
-        petFrame.Position = UDim2.fromScale(
-            0 + math.random() * 1, 
-            -0.05 + math.random() * 0.2
-        )
-        petFrame.BackgroundTransparency = 1
-        petFrame.Parent = PetContainer
-        
-        local petImage = Instance.new("ImageLabel")
-        petImage.Size = UDim2.fromScale(1, 1)
-        petImage.Position = UDim2.fromScale(0.5, 0.5)
-        petImage.AnchorPoint = Vector2.new(0.5, 0.5)
-        petImage.BackgroundTransparency = 1
-        petImage.Image = petImages[math.random(1, #petImages)]
-        petImage.ImageTransparency = 1
-        petImage.Parent = petFrame
-        
-        local rotationDirection = math.random() > 0.5 and 1 or -1
-        local floatSpeed = math.random(3, 6)
-        local rotationSpeed = math.random(5, 15) * rotationDirection
+    local petContainer = Instance.new("Frame")
+    petContainer.Name = "PetContainer"
+    petContainer.Size = UDim2.fromScale(1, 1)
+    petContainer.BackgroundTransparency = 1
+    petContainer.Parent = mainContainer
+    
+    for i = 1, 8 do
+        local petImage = petImages[math.random(1, #petImages)]
+        local pet = Instance.new("ImageLabel")
+        pet.Size = UDim2.fromOffset(math.random(80, 120), math.random(80, 120))
+        pet.Position = UDim2.fromScale(math.random(), math.random())
+        pet.BackgroundTransparency = 1
+        pet.Image = petImage
+        pet.ImageTransparency = 0.2
+        pet.ZIndex = 5
+        pet.Parent = petContainer
         
         spawn(function()
-            local startY = petFrame.Position.Y.Scale
-            local time = 0
-            local bounceCount = 0
-            local previousSinValue = 0
-            local currentSinValue = 0
-            local isFadingOut = false
+            local startX = pet.Position.X.Scale
+            local startY = pet.Position.Y.Scale
+            local offsetX = math.random(-10, 10) / 100
+            local offsetY = math.random(-10, 10) / 100
+            local rotationSpeed = math.random(-5, 5)
+            local currentRotation = 0
             
-            spawn(function()
-                for transparency = 1, 0, -0.05 do
-                    if petImage and petImage.Parent then
-                        petImage.ImageTransparency = transparency
-                        wait(0.01)
-                    else
-                        break
-                    end
-                end
-            end)
-            
-            while petFrame.Parent do
-                time = time + 0.01
+            while pet.Parent and isLoadingScreenActive do
+                local moveTime = math.random(3, 6)
+                local targetX = math.clamp(startX + offsetX, 0.1, 0.9)
+                local targetY = math.clamp(startY + offsetY, 0.1, 0.9)
                 
-                previousSinValue = currentSinValue
-                currentSinValue = math.sin(time * floatSpeed)
+                local moveTween = TweenService:Create(
+                    pet,
+                    TweenInfo.new(moveTime, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut),
+                    {Position = UDim2.fromScale(targetX, targetY)}
+                )
+                moveTween:Play()
                 
-                if previousSinValue < 0 and currentSinValue >= 0 then
-                    bounceCount = bounceCount + 1
-                    
-                    if bounceCount >= 2 and not isFadingOut then
-                        isFadingOut = true
-                        
-                        spawn(function()
-                            createNewPet()
-                            
-                            for transparency = 0, 1, 0.05 do
-                                if petImage and petImage.Parent then
-                                    petImage.ImageTransparency = transparency
-                                    wait(0.01)
-                                else
-                                    break
-                                end
-                            end
-                            
-                            if petFrame and petFrame.Parent then
-                                petFrame:Destroy()
-                            end
-                        end)
-                    end
+                -- Rotate the pet while it moves
+                for i = 1, moveTime * 10 do
+                    if not pet.Parent or not isLoadingScreenActive then break end
+                    currentRotation = currentRotation + rotationSpeed / 10
+                    pet.Rotation = math.sin(currentRotation) * 15
+                    wait(0.1)
                 end
                 
-                if petFrame.Parent then
-                    petFrame.Position = UDim2.fromScale(
-                        petFrame.Position.X.Scale,
-                        startY + currentSinValue * 0.05
-                    )
-                    
-                    petImage.Rotation = petImage.Rotation + (rotationSpeed * 0.1)
-                end
-                
-                if isFadingOut and petImage.ImageTransparency >= 0.95 then
-                    break
-                end
-                
-                wait(0.01)
+                -- Reverse direction
+                offsetX = -offsetX + math.random(-5, 5) / 100
+                offsetY = -offsetY + math.random(-5, 5) / 100
+                startX = targetX
+                startY = targetY
             end
         end)
     end
-    
-    createNewPet()
-end
 end
 
-
-local function generateOrbitPosition(radius, heightVariation)
-    local angle = math.random() * math.pi * 2
-    local height = math.max(targetPosition.Y + math.random(-heightVariation, heightVariation), minimumHeight + 10)
-    
-    local x = targetPosition.X + radius * math.cos(angle)
-    local z = targetPosition.Z + radius * math.sin(angle)
-    
-    return findValidCameraPosition(Vector3.new(x, height, z))
-end
-
-local function generateOrbitSequence(startAngle, endAngle, steps, radius, height)
-    local positions = {}
-    local angleStep = (endAngle - startAngle) / steps
-    
-    for i = 0, steps do
-        local angle = startAngle + (angleStep * i)
-        local x = targetPosition.X + radius * math.cos(angle)
-        local z = targetPosition.Z + radius * math.sin(angle)
-        local position = Vector3.new(x, height, z)
-        
-        table.insert(positions, findValidCameraPosition(position))
-    end
-    
-    return positions
-end
-
-local orbitScenarios = {
-    function()
-        local radius = 100
-        local height = targetPosition.Y + 50
-        local startPos = generateOrbitPosition(radius, 10)
-        camera.CFrame = CFrame.new(startPos, targetPosition)
-        
-        local startAngle = math.atan2(startPos.Z - targetPosition.Z, startPos.X - targetPosition.X)
-        local endAngle = startAngle + math.pi
-        local orbitPositions = generateOrbitSequence(startAngle, endAngle, 5, radius, height)
-        
-        for i = 2, #orbitPositions do
-            if not isLoadingScreenActive then break end
-            tweenCamera(orbitPositions[i-1], orbitPositions[i]).Completed:Wait()
-        end
-    end,
-    
-    function()
-        local radius = 60
-        local height = math.max(targetPosition.Y - 20, minimumHeight + 15)
-        local startPos = generateOrbitPosition(radius, 5)
-        
-        fadeInOut(function()
-            camera.CFrame = CFrame.new(startPos, targetPosition)
-        end)
-        
-        if not isLoadingScreenActive then return end
-        
-        local startAngle = math.atan2(startPos.Z - targetPosition.Z, startPos.X - targetPosition.X)
-        local endAngle = startAngle + math.pi * 1.5
-        local orbitPositions = generateOrbitSequence(startAngle, endAngle, 6, radius, height)
-        
-        for i = 2, #orbitPositions do
-            if not isLoadingScreenActive then break end
-            tweenCamera(orbitPositions[i-1], orbitPositions[i]).Completed:Wait()
-        end
-    end,
-    
-    function()
-        local radius = 80
-        local startHeight = targetPosition.Y + 30
-        local endHeight = math.max(targetPosition.Y - 10, minimumHeight + 20)
-        
-        local startAngle = math.random() * math.pi * 2
-        local endAngle = startAngle + math.pi
-        local steps = 5
-        
-        local positions = {}
-        local angleStep = (endAngle - startAngle) / steps
-        local heightStep = (endHeight - startHeight) / steps
-        
-        for i = 0, steps do
-            local angle = startAngle + (angleStep * i)
-            local height = startHeight + (heightStep * i)
-            local x = targetPosition.X + radius * math.cos(angle)
-            local z = targetPosition.Z + radius * math.sin(angle)
-            local position = Vector3.new(x, height, z)
-            
-            table.insert(positions, findValidCameraPosition(position))
-        end
-        
-        fadeInOut(function()
-            camera.CFrame = CFrame.new(positions[1], targetPosition)
-        end)
-        
-        if not isLoadingScreenActive then return end
-        
-        for i = 2, #positions do
-            if not isLoadingScreenActive then break end
-            tweenCamera(positions[i-1], positions[i]).Completed:Wait()
-        end
-    end,
-    
-    function()
-        for i = 1, 3 do
-            if not isLoadingScreenActive then break end
-            
-            local radius = math.random(70, 120)
-            local height = math.max(targetPosition.Y + math.random(-30, 50), minimumHeight + 15)
-            local startAngle = math.random() * math.pi * 2
-            local endAngle = startAngle + math.pi * 0.5
-            
-            local positions = generateOrbitSequence(startAngle, endAngle, 3, radius, height)
-            
-            fadeInOut(function()
-                camera.CFrame = CFrame.new(positions[1], targetPosition)
-            end)
-            
-            if not isLoadingScreenActive then break end
-            
-            for j = 2, #positions do
-                if not isLoadingScreenActive then break end
-                tweenCamera(positions[j-1], positions[j]).Completed:Wait()
-            end
-        end
-    end
+-- Preload assets
+local assetsToPreload = {
+    "rbxassetid://6444378561", -- Paw print/star image
+    "rbxassetid://103945760063122", -- Game icon
 }
 
-local function simulateLoading()
-    local currentPercentage = 0
-    local targetPercentage = 100
-    local loadingSpeed = math.random(1, 3)
-    local currentTip = 1
-    
-    loadingTip.Text = loadingTips[currentTip]
-    
-    while currentPercentage < targetPercentage do
-        currentPercentage = math.min(currentPercentage + math.random(1, 3), targetPercentage)
-        
-        loadingPercentage.Text = currentPercentage .. "%"
-        TweenService:Create(loadingBar, TweenInfo.new(0.2), {Size = UDim2.fromScale(currentPercentage/100, 1)}):Play()
-        
-        if currentPercentage % 25 == 0 then
-            currentTip = (currentTip % #loadingTips) + 1
-            local oldText = loadingTip.Text
-            
-            TweenService:Create(loadingTip, TweenInfo.new(0.5), {TextTransparency = 1}):Play()
-            wait(0.5)
-            loadingTip.Text = loadingTips[currentTip]
-            loadingTip.TextTransparency = 1
-            TweenService:Create(loadingTip, TweenInfo.new(0.5), {TextTransparency = 0}):Play()
-        end
-        
-        if currentPercentage < 30 then
-            wait(math.random(5, 15) / 100)
-        elseif currentPercentage < 60 then
-            wait(math.random(3, 10) / 100)
-        elseif currentPercentage < 90 then
-            wait(math.random(10, 20) / 100)
-        else
-            wait(math.random(20, 40) / 100)
-        end
-        
-        if currentPercentage == 35 then
-            loadingSubtitle.Text = "Preparing environment..."
-        elseif currentPercentage == 65 then
-            loadingSubtitle.Text = "Loading pet data..."
-        elseif currentPercentage == 85 then
-            loadingSubtitle.Text = "Finalizing..."
-        end
-    end
-    
-    wait(0.5)
-    
-    -- Fade out the loading container
-    TweenService:Create(initialLoadingContainer, TweenInfo.new(1), {BackgroundTransparency = 1}):Play()
-    
-    -- Create a tween group to fade out all text elements
-    local tweens = {}
-    for _, element in pairs(initialLoadingContainer:GetDescendants()) do
-        if element:IsA("TextLabel") then
-            table.insert(tweens, TweenService:Create(element, TweenInfo.new(1), {TextTransparency = 1}))
-        elseif element:IsA("ImageLabel") then
-            table.insert(tweens, TweenService:Create(element, TweenInfo.new(1), {ImageTransparency = 1}))
-        elseif element:IsA("Frame") and element ~= initialLoadingContainer then
-            table.insert(tweens, TweenService:Create(element, TweenInfo.new(1), {BackgroundTransparency = 1}))
-        end
-    end
-    
-    -- Play all tweens
-    for _, tween in ipairs(tweens) do
-        tween:Play()
-    end
-    
-    wait(1)
-    
-    initialLoadingContainer.Visible = false
-    mainContainer.Visible = true
-    
-    TweenService:Create(backgroundFrame, TweenInfo.new(1), {BackgroundTransparency = 0.5}):Play()
-    
-    createFloatingPets()
+-- Add pet images to preload
+for _, petImage in ipairs(petImages or {}) do
+    table.insert(assetsToPreload, petImage)
 end
 
+local function preloadAssets()
+    local assets = {}
+    for _, assetId in ipairs(assetsToPreload) do
+        table.insert(assets, assetId)
+    end
+    
+    ContentProvider:PreloadAsync(assets, function(assetId, status)
+        if status == Enum.AssetFetchStatus.Failure then
+            warn("Failed to preload asset: " .. assetId)
+        end
+    end)
+end
 
-
-originalCameraType = camera.CameraType
-originalCameraSubject = camera.CameraSubject
-originalCameraPosition = camera.CFrame
-
-camera.CameraType = Enum.CameraType.Scriptable
-
+-- Start the loading sequence
 saveAndHideGuis()
-
-spawn(function()
-    simulateLoading()
-    
-    local initialPos = generateOrbitPosition(90, 20)
-    camera.CFrame = CFrame.new(initialPos, targetPosition)
-    
-    local scenarioIndex = 1
-    
-    while isLoadingScreenActive do
-        orbitScenarios[scenarioIndex]()
-        
-        if not isLoadingScreenActive then break end
-        
-        scenarioIndex = (scenarioIndex % #orbitScenarios) + 1
-    end
-end)
-
-local function createPulsingEffect(guiObject)
-    spawn(function()
-        while guiObject and guiObject.Parent do
-            local growTween = TweenService:Create(
-                guiObject,
-                TweenInfo.new(1.5, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut),
-                {Size = UDim2.fromScale(0.21, 0.105)}
-            )
-            growTween:Play()
-            wait(1.5)
-            
-            local shrinkTween = TweenService:Create(
-                guiObject,
-                TweenInfo.new(1.5, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut),
-                {Size = UDim2.fromScale(0.2, 0.1)}
-            )
-            shrinkTween:Play()
-            wait(1.5)
-        end
-    end)
-end
-
-createPulsingEffect(playButton)
-
-local function createLoadingBarAnimation()
-    spawn(function()
-        while loadingBar.Parent do
-            TweenService:Create(loadingGradient, TweenInfo.new(2), {Offset = Vector2.new(1, 0)}):Play()
-            wait(2)
-            loadingGradient.Offset = Vector2.new(-1, 0)
-            TweenService:Create(loadingGradient, TweenInfo.new(2), {Offset = Vector2.new(0, 0)}):Play()
-            wait(2)
-        end
-    end)
-end
-
-createLoadingBarAnimation()
-
-local function createBackgroundAnimation()
-    -- Create a container for the animated elements
-    local animationContainer = Instance.new("Frame")
-    animationContainer.Size = UDim2.fromScale(1, 1)
-    animationContainer.BackgroundTransparency = 1
-    animationContainer.ZIndex = 1
-    animationContainer.Parent = backgroundFrame
-    
-    local TweenService = game:GetService("TweenService")
-    
-    spawn(function()
-        while animationContainer.Parent do
-            -- Create a new particle
-            local particle = Instance.new("Frame")
-            particle.Size = UDim2.fromOffset(math.random(3, 8), math.random(3, 8))
-            particle.Position = UDim2.fromScale(math.random(), 1.1) -- Start from bottom
-            particle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-            particle.BackgroundTransparency = 0.9
-            particle.ZIndex = 2
-            particle.Parent = animationContainer
-            
-            -- Make it round
-            local corner = Instance.new("UICorner")
-            corner.CornerRadius = UDim.new(1, 0)
-            corner.Parent = particle
-            
-            -- Animate the particle floating upward with continuous movement
-            spawn(function()
-                local duration = math.random(10, 18)
-                local startX = particle.Position.X.Scale
-                local horizontalDrift = math.random(-15, 15)/100
-                
-                local tween = TweenService:Create(
-                    particle,
-                    TweenInfo.new(
-                        duration, 
-                        Enum.EasingStyle.Linear, 
-                        Enum.EasingDirection.Out,
-                        0,      -- repeatCount (0 = don't repeat)
-                        false,  -- reverses
-                        0       -- delayTime
-                    ),
-                    {
-                        Position = UDim2.fromScale(
-                            startX + horizontalDrift,
-                            -0.1  -- Move above the screen
-                        ),
-                        BackgroundTransparency = 1,
-                        Size = UDim2.fromOffset(
-                            particle.Size.X.Offset * 1.5,
-                            particle.Size.Y.Offset * 1.5
-                        )
-                    }
-                )
-                
-                tween:Play()
-                
-                delay(duration, function()
-                    particle:Destroy()
-                end)
-            end)
-            
-            wait(math.random(1, 3)/10) -- Create particles at random intervals
-        end
-    end)
-    
-    return animationContainer
-end
-
-return createBackgroundAnimation()
+setupCamera()
+preloadAssets()
+simulateLoading()
+createFloatingPets()
