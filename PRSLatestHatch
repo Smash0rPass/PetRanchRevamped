@@ -364,7 +364,7 @@ local function addPetEntry(container, imageId, rarity)
     local tween = TweenService:Create(entryFrame, tweenInfo, {Position = UDim2.new(0, 0, 0, 0)})
     tween:Play()
     
-    if #container:GetChildren() - 1 > 6 then
+    if #container:GetChildren() - 1 > 7 then
         local oldestEntry = nil
         local highestLayoutOrder = -math.huge
         
