@@ -2,6 +2,153 @@ local Players = game:GetService("Players")
 local UserInputService = game:GetService("UserInputService")
 local LocalPlayer = Players.LocalPlayer
 
+-- Shiny pets mapping (pet name to shiny image ID)
+local shinyPetsMap = {
+    ["Atomizer"] = "rbxassetid://3971991254",
+    ["Bolthead"] = "rbxassetid://4154409438",
+    ["Bubble Squid"] = "rbxassetid://3752083860",
+    ["Candy Unicorn"] = "rbxassetid://3326507581",
+    ["Celebration Trio"] = "rbxassetid://3326569610",
+    ["Crystal Golem"] = "rbxassetid://3326507648",
+    ["Cyber Phoenix"] = "rbxassetid://3326507712",
+    ["Electric Mouse"] = "rbxassetid://3326507773",
+    ["Flame Wolf"] = "rbxassetid://3326507838",
+    ["Funky Phoenix"] = "rbxassetid://3554098898",
+    ["Ghost Blob"] = "rbxassetid://3421476150",
+    ["Hatched Chick"] = "rbxassetid://3324884003",
+    ["Inferno Fox"] = "rbxassetid://3326507902",
+    ["Jester"] = "rbxassetid://3326507962",
+    ["Light Serpent"] = "rbxassetid://3326508017",
+    ["Polychrome"] = "rbxassetid://3658310843",
+    ["Rainbow Songbird"] = "rbxassetid://3321471966",
+    ["Studio Cat"] = "rbxassetid://3877247886",
+    ["Firebrand"] = "rbxassetid://4147751210",
+    ["Zenith"] = "rbxassetid://3652596988",
+    ["Celestial Core"] = "rbxassetid://3652596347",
+    ["Gala"] = "rbxassetid://3326569873",
+    ["Necromancer"] = "rbxassetid://4147751621",
+    ["Omni"] = "rbxassetid://3324793488",
+    ["Prisma"] = "rbxassetid://3324821908",
+    ["Whirlwind"] = "rbxassetid://3877248268",
+    ["Alchemist"] = "rbxassetid://4147750931",
+    ["Alien"] = "rbxassetid://3321469993",
+    ["Ancient Earth Dragon"] = "rbxassetid://3877247269",
+    ["Android Dragon"] = "rbxassetid://3321327975",
+    ["Angel"] = "rbxassetid://3321468917",
+    ["Baby Sowopent"] = "rbxassetid://3326596048",
+    ["Cerberus"] = "rbxassetid://3321396783",
+    ["Chimera"] = "rbxassetid://3324793074",
+    ["Corrosive Phoenix"] = "rbxassetid://3471250034",
+    ["Cthulhu"] = "rbxassetid://3324821610",
+    ["Dark Serpent"] = "rbxassetid://3324769737",
+    ["Demon"] = "rbxassetid://3321469058",
+    ["Duality"] = "rbxassetid://3324821754",
+    ["Easter Serpent"] = "rbxassetid://3324884140",
+    ["Eggiverse"] = "rbxassetid://3324884225",
+    ["Emperor"] = "rbxassetid://3326569738",
+    ["Flame Fox"] = "rbxassetid://3321328105",
+    ["Flare Alicorn"] = "rbxassetid://3321471739",
+    ["Guardian Angel"] = "rbxassetid://3877247516",
+    ["Horror Serpent"] = "rbxassetid://4147751493",
+    ["Ice Phoenix"] = "rbxassetid://3321470132",
+    ["Inferno Serpent"] = "rbxassetid://3321471848",
+    ["Leviathan"] = "rbxassetid://3324793394",
+    ["Lightning Satyr"] = "rbxassetid://3877247741",
+    ["Monster Fox"] = "rbxassetid://3324769949",
+    ["Phantom Cerberus"] = "rbxassetid://3326570020",
+    ["Radiance"] = "rbxassetid://3471250372",
+    ["Rift Observer"] = "rbxassetid://3652596674",
+    ["Ruler"] = "rbxassetid://3324770355",
+    ["Singularity"] = "rbxassetid://3652596742",
+    ["Snow Elemental"] = "rbxassetid://3471250459",
+    ["Unicorn"] = "rbxassetid://3321301272",
+    ["Vampire Dragon"] = "rbxassetid://3321397063",
+    ["Void Gazer"] = "rbxassetid://3321472138",
+    ["Warped Wraith"] = "rbxassetid://3652596913",
+    ["Wisp"] = "rbxassetid://3324821447",
+    ["Angel Dog"] = "rbxassetid://3321272961",
+    ["Bee"] = "rbxassetid://3321470062",
+    ["Black Bear"] = "rbxassetid://3321396676",
+    ["Bunny Lord"] = "rbxassetid://3324883798",
+    ["Cake"] = "rbxassetid://3326569532",
+    ["Cherry Blossom Owl"] = "rbxassetid://3471249956",
+    ["Dark Unicorn"] = "rbxassetid://3321396849",
+    ["Deep Sea Narwhal"] = "rbxassetid://3471249879",
+    ["Direwolf"] = "rbxassetid://3321471682",
+    ["Disco Robot"] = "rbxassetid://3326569673",
+    ["Eggster Flock"] = "rbxassetid://3324884316",
+    ["Ember Mouse"] = "rbxassetid://3877247400",
+    ["Fairy"] = "rbxassetid://3324793165",
+    ["Ghoul"] = "rbxassetid://4147751353",
+    ["Midnight Bat"] = "rbxassetid://3321301144",
+    ["Monkey"] = "rbxassetid://3321470190",
+    ["Moonbear"] = "rbxassetid://3321471903",
+    ["Narwhal"] = "rbxassetid://3321469102",
+    ["Nesting Eagles"] = "rbxassetid://3471250281",
+    ["Nova Fox"] = "rbxassetid://3324770049",
+    ["Owl"] = "rbxassetid://3321469162",
+    ["Panda"] = "rbxassetid://3321328221",
+    ["Roc"] = "rbxassetid://3324822013",
+    ["Scarecrow"] = "rbxassetid://4147751883",
+    ["Sprite Swarm"] = "rbxassetid://3652596829",
+    ["Thieving Crows"] = "rbxassetid://3321472023",
+    ["Thunderbird"] = "rbxassetid://3324822097",
+    ["Tropical Monkey"] = "rbxassetid://3877248031",
+    ["Wonderful Present"] = "rbxassetid://3326570094",
+    ["Awesome Dog"] = "rbxassetid://3319957269",
+    ["Baby Serpent"] = "rbxassetid://3326595985",
+    ["Basilisk"] = "rbxassetid://3324821534",
+    ["Candy Corn Bat"] = "rbxassetid://4147751076",
+    ["Dalmation"] = "rbxassetid://3471250118",
+    ["Demon Dragon"] = "rbxassetid://3324769842",
+    ["Dogbun"] = "rbxassetid://3324883891",
+    ["Dwarf"] = "rbxassetid://3324821828",
+    ["Firework Mouse"] = "rbxassetid://3326569795",
+    ["Flame Butterfly"] = "rbxassetid://3321328040",
+    ["Frozen Wolf"] = "rbxassetid://3321396923",
+    ["Griffin"] = "rbxassetid://3324793264",
+    ["Horse"] = "rbxassetid://3321471795",
+    ["Jellyfish"] = "rbxassetid://3877247625",
+    ["Lava Slime"] = "rbxassetid://3321470734",
+    ["Lightspeed Bee"] = "rbxassetid://3471250205",
+    ["Moonlight Sphinx"] = "rbxassetid://3652596501",
+    ["Mossy Golem"] = "rbxassetid://3652596602",
+    ["Party Fox"] = "rbxassetid://3326569961",
+    ["Pegasus"] = "rbxassetid://3324770144",
+    ["Phoenix"] = "rbxassetid://3324770240",
+    ["Pumpkin"] = "rbxassetid://4147751762",
+    ["Robot"] = "rbxassetid://3321469214",
+    ["Sapphire Bunny"] = "rbxassetid://3321273211",
+    ["Squid"] = "rbxassetid://3321470797",
+    ["Troll"] = "rbxassetid://3324793579",
+    ["Turkey"] = "rbxassetid://3877248140",
+    ["Turtle"] = "rbxassetid://3321472084",
+    ["Vampire Bat"] = "rbxassetid://3321301348",
+    ["Yeti"] = "rbxassetid://3324793682",
+    ["Brown Wolf"] = "rbxassetid://3321396725",
+    ["Bunny"] = "rbxassetid://3319957364",
+    ["Deer"] = "rbxassetid://3321468985",
+    ["Midnight Cat"] = "rbxassetid://3321328173",
+    ["Polka Dot Butterfly"] = "rbxassetid://3324883581",
+    ["Ruby Bunny"] = "rbxassetid://3321273142",
+    ["Slime"] = "rbxassetid://3321469262",
+    ["Stone Dog"] = "rbxassetid://3321301205",
+    ["Tuxedo Cat"] = "rbxassetid://3321470334",
+    ["Bat"] = "rbxassetid://3321273024",
+    ["Blue Butterfly"] = "rbxassetid://3321301027",
+    ["Brown Fox"] = "rbxassetid://3321301083",
+    ["Dog"] = "rbxassetid://3319957475",
+    ["Fox"] = "rbxassetid://3319957578",
+    ["Ice Cat"] = "rbxassetid://3321273075",
+    ["Polar Bear"] = "rbxassetid://3321396991",
+    ["Red Butterfly"] = "rbxassetid://3710867266",
+    ["Snow Fox"] = "rbxassetid://3321328346",
+    ["Sweets Bat"] = "rbxassetid://3324883683",
+    ["White Cat"] = "rbxassetid://3319957680",
+    ["Wolf"] = "rbxassetid://3321273272",
+}
+
+-- Settings and state management
 local function saveToFile(data)
     pcall(function()
         writefile("AutoDeletePets.json", game:GetService("HttpService"):JSONEncode(data))
@@ -24,7 +171,9 @@ local function loadFromFile()
 end
 
 local selectedPets = loadFromFile() or {}
+local deleteShinies = true -- Default setting for deleting shinies
 
+-- Create X mark overlay for selected pets
 local function createXMarkOverlay(petFrame)
     if petFrame:FindFirstChild("XMarkOverlay") then
         return petFrame.XMarkOverlay
@@ -52,7 +201,7 @@ local function createXMarkOverlay(petFrame)
     xMark.TextSize = 40
     xMark.Font = Enum.Font.FredokaOne
     xMark.ZIndex = 11
-    xMark.TextScaled = true  -- Enable text scaling
+    xMark.TextScaled = true
     xMark.Parent = overlay
     
     return overlay
@@ -65,6 +214,7 @@ local function removeXMarkOverlay(petFrame)
     end
 end
 
+-- Get pet information
 local function getPetImageId(petFrame)
     local petImage = petFrame:FindFirstChild("PetImage")
     if petImage and petImage:IsA("ImageLabel") then
@@ -73,21 +223,30 @@ local function getPetImageId(petFrame)
     return nil
 end
 
+-- Toggle pet selection
 local function togglePetSelection(petFrame)
+    local petName = petFrame.Name
     local imageId = getPetImageId(petFrame)
-    if not imageId then return end
     
-    if selectedPets[imageId] then
-        selectedPets[imageId] = nil
+    if not imageId or not petName then return end
+    
+    if selectedPets[petName] then
+        selectedPets[petName] = nil
         removeXMarkOverlay(petFrame)
     else
-        selectedPets[imageId] = true
+        -- Make sure we're storing a table with the correct structure
+        selectedPets[petName] = {
+            imageId = imageId,
+            shinyImageId = shinyPetsMap[petName]
+        }
         createXMarkOverlay(petFrame)
     end
     
     saveToFile(selectedPets)
 end
 
+
+-- Apply X marks to selected pets
 local function applyXMarksToSelectedPets()
     local success, petContainer = pcall(function()
         return game:GetService("Players").LocalPlayer.PlayerGui.BillboardUI.EggInfoOverlay.PetContainer.PetContainerFrame
@@ -97,14 +256,80 @@ local function applyXMarksToSelectedPets()
     
     for _, child in pairs(petContainer:GetChildren()) do
         if child:IsA("ImageLabel") then
-            local imageId = getPetImageId(child)
-            if imageId and selectedPets[imageId] then
+            local petName = child.Name
+            if petName and selectedPets[petName] then
                 createXMarkOverlay(child)
             else
                 removeXMarkOverlay(child)
             end
         end
     end
+end
+
+-- Create a toggle button for shiny deletion
+local function createShinyToggle()
+    local success, eggInfoOverlay = pcall(function()
+        return game:GetService("Players").LocalPlayer.PlayerGui.BillboardUI.EggInfoOverlay
+    end)
+    
+    if not success or not eggInfoOverlay then return end
+    
+    -- Check if toggle already exists
+    if eggInfoOverlay:FindFirstChild("ShinyToggle") then 
+        -- Update existing toggle
+        local toggleButton = eggInfoOverlay.ShinyToggle:FindFirstChild("Button")
+        if toggleButton then
+            toggleButton.BackgroundColor3 = deleteShinies and Color3.fromRGB(0, 200, 0) or Color3.fromRGB(200, 0, 0)
+            toggleButton.Text = deleteShinies and "ON" or "OFF"
+        end
+        return 
+    end
+    
+    local toggleFrame = Instance.new("Frame")
+    toggleFrame.Name = "ShinyToggle"
+    toggleFrame.Size = UDim2.new(0, 120, 0, 30)
+    toggleFrame.Position = UDim2.new(0, 10, 0, 10)
+    toggleFrame.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+    toggleFrame.BorderSizePixel = 0
+    toggleFrame.ZIndex = 100
+    toggleFrame.Parent = eggInfoOverlay
+    
+    local uiCorner = Instance.new("UICorner")
+    uiCorner.CornerRadius = UDim.new(0, 6)
+    uiCorner.Parent = toggleFrame
+    
+    local toggleLabel = Instance.new("TextLabel")
+    toggleLabel.Name = "Label"
+    toggleLabel.Size = UDim2.new(0.7, 0, 1, 0)
+    toggleLabel.BackgroundTransparency = 1
+    toggleLabel.Text = "Delete Shinies"
+    toggleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+    toggleLabel.TextSize = 14
+    toggleLabel.Font = Enum.Font.GothamBold
+    toggleLabel.ZIndex = 101
+    toggleLabel.Parent = toggleFrame
+    
+    local toggleButton = Instance.new("TextButton")
+    toggleButton.Name = "Button"
+    toggleButton.Size = UDim2.new(0.3, 0, 0.8, 0)
+    toggleButton.Position = UDim2.new(0.7, 0, 0.1, 0)
+    toggleButton.BackgroundColor3 = deleteShinies and Color3.fromRGB(0, 200, 0) or Color3.fromRGB(200, 0, 0)
+    toggleButton.Text = deleteShinies and "ON" or "OFF"
+    toggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+    toggleButton.TextSize = 12
+    toggleButton.Font = Enum.Font.GothamBold
+    toggleButton.ZIndex = 101
+    toggleButton.Parent = toggleFrame
+    
+    local buttonCorner = Instance.new("UICorner")
+    buttonCorner.CornerRadius = UDim.new(0, 4)
+    buttonCorner.Parent = toggleButton
+    
+    toggleButton.MouseButton1Click:Connect(function()
+        deleteShinies = not deleteShinies
+        toggleButton.BackgroundColor3 = deleteShinies and Color3.fromRGB(0, 200, 0) or Color3.fromRGB(200, 0, 0)
+        toggleButton.Text = deleteShinies and "ON" or "OFF"
+    end)
 end
 
 -- Create a debounce system for clicks to avoid multiple triggers
@@ -173,6 +398,7 @@ local function setupPetSelectionClicks()
     end)
 end
 
+-- Monitor pet inventory for auto-deletion
 local function monitorPetInventory()
     -- Monitor regular pet inventory
     local function getPetInventoryPath()
@@ -204,33 +430,50 @@ local function monitorPetInventory()
     local function monitorPath(path, isAura)
         if not path then return end
         
-        path.ChildAdded:Connect(function(child)
-            if not child:IsA("ImageButton") then return end
-            
-            local petImage = child:FindFirstChild("PetImage")
-            if not petImage then 
-                petImage = child:WaitForChild("PetImage", 0.5)
-                if not petImage then return end
-            end
-            
-            local imageId = petImage.Image
-            if selectedPets[imageId] then
-                local petId = child.Name
-                
-                -- Use different remote command depending on if it's a pet or aura
-                local command = isAura and "DeleteAuraInInventory" or "DeletePetInInventory"
-                
-                local args = {
-                    command,
-                    petId
-                }
-                
-                pcall(function()
-                    game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("MainRemoteEvent"):FireServer(unpack(args))
-                end)
-            end
+        -- In the monitorPath function, update the check:
+path.ChildAdded:Connect(function(child)
+    if not child:IsA("ImageButton") then return end
+    
+    local petImage = child:FindFirstChild("PetImage")
+    if not petImage then 
+        petImage = child:WaitForChild("PetImage", 0.5)
+        if not petImage then return end
+    end
+    
+    local imageId = petImage.Image
+    local petId = child.Name
+    local shouldDelete = false
+    
+    -- Check if this is a normal pet that should be deleted
+    for petName, data in pairs(selectedPets) do
+        -- Add a safety check to ensure data is a table with imageId
+        if type(data) == "table" and data.imageId and data.imageId == imageId then
+            shouldDelete = true
+            break
+        end
+        
+        -- Check if this is a shiny pet that should be deleted
+        if type(data) == "table" and deleteShinies and data.shinyImageId and data.shinyImageId == imageId then
+            shouldDelete = true
+            break
+        end
+    end
+    
+    if shouldDelete then
+        -- Use different remote command depending on if it's a pet or aura
+        local command = isAura and "DeleteAuraInInventory" or "DeletePetInInventory"
+        
+        local args = {
+            command,
+            petId
+        }
+        
+        pcall(function()
+            game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("MainRemoteEvent"):FireServer(unpack(args))
         end)
     end
+end)
+end
     
     -- Monitor both paths
     local petInventoryPath = getPetInventoryPath()
@@ -265,6 +508,7 @@ local function monitorPetInventory()
     end
 end
 
+-- Monitor egg info overlay for applying X marks
 local function monitorEggInfoOverlay()
     local function getEggInfoPath()
         local success, result = pcall(function()
@@ -291,8 +535,8 @@ local function monitorEggInfoOverlay()
     
     eggInfoPath.ChildAdded:Connect(function(child)
         if child:IsA("ImageLabel") then
-            local imageId = getPetImageId(child)
-            if imageId and selectedPets[imageId] then
+            local petName = child.Name
+            if petName and selectedPets[petName] then
                 createXMarkOverlay(child)
             end
         end
@@ -306,7 +550,7 @@ local function monitorEggInfoOverlay()
         if success and overlay then
             if overlay.Enabled then
                 applyXMarksToSelectedPets()
-                
+                createShinyToggle() -- Create or update the shiny toggle when overlay is visible
                 -- Fix for BillboardGUI scaling issues
                 -- Try to ensure X marks scale properly with BillboardGUI
                 local petContainer = overlay.PetContainer.PetContainerFrame
@@ -340,8 +584,8 @@ local function createNotification()
         screenGui.Parent = LocalPlayer:WaitForChild("PlayerGui")
         
         local frame = Instance.new("Frame")
-        frame.Size = UDim2.new(0, 240, 0, 60)
-        frame.Position = UDim2.new(0.5, -120, 0.9, -30)
+        frame.Size = UDim2.new(0, 240, 0, 80) -- Increased height for additional info
+        frame.Position = UDim2.new(0.5, -120, 0.9, -40)
         frame.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
         frame.BorderSizePixel = 0
         frame.Parent = screenGui
@@ -351,7 +595,7 @@ local function createNotification()
         corner.Parent = frame
         
         local textLabel = Instance.new("TextLabel")
-        textLabel.Size = UDim2.new(1, 0, 0.5, 0)
+        textLabel.Size = UDim2.new(1, 0, 0.33, 0)
         textLabel.Position = UDim2.new(0, 0, 0, 0)
         textLabel.BackgroundTransparency = 1
         textLabel.Text = "Auto Delete Pets Active"
@@ -361,8 +605,8 @@ local function createNotification()
         textLabel.Parent = frame
         
         local textLabel2 = Instance.new("TextLabel")
-        textLabel2.Size = UDim2.new(1, 0, 0.5, 0)
-        textLabel2.Position = UDim2.new(0, 0, 0.5, 0)
+        textLabel2.Size = UDim2.new(1, 0, 0.33, 0)
+        textLabel2.Position = UDim2.new(0, 0, 0.33, 0)
         textLabel2.BackgroundTransparency = 1
         textLabel2.Text = "Monitoring Pets & Auras"
         textLabel2.TextColor3 = Color3.fromRGB(255, 200, 100)
@@ -370,13 +614,24 @@ local function createNotification()
         textLabel2.TextSize = 12
         textLabel2.Parent = frame
         
+        local textLabel3 = Instance.new("TextLabel")
+        textLabel3.Size = UDim2.new(1, 0, 0.33, 0)
+        textLabel3.Position = UDim2.new(0, 0, 0.66, 0)
+        textLabel3.BackgroundTransparency = 1
+        textLabel3.Text = "Shiny Auto-Delete: " .. (deleteShinies and "ON" or "OFF")
+        textLabel3.TextColor3 = deleteShinies and Color3.fromRGB(100, 255, 100) or Color3.fromRGB(255, 100, 100)
+        textLabel3.Font = Enum.Font.Gotham
+        textLabel3.TextSize = 12
+        textLabel3.Parent = frame
+        
         -- Fade out after 3 seconds
         task.spawn(function()
-            task.wait(0.1)
+            task.wait(3)
             for i = 1, 10 do
                 frame.BackgroundTransparency = i / 10
                 textLabel.TextTransparency = i / 10
                 textLabel2.TextTransparency = i / 10
+                textLabel3.TextTransparency = i / 10
                 task.wait(0.05)
             end
             screenGui:Destroy()
@@ -384,7 +639,50 @@ local function createNotification()
     end)
 end
 
+-- Save the shiny deletion setting when it changes
+local function saveSettings()
+    local settings = {
+        deleteShinies = deleteShinies
+    }
+    
+    pcall(function()
+        writefile("AutoDeletePetsSettings.json", game:GetService("HttpService"):JSONEncode(settings))
+    end)
+end
+
+-- Load the shiny deletion setting
+local function loadSettings()
+    local success, result = pcall(function()
+        if isfile("AutoDeletePetsSettings.json") then
+            return game:GetService("HttpService"):JSONDecode(readfile("AutoDeletePetsSettings.json"))
+        end
+        return nil
+    end)
+    
+    if success and result then
+        if result.deleteShinies ~= nil then
+            deleteShinies = result.deleteShinies
+        end
+    end
+end
+
+-- Load settings at startup
+loadSettings()
+
+-- Setup the main functionality
 setupPetSelectionClicks()
 task.spawn(monitorPetInventory)
 task.spawn(monitorEggInfoOverlay)
 createNotification()
+
+-- Save settings when the toggle changes
+task.spawn(function()
+    local lastValue = deleteShinies
+    while true do
+        if lastValue ~= deleteShinies then
+            lastValue = deleteShinies
+            saveSettings()
+        end
+        task.wait(1)
+    end
+end)
