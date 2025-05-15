@@ -372,7 +372,7 @@ local function createNotification()
         
         -- Fade out after 3 seconds
         task.spawn(function()
-            task.wait(3)
+            task.wait(0.1)
             for i = 1, 10 do
                 frame.BackgroundTransparency = i / 10
                 textLabel.TextTransparency = i / 10
