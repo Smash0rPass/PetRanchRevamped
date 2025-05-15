@@ -348,8 +348,8 @@ local function addPetEntry(container, imageId, rarity)
     local rarityLabelStroke = Instance.new("UIStroke")
     rarityLabelStroke.Color = Color3.fromRGB(0,0,0)
     rarityLabelStroke.Thickness = 2
-    rarityLabelStroke.Parent = rarityLabel 
-    
+    rarityLabelStroke.Parent = rarityLabel
+     
     -- Apply rarity color or effect to both text and background
     if rarity then
         local rarityLower = rarity:lower()
@@ -433,11 +433,8 @@ local function getAuraInventoryPath()
     end
 end
 
--- Track if we're currently in a hatching session
-local isHatchingActive = false
-
 local function processPetItem(petItem)
-    if not petItem:IsA("ImageButton") or not isHatchingActive then
+    if not petItem:IsA("ImageButton") then
         return
     end
     
@@ -452,7 +449,7 @@ local function processPetItem(petItem)
 end
 
 local function processAuraItem(auraItem)
-    if not auraItem:IsA("ImageButton") or not isHatchingActive then
+    if not auraItem:IsA("ImageButton") then
         return
     end
     
@@ -470,36 +467,38 @@ local function processAuraItem(auraItem)
     end
 end
 
--- Store connections to disconnect them when needed
-local petInventoryConnection = nil
-local auraInventoryConnection = nil
+local function monitorPetInventory()
+    local petInventoryPath = getPetInventoryPath()
+    
+    if petInventoryPath then
+        petInventoryPath.ChildAdded:Connect(function(child)
+            processPetItem(child)
+        end)
+    end
+    
+    local auraInventoryPath = getAuraInventoryPath()
+    
+    if auraInventoryPath then
+        auraInventoryPath.ChildAdded:Connect(function(child)
+            processAuraItem(child)
+        end)
+    end
+end
 
-local function setupInventoryMonitoring(active)
-    -- If we already have connections, disconnect them
-    if petInventoryConnection then
-        petInventoryConnection:Disconnect()
-        petInventoryConnection = nil
-    end
+local function startWithRetry()
+    local success = false
+    local attempts = 0
     
-    if auraInventoryConnection then
-        auraInventoryConnection:Disconnect()
-        auraInventoryConnection = nil
-    end
-    
-    -- Only set up new connections if hatching is active
-    if active then
-        local petInventoryPath = getPetInventoryPath()
-        if petInventoryPath then
-            petInventoryConnection = petInventoryPath.ChildAdded:Connect(function(child)
-                processPetItem(child)
-            end)
-        end
+    while not success and attempts < 5 do
+        attempts = attempts + 1
+        local ok = pcall(function()
+            monitorPetInventory()
+        end)
         
-        local auraInventoryPath = getAuraInventoryPath()
-        if auraInventoryPath then
-            auraInventoryConnection = auraInventoryPath.ChildAdded:Connect(function(child)
-                processAuraItem(child)
-            end)
+        if ok then
+            success = true
+        else
+            task.wait(0.01)
         end
     end
 end
@@ -507,7 +506,7 @@ end
 local function monitorEggsOpened()
     local lastEggsOpened = 0
     local hideTimerId = nil
-    local isVisible = false
+    local isVisible = true
     
     local function getEggsOpened()
         if LocalPlayer and LocalPlayer:FindFirstChild("leaderstats") and LocalPlayer.leaderstats:FindFirstChild("Eggs Opened") then
@@ -542,9 +541,6 @@ local function monitorEggsOpened()
         
         hideTimerId = task.delay(4, function()
             hideGUI()
-            -- When hiding the GUI, we also stop monitoring for new pets
-            isHatchingActive = false
-            setupInventoryMonitoring(false)
         end)
     end
     
@@ -552,9 +548,6 @@ local function monitorEggsOpened()
         local currentEggsOpened = getEggsOpened()
         
         if currentEggsOpened > lastEggsOpened then
-            -- Eggs count increased, activate hatching mode
-            isHatchingActive = true
-            setupInventoryMonitoring(true)
             showGUI()
             resetHideTimer()
         end
@@ -574,17 +567,10 @@ local function setupCleanup()
                 end
             end
             colorCycleConnections = {}
-            
-            if petInventoryConnection then
-                petInventoryConnection:Disconnect()
-            end
-            
-            if auraInventoryConnection then
-                auraInventoryConnection:Disconnect()
-            end
         end
     end)
 end
 
 setupCleanup()
+startWithRetry()
 task.spawn(monitorEggsOpened)
