@@ -1,0 +1,390 @@
+local Players = game:GetService("Players")
+local UserInputService = game:GetService("UserInputService")
+local LocalPlayer = Players.LocalPlayer
+
+local function saveToFile(data)
+    pcall(function()
+        writefile("AutoDeletePets.json", game:GetService("HttpService"):JSONEncode(data))
+    end)
+end
+
+local function loadFromFile()
+    local success, result = pcall(function()
+        if isfile("AutoDeletePets.json") then
+            return game:GetService("HttpService"):JSONDecode(readfile("AutoDeletePets.json"))
+        end
+        return {}
+    end)
+    
+    if success then
+        return result
+    else
+        return {}
+    end
+end
+
+local selectedPets = loadFromFile() or {}
+
+local function createXMarkOverlay(petFrame)
+    if petFrame:FindFirstChild("XMarkOverlay") then
+        return petFrame.XMarkOverlay
+    end
+    
+    local overlay = Instance.new("Frame")
+    overlay.Name = "XMarkOverlay"
+    overlay.Size = UDim2.new(1, 0, 1, 0)
+    overlay.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+    overlay.BackgroundTransparency = 0.7
+    overlay.BorderSizePixel = 0
+    overlay.ZIndex = 10
+    overlay.Parent = petFrame
+    
+    local uiCorner = Instance.new("UICorner")
+    uiCorner.CornerRadius = UDim.new(0, 8)
+    uiCorner.Parent = overlay
+    
+    local xMark = Instance.new("TextLabel")
+    xMark.Name = "XMark"
+    xMark.Size = UDim2.new(1, 0, 1, 0)
+    xMark.BackgroundTransparency = 1
+    xMark.Text = "X"
+    xMark.TextColor3 = Color3.fromRGB(255, 50, 50)
+    xMark.TextSize = 40
+    xMark.Font = Enum.Font.FredokaOne
+    xMark.ZIndex = 11
+    xMark.TextScaled = true  -- Enable text scaling
+    xMark.Parent = overlay
+    
+    return overlay
+end
+
+local function removeXMarkOverlay(petFrame)
+    local overlay = petFrame:FindFirstChild("XMarkOverlay")
+    if overlay then
+        overlay:Destroy()
+    end
+end
+
+local function getPetImageId(petFrame)
+    local petImage = petFrame:FindFirstChild("PetImage")
+    if petImage and petImage:IsA("ImageLabel") then
+        return petImage.Image
+    end
+    return nil
+end
+
+local function togglePetSelection(petFrame)
+    local imageId = getPetImageId(petFrame)
+    if not imageId then return end
+    
+    if selectedPets[imageId] then
+        selectedPets[imageId] = nil
+        removeXMarkOverlay(petFrame)
+    else
+        selectedPets[imageId] = true
+        createXMarkOverlay(petFrame)
+    end
+    
+    saveToFile(selectedPets)
+end
+
+local function applyXMarksToSelectedPets()
+    local success, petContainer = pcall(function()
+        return game:GetService("Players").LocalPlayer.PlayerGui.BillboardUI.EggInfoOverlay.PetContainer.PetContainerFrame
+    end)
+    
+    if not success or not petContainer then return end
+    
+    for _, child in pairs(petContainer:GetChildren()) do
+        if child:IsA("ImageLabel") then
+            local imageId = getPetImageId(child)
+            if imageId and selectedPets[imageId] then
+                createXMarkOverlay(child)
+            else
+                removeXMarkOverlay(child)
+            end
+        end
+    end
+end
+
+-- Create a debounce system for clicks to avoid multiple triggers
+local clickDebounce = false
+local function setupPetSelectionClicks()
+    -- Direct connection to each pet frame when created
+    local function connectPetFrameClick(petFrame)
+        if petFrame:IsA("ImageLabel") then
+            petFrame.InputBegan:Connect(function(input)
+                if input.UserInputType == Enum.UserInputType.MouseButton1 and not clickDebounce then
+                    clickDebounce = true
+                    togglePetSelection(petFrame)
+                    task.delay(0.3, function() clickDebounce = false end)
+                end
+            end)
+        end
+    end
+    
+    -- Connect to existing pet frames
+    local function connectExistingPetFrames()
+        local success, petContainer = pcall(function()
+            return game:GetService("Players").LocalPlayer.PlayerGui.BillboardUI.EggInfoOverlay.PetContainer.PetContainerFrame
+        end)
+        
+        if success and petContainer then
+            for _, child in pairs(petContainer:GetChildren()) do
+                if child:IsA("ImageLabel") then
+                    connectPetFrameClick(child)
+                end
+            end
+            
+            -- Connect to future pet frames
+            petContainer.ChildAdded:Connect(function(child)
+                if child:IsA("ImageLabel") then
+                    connectPetFrameClick(child)
+                end
+            end)
+        end
+    end
+    
+    -- Try to connect initially
+    connectExistingPetFrames()
+    
+    -- Also try again after a delay to make sure UI is loaded
+    task.spawn(function()
+        task.wait(3)
+        connectExistingPetFrames()
+    end)
+    
+    -- Keep checking for the UI to appear
+    task.spawn(function()
+        local attempts = 0
+        while attempts < 10 do
+            local success, petContainer = pcall(function()
+                return game:GetService("Players").LocalPlayer.PlayerGui.BillboardUI.EggInfoOverlay.PetContainer.PetContainerFrame
+            end)
+            
+            if success and petContainer then
+                connectExistingPetFrames()
+                break
+            end
+            
+            attempts = attempts + 1
+            task.wait(2)
+        end
+    end)
+end
+
+local function monitorPetInventory()
+    -- Monitor regular pet inventory
+    local function getPetInventoryPath()
+        local success, result = pcall(function()
+            return game:GetService("Players").LocalPlayer.PlayerGui.MainGui.CenterUIFrame.PetInventory.PetInventoryInnerFrame.NewGui.MainFrame2.Pets.PetInventoryScrollingFrame
+        end)
+        
+        if success and result then
+            return result
+        else
+            return nil
+        end
+    end
+    
+    -- Monitor aura inventory (additional path)
+    local function getAuraInventoryPath()
+        local success, result = pcall(function()
+            return game:GetService("Players").LocalPlayer.PlayerGui.MainGui.CenterUIFrame.PetInventory.AuraInventoryInnerFrame.ScreenGui.AuraFrame.Auras.AuraInventoryScrollingFrame
+        end)
+        
+        if success and result then
+            return result
+        else
+            return nil
+        end
+    end
+    
+    -- Setup monitoring for a path
+    local function monitorPath(path, isAura)
+        if not path then return end
+        
+        path.ChildAdded:Connect(function(child)
+            if not child:IsA("ImageButton") then return end
+            
+            local petImage = child:FindFirstChild("PetImage")
+            if not petImage then 
+                petImage = child:WaitForChild("PetImage", 0.5)
+                if not petImage then return end
+            end
+            
+            local imageId = petImage.Image
+            if selectedPets[imageId] then
+                local petId = child.Name
+                
+                -- Use different remote command depending on if it's a pet or aura
+                local command = isAura and "DeleteAuraInInventory" or "DeletePetInInventory"
+                
+                local args = {
+                    command,
+                    petId
+                }
+                
+                pcall(function()
+                    game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("MainRemoteEvent"):FireServer(unpack(args))
+                end)
+            end
+        end)
+    end
+    
+    -- Monitor both paths
+    local petInventoryPath = getPetInventoryPath()
+    local auraInventoryPath = getAuraInventoryPath()
+    
+    if petInventoryPath then
+        monitorPath(petInventoryPath, false) -- Regular pets
+    end
+    
+    if auraInventoryPath then
+        monitorPath(auraInventoryPath, true) -- Auras
+    end
+    
+    -- If paths don't exist yet, try again after a delay
+    if not petInventoryPath or not auraInventoryPath then
+        task.spawn(function()
+            task.wait(5)
+            if not petInventoryPath then
+                petInventoryPath = getPetInventoryPath()
+                if petInventoryPath then
+                    monitorPath(petInventoryPath, false) -- Regular pets
+                end
+            end
+            
+            if not auraInventoryPath then
+                auraInventoryPath = getAuraInventoryPath()
+                if auraInventoryPath then
+                    monitorPath(auraInventoryPath, true) -- Auras
+                end
+            end
+        end)
+    end
+end
+
+local function monitorEggInfoOverlay()
+    local function getEggInfoPath()
+        local success, result = pcall(function()
+            return game:GetService("Players").LocalPlayer.PlayerGui.BillboardUI.EggInfoOverlay.PetContainer.PetContainerFrame
+        end)
+        
+        if success and result then
+            return result
+        else
+            return nil
+        end
+    end
+    
+    local eggInfoPath = getEggInfoPath()
+    if not eggInfoPath then
+        task.wait(2)
+        eggInfoPath = getEggInfoPath()
+        if not eggInfoPath then
+            return
+        end
+    end
+    
+    applyXMarksToSelectedPets()
+    
+    eggInfoPath.ChildAdded:Connect(function(child)
+        if child:IsA("ImageLabel") then
+            local imageId = getPetImageId(child)
+            if imageId and selectedPets[imageId] then
+                createXMarkOverlay(child)
+            end
+        end
+    end)
+    
+    local function checkVisibility()
+        local success, overlay = pcall(function()
+            return game:GetService("Players").LocalPlayer.PlayerGui.BillboardUI.EggInfoOverlay
+        end)
+        
+        if success and overlay then
+            if overlay.Enabled then
+                applyXMarksToSelectedPets()
+                
+                -- Fix for BillboardGUI scaling issues
+                -- Try to ensure X marks scale properly with BillboardGUI
+                local petContainer = overlay.PetContainer.PetContainerFrame
+                if petContainer then
+                    for _, child in pairs(petContainer:GetChildren()) do
+                        if child:IsA("ImageLabel") and child:FindFirstChild("XMarkOverlay") then
+                            local xMark = child.XMarkOverlay:FindFirstChild("XMark")
+                            if xMark then
+                                xMark.TextScaled = true
+                            end
+                        end
+                    end
+                end
+            end
+        end
+    end
+    
+    task.spawn(function()
+        while true do
+            checkVisibility()
+            task.wait(1)
+        end
+    end)
+end
+
+-- Update the notification to show both inventories are monitored
+local function createNotification()
+    pcall(function()
+        local screenGui = Instance.new("ScreenGui")
+        screenGui.Name = "AutoDeleteNotification"
+        screenGui.Parent = LocalPlayer:WaitForChild("PlayerGui")
+        
+        local frame = Instance.new("Frame")
+        frame.Size = UDim2.new(0, 240, 0, 60)
+        frame.Position = UDim2.new(0.5, -120, 0.9, -30)
+        frame.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+        frame.BorderSizePixel = 0
+        frame.Parent = screenGui
+        
+        local corner = Instance.new("UICorner")
+        corner.CornerRadius = UDim.new(0, 8)
+        corner.Parent = frame
+        
+        local textLabel = Instance.new("TextLabel")
+        textLabel.Size = UDim2.new(1, 0, 0.5, 0)
+        textLabel.Position = UDim2.new(0, 0, 0, 0)
+        textLabel.BackgroundTransparency = 1
+        textLabel.Text = "Auto Delete Pets Active"
+        textLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+        textLabel.Font = Enum.Font.GothamBold
+        textLabel.TextSize = 14
+        textLabel.Parent = frame
+        
+        local textLabel2 = Instance.new("TextLabel")
+        textLabel2.Size = UDim2.new(1, 0, 0.5, 0)
+        textLabel2.Position = UDim2.new(0, 0, 0.5, 0)
+        textLabel2.BackgroundTransparency = 1
+        textLabel2.Text = "Monitoring Pets & Auras"
+        textLabel2.TextColor3 = Color3.fromRGB(255, 200, 100)
+        textLabel2.Font = Enum.Font.Gotham
+        textLabel2.TextSize = 12
+        textLabel2.Parent = frame
+        
+        -- Fade out after 3 seconds
+        task.spawn(function()
+            task.wait(3)
+            for i = 1, 10 do
+                frame.BackgroundTransparency = i / 10
+                textLabel.TextTransparency = i / 10
+                textLabel2.TextTransparency = i / 10
+                task.wait(0.05)
+            end
+            screenGui:Destroy()
+        end)
+    end)
+end
+
+setupPetSelectionClicks()
+task.spawn(monitorPetInventory)
+task.spawn(monitorEggInfoOverlay)
+createNotification()
