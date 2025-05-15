@@ -1,0 +1,568 @@
+local Players = game:GetService("Players")
+local TweenService = game:GetService("TweenService")
+local RunService = game:GetService("RunService")
+local LocalPlayer = Players.LocalPlayer
+
+local function waitForPlayerGui()
+    while not LocalPlayer:FindFirstChild("PlayerGui") do
+        task.wait(0.1)
+    end
+    return LocalPlayer.PlayerGui
+end
+
+local PlayerGui = waitForPlayerGui()
+
+-- Rarity colors and effects
+local rarityColors = {
+    Common = Color3.fromRGB(180, 180, 180),
+    Uncommon = Color3.fromRGB(126, 255, 173),
+    Rare = Color3.fromRGB(100, 100, 255),
+    Epic = Color3.fromRGB(200, 100, 255),
+    Legendary = Color3.fromRGB(255, 215, 0), -- Base color, will cycle
+    Mythic = Color3.fromRGB(255, 51, 51), -- Base color, will cycle
+    Divine = Color3.fromRGB(128, 0, 255), -- Base color, will cycle
+    Premium = Color3.fromRGB(255, 204, 51) -- Base color, will cycle
+}
+
+-- Store color cycle connections
+local colorCycleConnections = {}
+
+-- Function to apply legendary color cycle
+local function applyLegendaryCycle(object)
+    if colorCycleConnections[object] then
+        colorCycleConnections[object]:Disconnect()
+    end
+    
+    local r, g, b = 255, 0, 0
+    local phase = 0
+    
+    local connection = RunService.Heartbeat:Connect(function()
+        if not object or not object.Parent then
+            if colorCycleConnections[object] then
+                colorCycleConnections[object]:Disconnect()
+                colorCycleConnections[object] = nil
+            end
+            return
+        end
+        
+        local step = 10
+        
+        if phase == 0 then
+            g = g + step
+            if g >= 255 then
+                g = 255
+                phase = 1
+            end
+        elseif phase == 1 then
+            r = r - step
+            if r <= 0 then
+                r = 0
+                phase = 2
+            end
+        elseif phase == 2 then
+            b = b + step
+            if b >= 255 then
+                b = 255
+                phase = 3
+            end
+        elseif phase == 3 then
+            g = g - step
+            if g <= 0 then
+                g = 0
+                phase = 4
+            end
+        elseif phase == 4 then
+            r = r + step
+            if r >= 255 then
+                r = 255
+                phase = 5
+            end
+        elseif phase == 5 then
+            b = b - step
+            if b <= 0 then
+                b = 0
+                phase = 0
+            end
+        end
+        
+        r = math.clamp(r, 0, 255)
+        g = math.clamp(g, 0, 255)
+        b = math.clamp(b, 0, 255)
+        
+        if object:IsA("TextLabel") then
+            object.TextColor3 = Color3.fromRGB(r, g, b)
+        else
+            object.ImageColor3 = Color3.fromRGB(r, g, b)
+        end
+    end)
+    
+    colorCycleConnections[object] = connection
+end
+
+-- Function to apply mythic color cycle
+local function applyMythicCycle(object)
+    if colorCycleConnections[object] then
+        colorCycleConnections[object]:Disconnect()
+    end
+    
+    local time = 0
+    
+    local connection = RunService.Heartbeat:Connect(function(deltaTime)
+        if not object or not object.Parent then
+            if colorCycleConnections[object] then
+                colorCycleConnections[object]:Disconnect()
+                colorCycleConnections[object] = nil
+            end
+            return
+        end
+        
+        time = time + deltaTime * 3
+        
+        local cycleValue = (math.sin(time) + 1) / 2
+        
+        local darkRedR, darkRedG, darkRedB = 120, 24, 24
+        local lightRedR, lightRedG, lightRedB = 255, 51, 51
+        
+        local r = math.floor(darkRedR + (lightRedR - darkRedR) * cycleValue)
+        local g = math.floor(darkRedG + (lightRedG - darkRedG) * cycleValue)
+        local b = math.floor(darkRedB + (lightRedB - darkRedB) * cycleValue)
+        
+        if object:IsA("TextLabel") then
+            object.TextColor3 = Color3.fromRGB(r, g, b)
+        else
+            object.ImageColor3 = Color3.fromRGB(r, g, b)
+        end
+    end)
+    
+    colorCycleConnections[object] = connection
+end
+
+-- Function to apply divine color cycle
+local function applyDivineCycle(object)
+    if colorCycleConnections[object] then
+        colorCycleConnections[object]:Disconnect()
+    end
+    
+    local time = 0
+    
+    local connection = RunService.Heartbeat:Connect(function(deltaTime)
+        if not object or not object.Parent then
+            if colorCycleConnections[object] then
+                colorCycleConnections[object]:Disconnect()
+                colorCycleConnections[object] = nil
+            end
+            return
+        end
+        
+        time = time + deltaTime * 2
+        
+        local cycleValue = (math.sin(time) + 1) / 2
+        
+        local purpleR, purpleG, purpleB = 128, 0, 255
+        local pinkR, pinkG, pinkB = 255, 220, 255
+        
+        local r = math.floor(purpleR + (pinkR - purpleR) * cycleValue)
+        local g = math.floor(purpleG + (pinkG - purpleG) * cycleValue)
+        local b = math.floor(purpleB + (pinkB - purpleB) * cycleValue)
+        
+        if object:IsA("TextLabel") then
+            object.TextColor3 = Color3.fromRGB(r, g, b)
+        else
+            object.ImageColor3 = Color3.fromRGB(r, g, b)
+        end
+    end)
+    
+    colorCycleConnections[object] = connection
+end
+
+-- Function to apply premium color cycle
+local function applyPremiumCycle(object)
+    if colorCycleConnections[object] then
+        colorCycleConnections[object]:Disconnect()
+    end
+    
+    local time = 0
+    
+    local connection = RunService.Heartbeat:Connect(function(deltaTime)
+        if not object or not object.Parent then
+            if colorCycleConnections[object] then
+                colorCycleConnections[object]:Disconnect()
+                colorCycleConnections[object] = nil
+            end
+            return
+        end
+        
+        time = time + deltaTime
+        
+        local cycleValue = (math.sin(time) + 1) / 2
+        
+        local darkGoldR, darkGoldG, darkGoldB = 120, 96, 24
+        local lightGoldR, lightGoldG, lightGoldB = 255, 204, 51
+        
+        local r = math.floor(darkGoldR + (lightGoldR - darkGoldR) * cycleValue)
+        local g = math.floor(darkGoldG + (lightGoldG - darkGoldG) * cycleValue)
+        local b = math.floor(darkGoldB + (lightGoldB - darkGoldB) * cycleValue)
+        
+        if object:IsA("TextLabel") then
+            object.TextColor3 = Color3.fromRGB(r, g, b)
+        else
+            object.ImageColor3 = Color3.fromRGB(r, g, b)
+        end
+    end)
+    
+    colorCycleConnections[object] = connection
+end
+
+local function createLatestPetsUI()
+    local screenGui = Instance.new("ScreenGui")
+    screenGui.Name = "LatestPetsHatchedGui"
+    screenGui.ResetOnSpawn = false
+    screenGui.Parent = PlayerGui
+    
+    local mainFrame = Instance.new("Frame")
+    mainFrame.Name = "MainFrame"
+    mainFrame.Size = UDim2.new(0, 800, 0, 180)
+    mainFrame.Position = UDim2.new(0.5, -400, 0, -50)
+    mainFrame.BackgroundTransparency = 1
+    mainFrame.BorderSizePixel = 0
+    mainFrame.Parent = screenGui
+    
+    local uiCorner = Instance.new("UICorner")
+    uiCorner.CornerRadius = UDim.new(0, 10)
+    uiCorner.Parent = mainFrame
+    
+    local titleLabel = Instance.new("TextLabel")
+    titleLabel.Name = "TitleLabel"
+    titleLabel.Size = UDim2.new(1, 0, 0, 40)
+    titleLabel.Position = UDim2.new(0, 0, 0, 0)
+    titleLabel.BackgroundTransparency = 1
+    titleLabel.Text = "Latest Pets Hatched"
+    titleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+    titleLabel.TextSize = 24
+    titleLabel.Font = Enum.Font.FredokaOne
+    titleLabel.Parent = mainFrame
+    
+    local uiStroke = Instance.new("UIStroke")
+    uiStroke.Thickness = 4
+    uiStroke.Color = Color3.fromRGB(0, 0, 0)
+    uiStroke.Parent = titleLabel
+    
+    local petsContainer = Instance.new("ScrollingFrame")
+    petsContainer.Name = "PetsContainer"
+    petsContainer.ScrollBarThickness = 0
+    petsContainer.Size = UDim2.new(1, -20, 0, 130)
+    petsContainer.Position = UDim2.new(0, 10, 0, 45)
+    petsContainer.BackgroundTransparency = 1
+    petsContainer.BorderSizePixel = 0
+    petsContainer.ScrollBarThickness = 4
+    petsContainer.ScrollingDirection = Enum.ScrollingDirection.X
+    petsContainer.AutomaticCanvasSize = Enum.AutomaticSize.X
+    petsContainer.CanvasSize = UDim2.new(0, 0, 0, 0)
+    petsContainer.Parent = mainFrame
+    
+    local listLayout = Instance.new("UIListLayout")
+    listLayout.Padding = UDim.new(0, 10)
+    listLayout.FillDirection = Enum.FillDirection.Horizontal
+    listLayout.VerticalAlignment = Enum.VerticalAlignment.Center
+    listLayout.SortOrder = Enum.SortOrder.LayoutOrder
+    listLayout.Parent = petsContainer
+    
+    return screenGui, petsContainer, mainFrame
+end
+
+local function addPetEntry(container, imageId, rarity)
+    local entryFrame = Instance.new("Frame")
+    entryFrame.Name = "PetEntry"
+    entryFrame.Size = UDim2.new(0, 120, 0, 120)
+    entryFrame.BackgroundTransparency = 1
+    entryFrame.BorderSizePixel = 0
+    entryFrame.LayoutOrder = -tick()
+    
+    -- Background image instead of colored frame
+    local backgroundImage = Instance.new("ImageLabel")
+    backgroundImage.Name = "Background"
+    backgroundImage.Size = UDim2.new(0.8, 0, 0.8, 0)
+    backgroundImage.Position = UDim2.new(0, 15, 0, 0)
+    backgroundImage.BackgroundTransparency = 1
+    backgroundImage.Image = "rbxassetid://111266790123938"
+    backgroundImage.ScaleType = Enum.ScaleType.Stretch
+    backgroundImage.Parent = entryFrame
+    
+    local uiCorner = Instance.new("UICorner")
+    uiCorner.CornerRadius = UDim.new(0, 8)
+    uiCorner.Parent = backgroundImage
+    
+    local petImage = Instance.new("ImageLabel")
+    petImage.Name = "PetImage"
+    petImage.Size = UDim2.new(0, 80, 0, 80)
+    petImage.Position = UDim2.new(0.5, -40, 0, 5)
+    petImage.BackgroundTransparency = 1
+    petImage.Image = imageId
+    petImage.Parent = entryFrame
+    
+    local rarityLabel = Instance.new("TextLabel")
+    rarityLabel.Name = "RarityLabel"
+    rarityLabel.Size = UDim2.new(1, 0, 0, 25)
+    rarityLabel.Position = UDim2.new(0, 0, 0, 90)
+    rarityLabel.BackgroundTransparency = 1
+    rarityLabel.Text = rarity or "Aura"
+    rarityLabel.TextSize = 16
+    rarityLabel.Font = Enum.Font.FredokaOne
+    rarityLabel.Parent = entryFrame
+
+    rarityLabelStroke = Instance.new("UIStroke")
+    rarityLabelStroke.Color = Color3.fromRGB(0,0,0)
+    rarityLabelStroke.Thickness = 2
+    rarityLabelStroke.Parent = rarityLabel 
+    
+    -- Apply rarity color or effect to both text and background
+    if rarity then
+        local rarityLower = rarity:lower()
+        if rarityLower == "common" then
+            rarityLabel.TextColor3 = rarityColors.Common
+            backgroundImage.ImageColor3 = rarityColors.Common
+        elseif rarityLower == "uncommon" then
+            rarityLabel.TextColor3 = rarityColors.Uncommon
+            backgroundImage.ImageColor3 = rarityColors.Uncommon
+        elseif rarityLower == "rare" then
+            rarityLabel.TextColor3 = rarityColors.Rare
+            backgroundImage.ImageColor3 = rarityColors.Rare
+        elseif rarityLower == "epic" then
+            rarityLabel.TextColor3 = rarityColors.Epic
+            backgroundImage.ImageColor3 = rarityColors.Epic
+        elseif rarityLower == "legendary" then
+            rarityLabel.TextColor3 = rarityColors.Legendary
+            backgroundImage.ImageColor3 = rarityColors.Legendary
+            applyLegendaryCycle(backgroundImage)
+            applyLegendaryCycle(rarityLabel)
+        elseif rarityLower == "mythical" or rarityLower == "mythic" then
+            rarityLabel.TextColor3 = rarityColors.Mythic
+            backgroundImage.ImageColor3 = rarityColors.Mythic
+            applyMythicCycle(backgroundImage)
+            applyMythicCycle(rarityLabel)
+        elseif rarityLower == "divine" then
+            rarityLabel.TextColor3 = rarityColors.Divine
+            backgroundImage.ImageColor3 = rarityColors.Divine
+            applyDivineCycle(backgroundImage)
+            applyDivineCycle(rarityLabel)
+        elseif rarityLower == "premium" then
+            rarityLabel.TextColor3 = rarityColors.Premium
+            backgroundImage.ImageColor3 = rarityColors.Premium
+            applyPremiumCycle(backgroundImage)
+            applyPremiumCycle(rarityLabel)
+        end
+    else
+        -- For auras (no rarity label), use a special color effect
+        applyDivineCycle(rarityLabel)
+        applyDivineCycle(backgroundImage)
+    end
+    
+    entryFrame.Position = UDim2.new(0, 0, -1, 0)
+    entryFrame.Parent = container
+    
+    local tweenInfo = TweenInfo.new(0.5, Enum.EasingStyle.Bounce, Enum.EasingDirection.Out)
+    local tween = TweenService:Create(entryFrame, tweenInfo, {Position = UDim2.new(0, 0, 0, 0)})
+    tween:Play()
+    
+    if #container:GetChildren() - 1 > 6 then
+        local oldestEntry = nil
+        local highestLayoutOrder = -math.huge
+        
+        for _, child in pairs(container:GetChildren()) do
+            if child:IsA("Frame") and child.LayoutOrder > highestLayoutOrder then
+                highestLayoutOrder = child.LayoutOrder
+                oldestEntry = child
+            end
+        end
+        
+        if oldestEntry then
+            -- Clean up any color cycle connections
+            local oldRarityLabel = oldestEntry:FindFirstChild("RarityLabel")
+            local oldBackground = oldestEntry:FindFirstChild("Background")
+            
+            if oldRarityLabel and colorCycleConnections[oldRarityLabel] then
+                colorCycleConnections[oldRarityLabel]:Disconnect()
+                colorCycleConnections[oldRarityLabel] = nil
+            end
+            
+            if oldBackground and colorCycleConnections[oldBackground] then
+                colorCycleConnections[oldBackground]:Disconnect()
+                colorCycleConnections[oldBackground] = nil
+            end
+            
+            local fadeOutTween = TweenService:Create(oldestEntry, TweenInfo.new(0.3), {Position = UDim2.new(0, 0, 1, 0)})
+            fadeOutTween:Play()
+            fadeOutTween.Completed:Connect(function()
+                oldestEntry:Destroy()
+            end)
+        end
+    end
+end
+
+local latestPetsGui, petsContainer, mainFrame = createLatestPetsUI()
+
+local function getPetInventoryPath()
+    local success, result = pcall(function()
+        return game:GetService("Players").LocalPlayer.PlayerGui.MainGui.CenterUIFrame.PetInventory.PetInventoryInnerFrame.NewGui.MainFrame2.Pets.PetInventoryScrollingFrame
+    end)
+    
+    if success and result then
+        return result
+    else
+        return nil
+    end
+end
+
+local function getAuraInventoryPath()
+    local success, result = pcall(function()
+        return game:GetService("Players").LocalPlayer.PlayerGui.MainGui.CenterUIFrame.PetInventory.AuraInventoryInnerFrame.ScreenGui.AuraFrame.Auras.AuraInventoryScrollingFrame
+    end)
+    
+    if success and result then
+        return result
+    else
+        return nil
+    end
+end
+
+local function processPetItem(petItem)
+    if not petItem:IsA("ImageButton") then
+        return
+    end
+    
+    task.wait(0.01)
+    
+    local petImage = petItem:FindFirstChild("PetImage")
+    local rarityLabel = petItem:FindFirstChild("RarityLabel")
+    
+    if petImage and rarityLabel then
+        addPetEntry(petsContainer, petImage.Image, rarityLabel.Text)
+    end
+end
+
+local function processAuraItem(auraItem)
+    if not auraItem:IsA("ImageButton") then
+        return
+    end
+    
+    task.wait(0.01)
+    
+    local auraImage = auraItem:FindFirstChild("PetImage")
+    local auraRarityLabel = auraItem:FindFirstChild("RarityLabel")
+    
+    if auraImage and auraRarityLabel then
+        -- Use the actual rarity from the aura item
+        addPetEntry(petsContainer, auraImage.Image, auraRarityLabel.Text)
+    elseif auraImage then
+        -- Fallback if no rarity label is found
+        addPetEntry(petsContainer, auraImage.Image, "Aura")
+    end
+end
+
+local function monitorPetInventory()
+    local petInventoryPath = getPetInventoryPath()
+    
+    if petInventoryPath then
+        petInventoryPath.ChildAdded:Connect(function(child)
+            processPetItem(child)
+        end)
+    end
+    
+    local auraInventoryPath = getAuraInventoryPath()
+    
+    if auraInventoryPath then
+        auraInventoryPath.ChildAdded:Connect(function(child)
+            processAuraItem(child)
+        end)
+    end
+end
+
+local function startWithRetry()
+    local success = false
+    local attempts = 0
+    
+    while not success and attempts < 5 do
+        attempts = attempts + 1
+        local ok = pcall(function()
+            monitorPetInventory()
+        end)
+        
+        if ok then
+            success = true
+        else
+            task.wait(0.01)
+        end
+    end
+end
+
+local function monitorEggsOpened()
+    local lastEggsOpened = 0
+    local hideTimerId = nil
+    local isVisible = true
+    
+    local function getEggsOpened()
+        if LocalPlayer and LocalPlayer:FindFirstChild("leaderstats") and LocalPlayer.leaderstats:FindFirstChild("Eggs Opened") then
+            return LocalPlayer.leaderstats["Eggs Opened"].Value
+        end
+        return 0
+    end
+    
+    local function showGUI()
+        if not isVisible then
+            local tweenInfo = TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
+            local tween = TweenService:Create(mainFrame, tweenInfo, {Position = UDim2.new(0.5, -400, 0, -50)})
+            tween:Play()
+            isVisible = true
+        end
+    end
+    
+    local function hideGUI()
+        if isVisible then
+            local tweenInfo = TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.In)
+            local tween = TweenService:Create(mainFrame, tweenInfo, {Position = UDim2.new(0.5, -400, 0, -250)})
+            tween:Play()
+            isVisible = false
+        end
+    end
+    
+    local function resetHideTimer()
+        if hideTimerId then
+            task.cancel(hideTimerId)
+            hideTimerId = nil
+        end
+        
+        hideTimerId = task.delay(4, function()
+            hideGUI()
+        end)
+    end
+    
+    while true do
+        local currentEggsOpened = getEggsOpened()
+        
+        if currentEggsOpened > lastEggsOpened then
+            showGUI()
+            resetHideTimer()
+        end
+        
+        lastEggsOpened = currentEggsOpened
+        task.wait(0.01)
+    end
+end
+
+-- Clean up color cycle connections when script stops
+local function setupCleanup()
+    game:GetService("Players").PlayerRemoving:Connect(function(player)
+        if player == LocalPlayer then
+            for label, connection in pairs(colorCycleConnections) do
+                if connection then
+                    connection:Disconnect()
+                end
+            end
+            colorCycleConnections = {}
+        end
+    end)
+end
+
+setupCleanup()
+startWithRetry()
+task.spawn(monitorEggsOpened)
